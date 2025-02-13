@@ -1,0 +1,38 @@
+# Binary files
+bin/
+
+# Executables windows and unix
+*.exe
+*.out
+
+# Test executables
+*.test
+
+# Static libraries and object files
+*.a
+*.o
+
+# Go module and checksum files
+*.mod
+*.sum
+
+# Build and debugging
+build/
+debug/
+
+# LLVM-related ignores
+*.bc
+*.ll
+*.s
+
+# Logs and system files
+*.log
+*.DS_Store
+Thumbs.db
+.vscode/
+*.swp
+
+# Testing and temp files
+coverage/
+*.cov
+tmp/
