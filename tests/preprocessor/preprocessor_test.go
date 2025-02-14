@@ -31,7 +31,7 @@ let msg: string = "Hello " + name;
 return msg;
 }`
 
-	result := preprocessor.Proprocessor(source)
+	result := preprocessor.PreProcess(source)
 
 	if result != expected {
 		t.Errorf("Preprocess() output incorrect:\nExpected:\n%s\nGot:\n%s", expected, result)

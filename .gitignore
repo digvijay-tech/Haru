@@ -35,4 +35,5 @@ Thumbs.db
 # Testing and temp files
 coverage/
 *.cov
-tmp/
+*temp/
+

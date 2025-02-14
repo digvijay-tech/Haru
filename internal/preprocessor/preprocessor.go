@@ -7,7 +7,7 @@ import (
 
 const syntax = "---"
 
-func Proprocessor(source string) string {
+func PreProcess(source string) string {
 	// remove entire line after `---`
 	comment := regexp.MustCompile(syntax + ".*")
 	source = comment.ReplaceAllString(source, "")
