@@ -16,7 +16,7 @@ var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Print the version number of Haru",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Haru Interpreter v" + version)
+		fmt.Printf("Haru version %s\n", version)
 	},
 }
 

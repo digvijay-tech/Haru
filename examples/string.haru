@@ -1,0 +1,10 @@
+--- VARIABLES IN HARU
+
+
+func main() {
+    let name: string = "Haru"; --- semicolons are mandatory
+    name[0] = "h";             --- string values cannot be modified, throws an error
+    name = "haru";             --- reassignment is required to modify string values
+
+    let name2: 'world';        --- strings value can be assigned using either double or single qoutes
+}
