@@ -12,10 +12,10 @@ func TestPreprocessor(t *testing.T) {
 --- Comment: 1
 
 func SayHello(name: string): string { --- Comment: 2
-	let msg: string = "Hello " + name; --- Comment: 3
+	let msg:    string      = "Hello " + name; --- Comment: 3
 
 	--- Comment: 4
-	return msg;
+	return       msg;
 
 	--- Comment: 5
 }

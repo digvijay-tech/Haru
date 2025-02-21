@@ -17,7 +17,11 @@ func PreProcess(source string) string {
 	var processedLines []string
 
 	for _, line := range lines {
+		// trim from both ends
 		trimmed := strings.TrimSpace(line)
+
+		// reduce multiple spaces within the line to a single space
+		trimmed = regexp.MustCompile(`\s+`).ReplaceAllString(trimmed, " ")
 
 		if len(trimmed) > 0 {
 			processedLines = append(processedLines, trimmed)
