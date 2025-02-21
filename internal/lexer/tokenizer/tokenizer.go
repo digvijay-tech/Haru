@@ -3,15 +3,16 @@ package tokenizer
 type TokenType string
 
 const (
-	IDENTIFIER TokenType = "IDENTIFIER"
-	KEYWORD    TokenType = "KEYWORD"
-	OPERATOR   TokenType = "OPERATOR"
-	NUMBER     TokenType = "NUMBER"
-	STRING     TokenType = "STRING"
-	SYMBOL     TokenType = "SYMBOL"
-	DATATYPE   TokenType = "DATATYPE"
-	TUPLE_TYPE TokenType = "TUPLETYPE"
-	EOF        TokenType = "EOF"
+	IDENTIFIER   TokenType = "IDENTIFIER"
+	KEYWORD      TokenType = "KEYWORD"
+	OPERATOR     TokenType = "OPERATOR"
+	NUMBER       TokenType = "NUMBER"
+	STRING       TokenType = "STRING"
+	SYMBOL       TokenType = "SYMBOL"
+	DATATYPE     TokenType = "DATATYPE"
+	TUPLE_TYPE   TokenType = "TUPLETYPE"
+	UNIDENTIFIED TokenType = "UNIDENTIFIED"
+	EOF          TokenType = "EOF"
 )
 
 type Token struct {
