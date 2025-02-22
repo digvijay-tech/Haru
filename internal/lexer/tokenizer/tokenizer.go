@@ -29,7 +29,7 @@ var KeywordsTable = map[string]TokenType{
 	"break": KEYWORD, "continue": KEYWORD, "true": KEYWORD, "false": KEYWORD,
 	"struct": KEYWORD, "enum": KEYWORD, "const": KEYWORD, "type": KEYWORD,
 	"null": KEYWORD, "spawn": KEYWORD, "await": KEYWORD, "lock": KEYWORD,
-	"from": KEYWORD,
+	"from": KEYWORD, "in": KEYWORD,
 }
 
 var DatatypesTable = map[string]TokenType{
