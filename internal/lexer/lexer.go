@@ -19,15 +19,6 @@ func NewLexer(input string) *Lexer {
 	return &Lexer{input: input, position: 0, line: 1, col: 1}
 }
 
-func (lex *Lexer) peek() string {
-	// when EOF is reached
-	if lex.position >= len(lex.input)-1 {
-		return ""
-	}
-
-	return string(lex.input[lex.position+1])
-}
-
 func (lex *Lexer) NextToken() tokenizer.Token {
 	// reached end of file
 	if lex.position >= len(lex.input) {
@@ -51,6 +42,8 @@ func (lex *Lexer) NextToken() tokenizer.Token {
 	switch {
 	case ch == '"' || ch == '\'' || ch == '`':
 		return lex.readString()
+	case unicode.IsNumber(rune(ch)):
+		return lex.readNumbers()
 	case ch == '_' || unicode.IsLetter(rune(ch)):
 		return lex.classifyWord()
 	case ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%' || ch == '=' || ch == '<' || ch == '>' || ch == '!' || ch == '&' || ch == '|':
@@ -59,6 +52,41 @@ func (lex *Lexer) NextToken() tokenizer.Token {
 		lex.position++
 		return lex.NextToken()
 	}
+}
+
+func (lex *Lexer) readNumbers() tokenizer.Token {
+	start := lex.position
+	lex.position++
+	lex.col++
+	hasDot := false
+
+	for lex.position < len(lex.input) && !unicode.IsSpace(rune(lex.input[lex.position])) {
+		// encountered the dot (only allowed once)
+		if lex.input[lex.position] == '.' && !hasDot {
+			hasDot = true
+
+			// consuming the dot
+			lex.col++
+			lex.position++
+			continue
+		}
+
+		// encountered the dot again
+		if lex.input[lex.position] == '.' && hasDot {
+			// consuming the rest of the invalid number (to prevent reprocessing)
+			for lex.position < len(lex.input) && !unicode.IsSpace(rune(lex.input[lex.position])) {
+				lex.position++
+				lex.col++
+			}
+
+			return tokenizer.Token{Type: tokenizer.ERROR, Value: "Invalid Numeric Value", Line: lex.line, Col: lex.col}
+		}
+
+		lex.col++
+		lex.position++
+	}
+
+	return tokenizer.Token{Type: tokenizer.NUMBER, Value: lex.input[start:lex.position], Line: lex.line, Col: lex.col}
 }
 
 func (lex *Lexer) readString() tokenizer.Token {
@@ -74,11 +102,12 @@ func (lex *Lexer) readString() tokenizer.Token {
 			break
 		}
 
-		// encountered a line-break (note: can only happen between ``)
+		// encountered a line-break
 		if lex.input[lex.position] == '\n' {
 			lex.position++
 			lex.line++
 			lex.col = 1
+			continue
 		}
 
 		lex.position++
@@ -87,7 +116,7 @@ func (lex *Lexer) readString() tokenizer.Token {
 
 	// unterminated string
 	if lex.position >= len(lex.input) || lex.input[lex.position-1] != lex.input[start] {
-		return tokenizer.Token{Type: tokenizer.ERROR, Value: "Unterminated string", Line: lex.line, Col: lex.col}
+		return tokenizer.Token{Type: tokenizer.ERROR, Value: "Unterminated String", Line: lex.line, Col: lex.col}
 	}
 
 	// excluding quotations
