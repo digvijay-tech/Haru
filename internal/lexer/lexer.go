@@ -4,6 +4,7 @@ import (
 	"regexp"
 	"strings"
 	"unicode"
+	"unicode/utf8"
 
 	"github.com/digvijay-tech/Haru/internal/lexer/tokenizer"
 )
@@ -31,6 +32,7 @@ func (lex *Lexer) NextToken() tokenizer.Token {
 			lex.line++
 			lex.col = 0
 		}
+
 		lex.position++
 		lex.col++
 	}
@@ -48,6 +50,8 @@ func (lex *Lexer) NextToken() tokenizer.Token {
 		return lex.classifyWord()
 	case ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%' || ch == '=' || ch == '<' || ch == '>' || ch == '!' || ch == '&' || ch == '|':
 		return lex.readOperators()
+	case unicode.IsPunct(rune(ch)):
+		return lex.readPunctuations()
 	default:
 		lex.position++
 		return lex.NextToken()
@@ -184,4 +188,19 @@ func (lex *Lexer) readOperators() tokenizer.Token {
 
 	// regular operator
 	return tokenizer.Token{Type: tokenizer.OPERATOR, Value: string(lex.input[start]), Line: lex.line, Col: lex.col}
+}
+
+func (lex *Lexer) readPunctuations() tokenizer.Token {
+	// reached end of file
+	if lex.position >= len(lex.input) {
+		return tokenizer.Token{Type: tokenizer.EOF, Value: "", Line: lex.line, Col: lex.col}
+	}
+
+	_, size := utf8.DecodeLastRuneInString(lex.input[lex.position:])
+
+	start := lex.position
+	lex.position += size
+	lex.col++
+
+	return tokenizer.Token{Type: tokenizer.PUNCTUATION, Value: string(lex.input[start : start+size]), Line: lex.line, Col: lex.col}
 }

@@ -8,7 +8,7 @@ const (
 	OPERATOR     TokenType = "OPERATOR"
 	NUMBER       TokenType = "NUMBER"
 	STRING       TokenType = "STRING"
-	SYMBOL       TokenType = "SYMBOL"
+	PUNCTUATION  TokenType = "PUNCTUATION"
 	DATATYPE     TokenType = "DATATYPE"
 	TUPLE_TYPE   TokenType = "TUPLETYPE"
 	UNIDENTIFIED TokenType = "UNIDENTIFIED"
