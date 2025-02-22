@@ -12,6 +12,7 @@ const (
 	DATATYPE     TokenType = "DATATYPE"
 	TUPLE_TYPE   TokenType = "TUPLETYPE"
 	UNIDENTIFIED TokenType = "UNIDENTIFIED"
+	ERROR        TokenType = "ERROR"
 	EOF          TokenType = "EOF"
 )
 

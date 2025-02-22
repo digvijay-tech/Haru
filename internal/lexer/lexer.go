@@ -49,6 +49,8 @@ func (lex *Lexer) NextToken() tokenizer.Token {
 
 	// classify operators
 	switch {
+	case ch == '"' || ch == '\'' || ch == '`':
+		return lex.readString()
 	case ch == '_' || unicode.IsLetter(rune(ch)):
 		return lex.classifyWord()
 	case ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%' || ch == '=' || ch == '<' || ch == '>' || ch == '!' || ch == '&' || ch == '|':
@@ -59,14 +61,47 @@ func (lex *Lexer) NextToken() tokenizer.Token {
 	}
 }
 
+func (lex *Lexer) readString() tokenizer.Token {
+	start := lex.position
+	lex.position++
+	lex.col++
+
+	for lex.position < len(lex.input) {
+		// found the same ending punctuation that initialized the string it could be (" or ')
+		if lex.input[start] == lex.input[lex.position] {
+			lex.position++ // move past the closing quote
+			lex.col++
+			break
+		}
+
+		// encountered a line-break (note: can only happen between ``)
+		if lex.input[lex.position] == '\n' {
+			lex.position++
+			lex.line++
+			lex.col = 1
+		}
+
+		lex.position++
+		lex.col++
+	}
+
+	// unterminated string
+	if lex.position >= len(lex.input) || lex.input[lex.position-1] != lex.input[start] {
+		return tokenizer.Token{Type: tokenizer.ERROR, Value: "Unterminated string", Line: lex.line, Col: lex.col}
+	}
+
+	// excluding quotations
+	value := lex.input[start+1 : lex.position-1]
+	return tokenizer.Token{Type: tokenizer.STRING, Value: value, Line: lex.line, Col: lex.col}
+}
+
 func (lex *Lexer) classifyWord() tokenizer.Token {
 	start := lex.position
 	lex.position++
 	lex.col++
 
 	for lex.position < len(lex.input) && !unicode.IsSpace(rune(lex.input[lex.position])) {
-
-		// making exception for `_`
+		// making exception to allow the use of `_` anywhere in identifer
 		if lex.input[lex.position] == '_' {
 			lex.position++
 			lex.col++
@@ -82,7 +117,7 @@ func (lex *Lexer) classifyWord() tokenizer.Token {
 		lex.col++
 	}
 
-	word := lex.input[start:lex.position]
+	word := lex.input[start:min(lex.position, len(lex.input))]
 
 	// reserved keyword
 	keyword := tokenizer.KeywordsTable[word]
