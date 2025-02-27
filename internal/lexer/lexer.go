@@ -64,30 +64,41 @@ func (lex *Lexer) readNumbers() tokenizer.Token {
 	lex.col++
 	hasDot := false
 
-	for lex.position < len(lex.input) && !unicode.IsSpace(rune(lex.input[lex.position])) {
-		// encountered the dot (only allowed once)
-		if lex.input[lex.position] == '.' && !hasDot {
-			hasDot = true
+	for lex.position < len(lex.input) {
+		char := rune(lex.input[lex.position])
 
-			// consuming the dot
-			lex.col++
-			lex.position++
-			continue
+		// stop when a whitespace or non-numeric characters are encountered
+		if unicode.IsSpace(char) || unicode.IsLetter(char) {
+			break
 		}
 
-		// encountered the dot again
-		if lex.input[lex.position] == '.' && hasDot {
-			// consuming the rest of the invalid number (to prevent reprocessing)
-			for lex.position < len(lex.input) && !unicode.IsSpace(rune(lex.input[lex.position])) {
-				lex.position++
-				lex.col++
+		// encountered a decimal point (only allowed once)
+		if char == '.' {
+			if hasDot {
+				// invalid number (multiple dots)
+				for lex.position < len(lex.input) && !unicode.IsSpace(rune(lex.input[lex.position])) {
+					lex.position++
+					lex.col++
+				}
+
+				return tokenizer.Token{Type: tokenizer.ERROR, Value: "Invalid Numeric Value", Line: lex.line, Col: lex.col}
 			}
 
-			return tokenizer.Token{Type: tokenizer.ERROR, Value: "Invalid Numeric Value", Line: lex.line, Col: lex.col}
+			// Edge case: A number cannot end with `.`
+			if lex.position+1 >= len(lex.input) || !unicode.IsDigit(rune(lex.input[lex.position+1])) {
+				return tokenizer.Token{Type: tokenizer.ERROR, Value: "Invalid Float Format", Line: lex.line, Col: lex.col}
+			}
+
+			hasDot = true
 		}
 
-		lex.col++
+		// encountered a punctuation other than `.`
+		if unicode.IsPunct(char) && char != '.' {
+			break
+		}
+
 		lex.position++
+		lex.col++
 	}
 
 	return tokenizer.Token{Type: tokenizer.NUMBER, Value: lex.input[start:lex.position], Line: lex.line, Col: lex.col}
@@ -141,6 +152,14 @@ func (lex *Lexer) classifyWord() tokenizer.Token {
 			continue // jump to next iteration
 		}
 
+		if lex.input[lex.position] == '<' {
+			break
+		}
+
+		if lex.input[lex.position] == '>' {
+			break
+		}
+
 		// prevent any other punctuations in the identifier
 		if unicode.IsPunct(rune(lex.input[lex.position])) {
 			break
@@ -153,14 +172,12 @@ func (lex *Lexer) classifyWord() tokenizer.Token {
 	word := lex.input[start:min(lex.position, len(lex.input))]
 
 	// reserved keyword
-	keyword := tokenizer.KeywordsTable[word]
-	if keyword != "" {
+	if _, exists := tokenizer.KeywordsTable[word]; exists {
 		return tokenizer.Token{Type: tokenizer.KEYWORD, Value: word, Line: lex.line, Col: lex.col}
 	}
 
 	// datatype
-	datatype := tokenizer.DatatypesTable[word]
-	if datatype != "" {
+	if _, exists := tokenizer.DatatypesTable[word]; exists {
 		return tokenizer.Token{Type: tokenizer.DATATYPE, Value: word, Line: lex.line, Col: lex.col}
 	}
 

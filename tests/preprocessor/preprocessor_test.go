@@ -23,6 +23,7 @@ func SayHello(name: string): string { --- Comment: 2
 
 
 --- Comment 6
+--- Comment 7
 
 
 `

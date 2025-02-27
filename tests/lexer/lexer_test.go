@@ -13,7 +13,7 @@ import (
 
 func TestLexing(t *testing.T) {
 	// loading source code file
-	data, err := os.ReadFile("./temp/test.haru")
+	data, err := os.ReadFile("./temp/final_test.haru")
 
 	if err != nil {
 		fmt.Printf("Error Reading File: \n%s", err)
