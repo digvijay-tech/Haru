@@ -260,3 +260,9 @@ func (s *BaseharuListener) EnterPrintStatement(ctx *PrintStatementContext) {}
 
 // ExitPrintStatement is called when production PrintStatement is exited.
 func (s *BaseharuListener) ExitPrintStatement(ctx *PrintStatementContext) {}
+
+// EnterIfStatement is called when production IfStatement is entered.
+func (s *BaseharuListener) EnterIfStatement(ctx *IfStatementContext) {}
+
+// ExitIfStatement is called when production IfStatement is exited.
+func (s *BaseharuListener) ExitIfStatement(ctx *IfStatementContext) {}

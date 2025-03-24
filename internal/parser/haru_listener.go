@@ -128,6 +128,9 @@ type haruListener interface {
 	// EnterPrintStatement is called when entering the PrintStatement production.
 	EnterPrintStatement(c *PrintStatementContext)
 
+	// EnterIfStatement is called when entering the IfStatement production.
+	EnterIfStatement(c *IfStatementContext)
+
 	// ExitProgram is called when exiting the program production.
 	ExitProgram(c *ProgramContext)
 
@@ -247,4 +250,7 @@ type haruListener interface {
 
 	// ExitPrintStatement is called when exiting the PrintStatement production.
 	ExitPrintStatement(c *PrintStatementContext)
+
+	// ExitIfStatement is called when exiting the IfStatement production.
+	ExitIfStatement(c *IfStatementContext)
 }

@@ -11,7 +11,7 @@ import (
 	"strings"
 
 	"github.com/antlr4-go/antlr/v4"
-	"github.com/digvijay-tech/Haru/internal/interpreter/listener"
+	"github.com/digvijay-tech/Haru/internal/interpreter"
 	"github.com/digvijay-tech/Haru/internal/parser"
 	"github.com/spf13/cobra"
 )
@@ -22,11 +22,11 @@ var runCmd = &cobra.Command{
 	Long:  `Interprets and executes Haru code provided as a string or file.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Haru REPL - type 'exit' to quit")
-		listener := listener.NewHaruListener()
+		visitor := interpreter.NewHaruVisitor()
 		scanner := bufio.NewScanner(os.Stdin)
+
 		for {
 			fmt.Print("> ")
-
 			if !scanner.Scan() {
 				break
 			}
@@ -36,7 +36,7 @@ var runCmd = &cobra.Command{
 				break
 			}
 
-			if !strings.HasSuffix(line, ";") {
+			if !strings.HasSuffix(line, ";") && !strings.HasSuffix(line, "}") {
 				line += ";"
 			}
 
@@ -44,13 +44,14 @@ var runCmd = &cobra.Command{
 			lexer := parser.NewharuLexer(input)
 
 			stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
-
 			p := parser.NewharuParser(stream)
+
 			tree := p.Program()
 
-			antlr.ParseTreeWalkerDefault.Walk(listener, tree)
-			fmt.Println("Vars:", listener.Vars)
+			visitor.Visit(tree)
+			fmt.Println("Vars:", visitor.Vars)
 		}
+
 		if err := scanner.Err(); err != nil {
 			fmt.Println("Error:", err)
 		}

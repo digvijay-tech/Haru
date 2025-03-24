@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 
+	"github.com/antlr4-go/antlr/v4"
 	"github.com/digvijay-tech/Haru/internal/parser"
 )
 
@@ -127,6 +128,27 @@ func (l *HaruListener) ExitAssignStmt(ctx *parser.AssignStmtContext) {
 func (l *HaruListener) ExitPrintStatement(ctx *parser.PrintStatementContext) {
 	val, _ := l.evalExpr(ctx.Expr())
 	fmt.Println("Output:", val)
+}
+
+func (l *HaruListener) ExitIfStatement(ctx *parser.IfStatementContext) {
+	condVal, condTyp := l.evalExpr(ctx.Expr())
+
+	if condTyp != "bool" {
+		fmt.Println("Error: If condition must be a boolean")
+		return
+	}
+
+	cond, err := strconv.ParseBool(condVal)
+
+	if err != nil {
+		fmt.Println("Error: Invalid boolean condition:", err)
+		return
+	}
+	if cond {
+		for _, stmt := range ctx.AllStatement() {
+			antlr.ParseTreeWalkerDefault.Walk(l, stmt)
+		}
+	}
 }
 
 func (l *HaruListener) evalExpr(ctx parser.IExprContext) (string, string) {
