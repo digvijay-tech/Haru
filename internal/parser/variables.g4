@@ -1,11 +1,11 @@
 grammar Variables;
 
-varDecl: 'let' ID ':' type '=' literal # LetDecl
-       | 'let' ID '=' literal          # LetInferDecl
-       | 'mut' ID ':' type ('=' literal)? # MutDecl
-       | 'mut' ID '=' literal          # MutInferDecl
-       | 'const' ID ':' type '=' literal # ConstDecl
-       | 'const' ID '=' literal        # ConstInferDecl ;
+varDecl: 'let' ID ':' type '=' expr # LetDecl
+       | 'let' ID '=' expr          # LetInferDecl
+       | 'mut' ID ':' type ('=' expr)? # MutDecl
+       | 'mut' ID '=' expr          # MutInferDecl
+       | 'const' ID ':' type '=' expr # ConstDecl
+       | 'const' ID '=' expr        # ConstInferDecl ;
 
 type: 'i8'    # I8Type
     | 'i16'   # I16Type

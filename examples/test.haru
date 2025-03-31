@@ -1,11 +1,5 @@
-let i8v: i8 = 100;
-let i16v: i16 = 1000;
-let i32v: i32 = 100000;
-let i64v: i64 = 1000000;
-mut intv: int = 42;
-intv = i8v + 27;
-print i8v;
-print i16v;
-print i32v;
-print i64v;
-print intv;
+mut z: i32;
+print z;
+z = 42;
+print z;
+let undeclared: i32 = w;

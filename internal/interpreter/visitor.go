@@ -76,23 +76,34 @@ func (v *HaruVisitor) VisitProgram(ctx *parser.ProgramContext) interface{} {
 func (v *HaruVisitor) VisitLetDecl(ctx *parser.LetDeclContext) interface{} {
 	id := ctx.ID().GetText()
 	typ := ctx.Type_().GetText()
-	val := ctx.Literal().GetText()
+	var val string // Fix scoping
 
-	v.Vars[id] = Value{Value: val, Typ: typ, IsMut: false, IsConst: false}
+	val, valTyp := v.evalExpr(ctx.Expr()) // Assign directly
+	if valTyp != typ {
+		fmt.Printf("Error: Type mismatch in let %s: expected %s, got %s\n", id, typ, valTyp)
+		return nil
+	}
 	fmt.Printf("Declared let %s: %s = %s\n", id, typ, val)
 
+	v.Vars[id] = Value{Value: val, Typ: typ, IsMut: false, IsConst: false}
 	return nil
 }
 
 func (v *HaruVisitor) VisitMutDecl(ctx *parser.MutDeclContext) interface{} {
 	id := ctx.ID().GetText()
 	typ := ctx.Type_().GetText()
-	val := ""
+	var val string // Declare without initializing
 
-	if ctx.Literal() != nil {
-		val = ctx.Literal().GetText()
+	if ctx.Expr() != nil {
+		var valTyp string
+		val, valTyp = v.evalExpr(ctx.Expr()) // Assign to outer val
+		if valTyp != typ {
+			fmt.Printf("Error: Type mismatch in mut %s: expected %s, got %s\n", id, typ, valTyp)
+			return nil
+		}
 		fmt.Printf("Declared mut %s: %s = %s\n", id, typ, val)
 	} else {
+		val = "" // Explicitly set if uninitialized
 		fmt.Printf("Declared mut %s: %s (uninitialized)\n", id, typ)
 	}
 
@@ -119,7 +130,6 @@ func (v *HaruVisitor) VisitAssignStmt(ctx *parser.AssignStmtContext) interface{}
 	} else {
 		fmt.Printf("Error: Variable %s not declared\n", id)
 	}
-
 	return nil
 }
 
@@ -193,140 +203,110 @@ func (v *HaruVisitor) evalExpr(ctx parser.IExprContext) (string, string) {
 		exp := ctx.(*parser.ExpExprContext)
 		baseVal, baseTyp := v.evalExpr(exp.Expr(0))
 		expVal, expTyp := v.evalExpr(exp.Expr(1))
-
-		if baseTyp != "int" || expTyp != "int" {
-			fmt.Println("Error: Exponentiation only supports int for now")
-			return "0", "int"
+		if baseTyp != "i32" || expTyp != "i32" { // Change to i32
+			fmt.Println("Error: Exponentiation only supports i32 for now")
+			return "0", "i32"
 		}
-
 		base, _ := strconv.Atoi(baseVal)
 		exponent, _ := strconv.Atoi(expVal)
-
 		if exponent < 0 {
 			fmt.Println("Error: Negative exponents not supported")
-			return "0", "int"
+			return "0", "i32"
 		}
-
 		result := 1
 		for i := 0; i < exponent; i++ {
 			result *= base
 		}
-
-		return strconv.Itoa(result), "int"
+		return strconv.Itoa(result), "i32" // Return i32
 	case *parser.MulExprContext:
 		mul := ctx.(*parser.MulExprContext)
 		leftVal, leftTyp := v.evalExpr(mul.Expr(0))
 		rightVal, rightTyp := v.evalExpr(mul.Expr(1))
-
-		if leftTyp != "int" || rightTyp != "int" {
-			fmt.Println("Error: Multiplication only supports int for now")
-			return "0", "int"
+		if leftTyp != "i32" || rightTyp != "i32" {
+			fmt.Println("Error: Multiplication only supports i32 for now")
+			return "0", "i32"
 		}
-
 		left, _ := strconv.Atoi(leftVal)
 		right, _ := strconv.Atoi(rightVal)
-
-		return strconv.Itoa(left * right), "int"
+		return strconv.Itoa(left * right), "i32"
 	case *parser.DivExprContext:
 		div := ctx.(*parser.DivExprContext)
 		leftVal, leftTyp := v.evalExpr(div.Expr(0))
 		rightVal, rightTyp := v.evalExpr(div.Expr(1))
-
-		if leftTyp != "int" || rightTyp != "int" {
-			fmt.Println("Error: Division only supports int for now")
-			return "0", "int"
+		if leftTyp != "i32" || rightTyp != "i32" {
+			fmt.Println("Error: Division only supports i32 for now")
+			return "0", "i32"
 		}
-
 		left, _ := strconv.Atoi(leftVal)
 		right, _ := strconv.Atoi(rightVal)
-
 		if right == 0 {
 			fmt.Println("Error: Division by zero")
-			return "0", "int"
+			return "0", "i32"
 		}
-
-		return strconv.Itoa(left / right), "int"
+		return strconv.Itoa(left / right), "i32"
 	case *parser.ModExprContext:
 		mod := ctx.(*parser.ModExprContext)
 		leftVal, leftTyp := v.evalExpr(mod.Expr(0))
 		rightVal, rightTyp := v.evalExpr(mod.Expr(1))
-
-		if leftTyp != "int" || rightTyp != "int" {
-			fmt.Println("Error: Modulus only supports int for now")
-			return "0", "int"
+		if leftTyp != "i32" || rightTyp != "i32" {
+			fmt.Println("Error: Modulus only supports i32 for now")
+			return "0", "i32"
 		}
-
 		left, _ := strconv.Atoi(leftVal)
 		right, _ := strconv.Atoi(rightVal)
-
 		if right == 0 {
 			fmt.Println("Error: Modulus by zero")
-			return "0", "int"
+			return "0", "i32"
 		}
-
-		return strconv.Itoa(left % right), "int"
+		return strconv.Itoa(left % right), "i32"
 	case *parser.AddExprContext:
 		add := ctx.(*parser.AddExprContext)
 		leftVal, leftTyp := v.evalExpr(add.Expr(0))
 		rightVal, rightTyp := v.evalExpr(add.Expr(1))
-
-		if leftTyp != "int" || rightTyp != "int" {
-			fmt.Println("Error: Addition only supports int for now")
-			return "0", "int"
+		if leftTyp != "i32" || rightTyp != "i32" {
+			fmt.Println("Error: Addition only supports i32 for now")
+			return "0", "i32"
 		}
-
 		left, _ := strconv.Atoi(leftVal)
 		right, _ := strconv.Atoi(rightVal)
-
-		return strconv.Itoa(left + right), "int"
+		return strconv.Itoa(left + right), "i32"
 	case *parser.SubExprContext:
 		sub := ctx.(*parser.SubExprContext)
 		leftVal, leftTyp := v.evalExpr(sub.Expr(0))
 		rightVal, rightTyp := v.evalExpr(sub.Expr(1))
-
-		if leftTyp != "int" || rightTyp != "int" {
-			fmt.Println("Error: Subtraction only supports int for now")
-			return "0", "int"
+		if leftTyp != "i32" || rightTyp != "i32" {
+			fmt.Println("Error: Subtraction only supports i32 for now")
+			return "0", "i32"
 		}
-
 		left, _ := strconv.Atoi(leftVal)
 		right, _ := strconv.Atoi(rightVal)
-
-		return strconv.Itoa(left - right), "int"
+		return strconv.Itoa(left - right), "i32"
 	case *parser.VarExprContext:
 		id := ctx.(*parser.VarExprContext).ID().GetText()
-
 		if v, exists := v.Vars[id]; exists {
 			return v.Value, v.Typ
 		}
-
 		fmt.Printf("Error: Variable %s not declared\n", id)
-
 		return "0", "unknown"
 	case *parser.LitExprContext:
 		val := ctx.(*parser.LitExprContext).Literal().GetText()
 		return val, inferType(val)
 	}
-
 	return "0", "unknown"
 }
 
 func inferType(val string) string {
 	if _, err := strconv.Atoi(val); err == nil {
-		return "int"
+		return "i32" // Change to i32
 	}
-
 	if _, err := strconv.ParseFloat(val, 64); err == nil {
 		return "f32"
 	}
-
 	if val == "true" || val == "false" {
 		return "bool"
 	}
-
 	if (val[0] == '"' && val[len(val)-1] == '"') || (val[0] == '\'' && val[len(val)-1] == '\'') {
 		return "string"
 	}
-
 	return "unknown"
 }

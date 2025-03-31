@@ -75,40 +75,40 @@ func haruParserInit() {
 		33, 35, 3, 16, 8, 0, 34, 24, 1, 0, 0, 0, 34, 27, 1, 0, 0, 0, 34, 30, 1,
 		0, 0, 0, 34, 33, 1, 0, 0, 0, 35, 3, 1, 0, 0, 0, 36, 37, 5, 2, 0, 0, 37,
 		38, 5, 38, 0, 0, 38, 39, 5, 3, 0, 0, 39, 40, 3, 6, 3, 0, 40, 41, 5, 4,
-		0, 0, 41, 42, 3, 8, 4, 0, 42, 71, 1, 0, 0, 0, 43, 44, 5, 2, 0, 0, 44, 45,
-		5, 38, 0, 0, 45, 46, 5, 4, 0, 0, 46, 71, 3, 8, 4, 0, 47, 48, 5, 5, 0, 0,
-		48, 49, 5, 38, 0, 0, 49, 50, 5, 3, 0, 0, 50, 53, 3, 6, 3, 0, 51, 52, 5,
-		4, 0, 0, 52, 54, 3, 8, 4, 0, 53, 51, 1, 0, 0, 0, 53, 54, 1, 0, 0, 0, 54,
-		71, 1, 0, 0, 0, 55, 56, 5, 5, 0, 0, 56, 57, 5, 38, 0, 0, 57, 58, 5, 4,
-		0, 0, 58, 71, 3, 8, 4, 0, 59, 60, 5, 6, 0, 0, 60, 61, 5, 38, 0, 0, 61,
-		62, 5, 3, 0, 0, 62, 63, 3, 6, 3, 0, 63, 64, 5, 4, 0, 0, 64, 65, 3, 8, 4,
-		0, 65, 71, 1, 0, 0, 0, 66, 67, 5, 6, 0, 0, 67, 68, 5, 38, 0, 0, 68, 69,
-		5, 4, 0, 0, 69, 71, 3, 8, 4, 0, 70, 36, 1, 0, 0, 0, 70, 43, 1, 0, 0, 0,
-		70, 47, 1, 0, 0, 0, 70, 55, 1, 0, 0, 0, 70, 59, 1, 0, 0, 0, 70, 66, 1,
-		0, 0, 0, 71, 5, 1, 0, 0, 0, 72, 88, 5, 7, 0, 0, 73, 88, 5, 8, 0, 0, 74,
-		88, 5, 9, 0, 0, 75, 88, 5, 10, 0, 0, 76, 88, 5, 11, 0, 0, 77, 88, 5, 12,
-		0, 0, 78, 88, 5, 13, 0, 0, 79, 88, 5, 14, 0, 0, 80, 88, 5, 15, 0, 0, 81,
-		88, 5, 16, 0, 0, 82, 88, 5, 17, 0, 0, 83, 88, 5, 18, 0, 0, 84, 88, 5, 19,
-		0, 0, 85, 88, 5, 20, 0, 0, 86, 88, 5, 21, 0, 0, 87, 72, 1, 0, 0, 0, 87,
-		73, 1, 0, 0, 0, 87, 74, 1, 0, 0, 0, 87, 75, 1, 0, 0, 0, 87, 76, 1, 0, 0,
-		0, 87, 77, 1, 0, 0, 0, 87, 78, 1, 0, 0, 0, 87, 79, 1, 0, 0, 0, 87, 80,
-		1, 0, 0, 0, 87, 81, 1, 0, 0, 0, 87, 82, 1, 0, 0, 0, 87, 83, 1, 0, 0, 0,
-		87, 84, 1, 0, 0, 0, 87, 85, 1, 0, 0, 0, 87, 86, 1, 0, 0, 0, 88, 7, 1, 0,
-		0, 0, 89, 96, 5, 39, 0, 0, 90, 96, 5, 40, 0, 0, 91, 96, 5, 22, 0, 0, 92,
-		96, 5, 23, 0, 0, 93, 96, 5, 41, 0, 0, 94, 96, 5, 42, 0, 0, 95, 89, 1, 0,
-		0, 0, 95, 90, 1, 0, 0, 0, 95, 91, 1, 0, 0, 0, 95, 92, 1, 0, 0, 0, 95, 93,
-		1, 0, 0, 0, 95, 94, 1, 0, 0, 0, 96, 9, 1, 0, 0, 0, 97, 98, 6, 5, -1, 0,
-		98, 99, 5, 24, 0, 0, 99, 100, 3, 10, 5, 0, 100, 101, 5, 25, 0, 0, 101,
-		105, 1, 0, 0, 0, 102, 105, 5, 38, 0, 0, 103, 105, 3, 8, 4, 0, 104, 97,
-		1, 0, 0, 0, 104, 102, 1, 0, 0, 0, 104, 103, 1, 0, 0, 0, 105, 126, 1, 0,
-		0, 0, 106, 107, 10, 8, 0, 0, 107, 108, 5, 26, 0, 0, 108, 125, 3, 10, 5,
-		9, 109, 110, 10, 7, 0, 0, 110, 111, 5, 27, 0, 0, 111, 125, 3, 10, 5, 8,
-		112, 113, 10, 6, 0, 0, 113, 114, 5, 28, 0, 0, 114, 125, 3, 10, 5, 7, 115,
-		116, 10, 5, 0, 0, 116, 117, 5, 29, 0, 0, 117, 125, 3, 10, 5, 6, 118, 119,
-		10, 4, 0, 0, 119, 120, 5, 30, 0, 0, 120, 125, 3, 10, 5, 5, 121, 122, 10,
-		3, 0, 0, 122, 123, 5, 31, 0, 0, 123, 125, 3, 10, 5, 4, 124, 106, 1, 0,
-		0, 0, 124, 109, 1, 0, 0, 0, 124, 112, 1, 0, 0, 0, 124, 115, 1, 0, 0, 0,
-		124, 118, 1, 0, 0, 0, 124, 121, 1, 0, 0, 0, 125, 128, 1, 0, 0, 0, 126,
+		0, 0, 41, 42, 3, 10, 5, 0, 42, 71, 1, 0, 0, 0, 43, 44, 5, 2, 0, 0, 44,
+		45, 5, 38, 0, 0, 45, 46, 5, 4, 0, 0, 46, 71, 3, 10, 5, 0, 47, 48, 5, 5,
+		0, 0, 48, 49, 5, 38, 0, 0, 49, 50, 5, 3, 0, 0, 50, 53, 3, 6, 3, 0, 51,
+		52, 5, 4, 0, 0, 52, 54, 3, 10, 5, 0, 53, 51, 1, 0, 0, 0, 53, 54, 1, 0,
+		0, 0, 54, 71, 1, 0, 0, 0, 55, 56, 5, 5, 0, 0, 56, 57, 5, 38, 0, 0, 57,
+		58, 5, 4, 0, 0, 58, 71, 3, 10, 5, 0, 59, 60, 5, 6, 0, 0, 60, 61, 5, 38,
+		0, 0, 61, 62, 5, 3, 0, 0, 62, 63, 3, 6, 3, 0, 63, 64, 5, 4, 0, 0, 64, 65,
+		3, 10, 5, 0, 65, 71, 1, 0, 0, 0, 66, 67, 5, 6, 0, 0, 67, 68, 5, 38, 0,
+		0, 68, 69, 5, 4, 0, 0, 69, 71, 3, 10, 5, 0, 70, 36, 1, 0, 0, 0, 70, 43,
+		1, 0, 0, 0, 70, 47, 1, 0, 0, 0, 70, 55, 1, 0, 0, 0, 70, 59, 1, 0, 0, 0,
+		70, 66, 1, 0, 0, 0, 71, 5, 1, 0, 0, 0, 72, 88, 5, 7, 0, 0, 73, 88, 5, 8,
+		0, 0, 74, 88, 5, 9, 0, 0, 75, 88, 5, 10, 0, 0, 76, 88, 5, 11, 0, 0, 77,
+		88, 5, 12, 0, 0, 78, 88, 5, 13, 0, 0, 79, 88, 5, 14, 0, 0, 80, 88, 5, 15,
+		0, 0, 81, 88, 5, 16, 0, 0, 82, 88, 5, 17, 0, 0, 83, 88, 5, 18, 0, 0, 84,
+		88, 5, 19, 0, 0, 85, 88, 5, 20, 0, 0, 86, 88, 5, 21, 0, 0, 87, 72, 1, 0,
+		0, 0, 87, 73, 1, 0, 0, 0, 87, 74, 1, 0, 0, 0, 87, 75, 1, 0, 0, 0, 87, 76,
+		1, 0, 0, 0, 87, 77, 1, 0, 0, 0, 87, 78, 1, 0, 0, 0, 87, 79, 1, 0, 0, 0,
+		87, 80, 1, 0, 0, 0, 87, 81, 1, 0, 0, 0, 87, 82, 1, 0, 0, 0, 87, 83, 1,
+		0, 0, 0, 87, 84, 1, 0, 0, 0, 87, 85, 1, 0, 0, 0, 87, 86, 1, 0, 0, 0, 88,
+		7, 1, 0, 0, 0, 89, 96, 5, 39, 0, 0, 90, 96, 5, 40, 0, 0, 91, 96, 5, 22,
+		0, 0, 92, 96, 5, 23, 0, 0, 93, 96, 5, 41, 0, 0, 94, 96, 5, 42, 0, 0, 95,
+		89, 1, 0, 0, 0, 95, 90, 1, 0, 0, 0, 95, 91, 1, 0, 0, 0, 95, 92, 1, 0, 0,
+		0, 95, 93, 1, 0, 0, 0, 95, 94, 1, 0, 0, 0, 96, 9, 1, 0, 0, 0, 97, 98, 6,
+		5, -1, 0, 98, 99, 5, 24, 0, 0, 99, 100, 3, 10, 5, 0, 100, 101, 5, 25, 0,
+		0, 101, 105, 1, 0, 0, 0, 102, 105, 5, 38, 0, 0, 103, 105, 3, 8, 4, 0, 104,
+		97, 1, 0, 0, 0, 104, 102, 1, 0, 0, 0, 104, 103, 1, 0, 0, 0, 105, 126, 1,
+		0, 0, 0, 106, 107, 10, 8, 0, 0, 107, 108, 5, 26, 0, 0, 108, 125, 3, 10,
+		5, 9, 109, 110, 10, 7, 0, 0, 110, 111, 5, 27, 0, 0, 111, 125, 3, 10, 5,
+		8, 112, 113, 10, 6, 0, 0, 113, 114, 5, 28, 0, 0, 114, 125, 3, 10, 5, 7,
+		115, 116, 10, 5, 0, 0, 116, 117, 5, 29, 0, 0, 117, 125, 3, 10, 5, 6, 118,
+		119, 10, 4, 0, 0, 119, 120, 5, 30, 0, 0, 120, 125, 3, 10, 5, 5, 121, 122,
+		10, 3, 0, 0, 122, 123, 5, 31, 0, 0, 123, 125, 3, 10, 5, 4, 124, 106, 1,
+		0, 0, 0, 124, 109, 1, 0, 0, 0, 124, 112, 1, 0, 0, 0, 124, 115, 1, 0, 0,
+		0, 124, 118, 1, 0, 0, 0, 124, 121, 1, 0, 0, 0, 125, 128, 1, 0, 0, 0, 126,
 		124, 1, 0, 0, 0, 126, 127, 1, 0, 0, 0, 127, 11, 1, 0, 0, 0, 128, 126, 1,
 		0, 0, 0, 129, 130, 5, 38, 0, 0, 130, 131, 5, 4, 0, 0, 131, 132, 3, 10,
 		5, 0, 132, 13, 1, 0, 0, 0, 133, 134, 5, 32, 0, 0, 134, 135, 3, 10, 5, 0,
@@ -673,10 +673,10 @@ func (s *MutInferDeclContext) ID() antlr.TerminalNode {
 	return s.GetToken(haruParserID, 0)
 }
 
-func (s *MutInferDeclContext) Literal() ILiteralContext {
+func (s *MutInferDeclContext) Expr() IExprContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ILiteralContext); ok {
+		if _, ok := ctx.(IExprContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -686,7 +686,7 @@ func (s *MutInferDeclContext) Literal() ILiteralContext {
 		return nil
 	}
 
-	return t.(ILiteralContext)
+	return t.(IExprContext)
 }
 
 func (s *MutInferDeclContext) EnterRule(listener antlr.ParseTreeListener) {
@@ -733,10 +733,10 @@ func (s *ConstInferDeclContext) ID() antlr.TerminalNode {
 	return s.GetToken(haruParserID, 0)
 }
 
-func (s *ConstInferDeclContext) Literal() ILiteralContext {
+func (s *ConstInferDeclContext) Expr() IExprContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ILiteralContext); ok {
+		if _, ok := ctx.(IExprContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -746,7 +746,7 @@ func (s *ConstInferDeclContext) Literal() ILiteralContext {
 		return nil
 	}
 
-	return t.(ILiteralContext)
+	return t.(IExprContext)
 }
 
 func (s *ConstInferDeclContext) EnterRule(listener antlr.ParseTreeListener) {
@@ -793,10 +793,10 @@ func (s *LetInferDeclContext) ID() antlr.TerminalNode {
 	return s.GetToken(haruParserID, 0)
 }
 
-func (s *LetInferDeclContext) Literal() ILiteralContext {
+func (s *LetInferDeclContext) Expr() IExprContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ILiteralContext); ok {
+		if _, ok := ctx.(IExprContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -806,7 +806,7 @@ func (s *LetInferDeclContext) Literal() ILiteralContext {
 		return nil
 	}
 
-	return t.(ILiteralContext)
+	return t.(IExprContext)
 }
 
 func (s *LetInferDeclContext) EnterRule(listener antlr.ParseTreeListener) {
@@ -869,10 +869,10 @@ func (s *LetDeclContext) Type_() ITypeContext {
 	return t.(ITypeContext)
 }
 
-func (s *LetDeclContext) Literal() ILiteralContext {
+func (s *LetDeclContext) Expr() IExprContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ILiteralContext); ok {
+		if _, ok := ctx.(IExprContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -882,7 +882,7 @@ func (s *LetDeclContext) Literal() ILiteralContext {
 		return nil
 	}
 
-	return t.(ILiteralContext)
+	return t.(IExprContext)
 }
 
 func (s *LetDeclContext) EnterRule(listener antlr.ParseTreeListener) {
@@ -945,10 +945,10 @@ func (s *ConstDeclContext) Type_() ITypeContext {
 	return t.(ITypeContext)
 }
 
-func (s *ConstDeclContext) Literal() ILiteralContext {
+func (s *ConstDeclContext) Expr() IExprContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ILiteralContext); ok {
+		if _, ok := ctx.(IExprContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -958,7 +958,7 @@ func (s *ConstDeclContext) Literal() ILiteralContext {
 		return nil
 	}
 
-	return t.(ILiteralContext)
+	return t.(IExprContext)
 }
 
 func (s *ConstDeclContext) EnterRule(listener antlr.ParseTreeListener) {
@@ -1021,10 +1021,10 @@ func (s *MutDeclContext) Type_() ITypeContext {
 	return t.(ITypeContext)
 }
 
-func (s *MutDeclContext) Literal() ILiteralContext {
+func (s *MutDeclContext) Expr() IExprContext {
 	var t antlr.RuleContext
 	for _, ctx := range s.GetChildren() {
-		if _, ok := ctx.(ILiteralContext); ok {
+		if _, ok := ctx.(IExprContext); ok {
 			t = ctx.(antlr.RuleContext)
 			break
 		}
@@ -1034,7 +1034,7 @@ func (s *MutDeclContext) Literal() ILiteralContext {
 		return nil
 	}
 
-	return t.(ILiteralContext)
+	return t.(IExprContext)
 }
 
 func (s *MutDeclContext) EnterRule(listener antlr.ParseTreeListener) {
@@ -1112,7 +1112,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 		}
 		{
 			p.SetState(41)
-			p.Literal()
+			p.expr(0)
 		}
 
 	case 2:
@@ -1144,7 +1144,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 		}
 		{
 			p.SetState(46)
-			p.Literal()
+			p.expr(0)
 		}
 
 	case 3:
@@ -1196,7 +1196,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 			{
 				p.SetState(52)
-				p.Literal()
+				p.expr(0)
 			}
 
 		}
@@ -1230,7 +1230,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 		}
 		{
 			p.SetState(58)
-			p.Literal()
+			p.expr(0)
 		}
 
 	case 5:
@@ -1274,7 +1274,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 		}
 		{
 			p.SetState(64)
-			p.Literal()
+			p.expr(0)
 		}
 
 	case 6:
@@ -1306,7 +1306,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 		}
 		{
 			p.SetState(69)
-			p.Literal()
+			p.expr(0)
 		}
 
 	case antlr.ATNInvalidAltNumber:

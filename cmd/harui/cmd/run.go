@@ -48,10 +48,6 @@ var runCmd = &cobra.Command{
 	},
 }
 
-type HaruListener struct {
-	*parser.BaseharuListener
-}
-
 func runScript(input *antlr.InputStream, visitor *interpreter.HaruVisitor) {
 	lexer := parser.NewharuLexer(input)
 	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
