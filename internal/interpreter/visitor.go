@@ -40,8 +40,9 @@ func (v *HaruVisitor) Visit(tree antlr.ParseTree) interface{} {
 		return v.VisitPrintStatement(ctx)
 	case *parser.IfStatementContext:
 		return v.VisitIfStatement(ctx)
+	case antlr.TerminalNode: // Skip terminals like ';'
+		return nil
 	}
-
 	return v.VisitChildren(tree.(antlr.RuleNode))
 }
 
@@ -130,6 +131,7 @@ func (v *HaruVisitor) VisitPrintStatement(ctx *parser.PrintStatementContext) int
 
 func (v *HaruVisitor) VisitIfStatement(ctx *parser.IfStatementContext) interface{} {
 	condVal, condTyp := v.evalExpr(ctx.Expr())
+
 	if condTyp != "bool" {
 		fmt.Println("Error: If condition must be a boolean")
 		return nil
@@ -141,13 +143,46 @@ func (v *HaruVisitor) VisitIfStatement(ctx *parser.IfStatementContext) interface
 		return nil
 	}
 
+	children := ctx.GetChildren()
+
+	var ifBlock, elseBlock []antlr.ParseTree
+	inElse := false
+
+	for _, child := range children {
+		if pt, ok := child.(antlr.ParseTree); ok {
+			text := pt.GetText()
+			if text == "else" {
+				inElse = true
+				continue
+			}
+
+			if !isTerminal(child) && child != ctx.Expr() && text != "{" && text != "}" {
+				if inElse {
+					elseBlock = append(elseBlock, pt)
+				} else {
+					ifBlock = append(ifBlock, pt)
+				}
+			}
+		}
+	}
+
 	if cond {
-		for _, stmt := range ctx.AllStatement() {
+		for _, stmt := range ifBlock {
+			v.Visit(stmt)
+		}
+	} else if len(elseBlock) > 0 {
+		for _, stmt := range elseBlock {
 			v.Visit(stmt)
 		}
 	}
 
 	return nil
+}
+
+// Add helper function
+func isTerminal(node interface{}) bool {
+	_, isTerm := node.(antlr.TerminalNode)
+	return isTerm
 }
 
 func (v *HaruVisitor) evalExpr(ctx parser.IExprContext) (string, string) {

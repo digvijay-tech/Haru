@@ -17,49 +17,47 @@ import (
 )
 
 var runCmd = &cobra.Command{
-	Use:   "run",
+	Use:   "run <file>",
 	Short: "Run a Haru script",
-	Long:  `Interprets and executes Haru code provided as a string or file.`,
+	Long:  `Interprets and executes Haru code from a file.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Haru REPL - type 'exit' to quit")
 		visitor := interpreter.NewHaruVisitor()
-		scanner := bufio.NewScanner(os.Stdin)
+		file, err := os.Open(args[0])
 
-		for {
-			fmt.Print("> ")
-			if !scanner.Scan() {
-				break
-			}
+		if err != nil {
+			fmt.Println("Error opening file:", err)
+			return
+		}
 
-			line := scanner.Text()
-			if strings.TrimSpace(line) == "exit" {
-				break
-			}
+		defer file.Close()
+		scanner := bufio.NewScanner(file)
 
-			if !strings.HasSuffix(line, ";") && !strings.HasSuffix(line, "}") {
-				line += ";"
-			}
-
-			input := antlr.NewInputStream(line)
-			lexer := parser.NewharuLexer(input)
-
-			stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
-			p := parser.NewharuParser(stream)
-
-			tree := p.Program()
-
-			visitor.Visit(tree)
-			fmt.Println("Vars:", visitor.Vars)
+		var code strings.Builder
+		for scanner.Scan() {
+			code.WriteString(scanner.Text() + "\n")
 		}
 
 		if err := scanner.Err(); err != nil {
-			fmt.Println("Error:", err)
+			fmt.Println("Error reading file:", err)
+			return
 		}
+
+		input := antlr.NewInputStream(code.String())
+		runScript(input, visitor)
+		fmt.Println("Vars:", visitor.Vars)
 	},
 }
 
 type HaruListener struct {
 	*parser.BaseharuListener
+}
+
+func runScript(input *antlr.InputStream, visitor *interpreter.HaruVisitor) {
+	lexer := parser.NewharuLexer(input)
+	stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
+	p := parser.NewharuParser(stream)
+	tree := p.Program()
+	visitor.VisitProgram(tree.(*parser.ProgramContext))
 }
 
 func init() {
