@@ -1,5 +1,0 @@
-mut z: i32;
-print z;
-z = 42;
-print z;
-let undeclared: i32 = w;

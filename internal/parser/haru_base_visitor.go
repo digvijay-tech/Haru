@@ -128,7 +128,7 @@ func (v *BaseharuVisitor) VisitMulExpr(ctx *MulExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseharuVisitor) VisitDivExpr(ctx *DivExprContext) interface{} {
+func (v *BaseharuVisitor) VisitAndExpr(ctx *AndExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -136,7 +136,47 @@ func (v *BaseharuVisitor) VisitLitExpr(ctx *LitExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseharuVisitor) VisitNeExpr(ctx *NeExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseharuVisitor) VisitSubExpr(ctx *SubExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitLtExpr(ctx *LtExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitGtExpr(ctx *GtExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitAddExpr(ctx *AddExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitGeExpr(ctx *GeExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitExpExpr(ctx *ExpExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitLeExpr(ctx *LeExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitOrExpr(ctx *OrExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitDivExpr(ctx *DivExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitEqExpr(ctx *EqExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -144,7 +184,7 @@ func (v *BaseharuVisitor) VisitVarExpr(ctx *VarExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseharuVisitor) VisitAddExpr(ctx *AddExprContext) interface{} {
+func (v *BaseharuVisitor) VisitNotExpr(ctx *NotExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -153,10 +193,6 @@ func (v *BaseharuVisitor) VisitModExpr(ctx *ModExprContext) interface{} {
 }
 
 func (v *BaseharuVisitor) VisitParenExpr(ctx *ParenExprContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseharuVisitor) VisitExpExpr(ctx *ExpExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 

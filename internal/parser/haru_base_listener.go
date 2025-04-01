@@ -201,11 +201,11 @@ func (s *BaseharuListener) EnterMulExpr(ctx *MulExprContext) {}
 // ExitMulExpr is called when production MulExpr is exited.
 func (s *BaseharuListener) ExitMulExpr(ctx *MulExprContext) {}
 
-// EnterDivExpr is called when production DivExpr is entered.
-func (s *BaseharuListener) EnterDivExpr(ctx *DivExprContext) {}
+// EnterAndExpr is called when production AndExpr is entered.
+func (s *BaseharuListener) EnterAndExpr(ctx *AndExprContext) {}
 
-// ExitDivExpr is called when production DivExpr is exited.
-func (s *BaseharuListener) ExitDivExpr(ctx *DivExprContext) {}
+// ExitAndExpr is called when production AndExpr is exited.
+func (s *BaseharuListener) ExitAndExpr(ctx *AndExprContext) {}
 
 // EnterLitExpr is called when production LitExpr is entered.
 func (s *BaseharuListener) EnterLitExpr(ctx *LitExprContext) {}
@@ -213,11 +213,71 @@ func (s *BaseharuListener) EnterLitExpr(ctx *LitExprContext) {}
 // ExitLitExpr is called when production LitExpr is exited.
 func (s *BaseharuListener) ExitLitExpr(ctx *LitExprContext) {}
 
+// EnterNeExpr is called when production NeExpr is entered.
+func (s *BaseharuListener) EnterNeExpr(ctx *NeExprContext) {}
+
+// ExitNeExpr is called when production NeExpr is exited.
+func (s *BaseharuListener) ExitNeExpr(ctx *NeExprContext) {}
+
 // EnterSubExpr is called when production SubExpr is entered.
 func (s *BaseharuListener) EnterSubExpr(ctx *SubExprContext) {}
 
 // ExitSubExpr is called when production SubExpr is exited.
 func (s *BaseharuListener) ExitSubExpr(ctx *SubExprContext) {}
+
+// EnterLtExpr is called when production LtExpr is entered.
+func (s *BaseharuListener) EnterLtExpr(ctx *LtExprContext) {}
+
+// ExitLtExpr is called when production LtExpr is exited.
+func (s *BaseharuListener) ExitLtExpr(ctx *LtExprContext) {}
+
+// EnterGtExpr is called when production GtExpr is entered.
+func (s *BaseharuListener) EnterGtExpr(ctx *GtExprContext) {}
+
+// ExitGtExpr is called when production GtExpr is exited.
+func (s *BaseharuListener) ExitGtExpr(ctx *GtExprContext) {}
+
+// EnterAddExpr is called when production AddExpr is entered.
+func (s *BaseharuListener) EnterAddExpr(ctx *AddExprContext) {}
+
+// ExitAddExpr is called when production AddExpr is exited.
+func (s *BaseharuListener) ExitAddExpr(ctx *AddExprContext) {}
+
+// EnterGeExpr is called when production GeExpr is entered.
+func (s *BaseharuListener) EnterGeExpr(ctx *GeExprContext) {}
+
+// ExitGeExpr is called when production GeExpr is exited.
+func (s *BaseharuListener) ExitGeExpr(ctx *GeExprContext) {}
+
+// EnterExpExpr is called when production ExpExpr is entered.
+func (s *BaseharuListener) EnterExpExpr(ctx *ExpExprContext) {}
+
+// ExitExpExpr is called when production ExpExpr is exited.
+func (s *BaseharuListener) ExitExpExpr(ctx *ExpExprContext) {}
+
+// EnterLeExpr is called when production LeExpr is entered.
+func (s *BaseharuListener) EnterLeExpr(ctx *LeExprContext) {}
+
+// ExitLeExpr is called when production LeExpr is exited.
+func (s *BaseharuListener) ExitLeExpr(ctx *LeExprContext) {}
+
+// EnterOrExpr is called when production OrExpr is entered.
+func (s *BaseharuListener) EnterOrExpr(ctx *OrExprContext) {}
+
+// ExitOrExpr is called when production OrExpr is exited.
+func (s *BaseharuListener) ExitOrExpr(ctx *OrExprContext) {}
+
+// EnterDivExpr is called when production DivExpr is entered.
+func (s *BaseharuListener) EnterDivExpr(ctx *DivExprContext) {}
+
+// ExitDivExpr is called when production DivExpr is exited.
+func (s *BaseharuListener) ExitDivExpr(ctx *DivExprContext) {}
+
+// EnterEqExpr is called when production EqExpr is entered.
+func (s *BaseharuListener) EnterEqExpr(ctx *EqExprContext) {}
+
+// ExitEqExpr is called when production EqExpr is exited.
+func (s *BaseharuListener) ExitEqExpr(ctx *EqExprContext) {}
 
 // EnterVarExpr is called when production VarExpr is entered.
 func (s *BaseharuListener) EnterVarExpr(ctx *VarExprContext) {}
@@ -225,11 +285,11 @@ func (s *BaseharuListener) EnterVarExpr(ctx *VarExprContext) {}
 // ExitVarExpr is called when production VarExpr is exited.
 func (s *BaseharuListener) ExitVarExpr(ctx *VarExprContext) {}
 
-// EnterAddExpr is called when production AddExpr is entered.
-func (s *BaseharuListener) EnterAddExpr(ctx *AddExprContext) {}
+// EnterNotExpr is called when production NotExpr is entered.
+func (s *BaseharuListener) EnterNotExpr(ctx *NotExprContext) {}
 
-// ExitAddExpr is called when production AddExpr is exited.
-func (s *BaseharuListener) ExitAddExpr(ctx *AddExprContext) {}
+// ExitNotExpr is called when production NotExpr is exited.
+func (s *BaseharuListener) ExitNotExpr(ctx *NotExprContext) {}
 
 // EnterModExpr is called when production ModExpr is entered.
 func (s *BaseharuListener) EnterModExpr(ctx *ModExprContext) {}
@@ -242,12 +302,6 @@ func (s *BaseharuListener) EnterParenExpr(ctx *ParenExprContext) {}
 
 // ExitParenExpr is called when production ParenExpr is exited.
 func (s *BaseharuListener) ExitParenExpr(ctx *ParenExprContext) {}
-
-// EnterExpExpr is called when production ExpExpr is entered.
-func (s *BaseharuListener) EnterExpExpr(ctx *ExpExprContext) {}
-
-// ExitExpExpr is called when production ExpExpr is exited.
-func (s *BaseharuListener) ExitExpExpr(ctx *ExpExprContext) {}
 
 // EnterAssignStmt is called when production AssignStmt is entered.
 func (s *BaseharuListener) EnterAssignStmt(ctx *AssignStmtContext) {}

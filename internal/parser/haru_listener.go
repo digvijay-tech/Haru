@@ -98,29 +98,56 @@ type haruListener interface {
 	// EnterMulExpr is called when entering the MulExpr production.
 	EnterMulExpr(c *MulExprContext)
 
-	// EnterDivExpr is called when entering the DivExpr production.
-	EnterDivExpr(c *DivExprContext)
+	// EnterAndExpr is called when entering the AndExpr production.
+	EnterAndExpr(c *AndExprContext)
 
 	// EnterLitExpr is called when entering the LitExpr production.
 	EnterLitExpr(c *LitExprContext)
 
+	// EnterNeExpr is called when entering the NeExpr production.
+	EnterNeExpr(c *NeExprContext)
+
 	// EnterSubExpr is called when entering the SubExpr production.
 	EnterSubExpr(c *SubExprContext)
+
+	// EnterLtExpr is called when entering the LtExpr production.
+	EnterLtExpr(c *LtExprContext)
+
+	// EnterGtExpr is called when entering the GtExpr production.
+	EnterGtExpr(c *GtExprContext)
+
+	// EnterAddExpr is called when entering the AddExpr production.
+	EnterAddExpr(c *AddExprContext)
+
+	// EnterGeExpr is called when entering the GeExpr production.
+	EnterGeExpr(c *GeExprContext)
+
+	// EnterExpExpr is called when entering the ExpExpr production.
+	EnterExpExpr(c *ExpExprContext)
+
+	// EnterLeExpr is called when entering the LeExpr production.
+	EnterLeExpr(c *LeExprContext)
+
+	// EnterOrExpr is called when entering the OrExpr production.
+	EnterOrExpr(c *OrExprContext)
+
+	// EnterDivExpr is called when entering the DivExpr production.
+	EnterDivExpr(c *DivExprContext)
+
+	// EnterEqExpr is called when entering the EqExpr production.
+	EnterEqExpr(c *EqExprContext)
 
 	// EnterVarExpr is called when entering the VarExpr production.
 	EnterVarExpr(c *VarExprContext)
 
-	// EnterAddExpr is called when entering the AddExpr production.
-	EnterAddExpr(c *AddExprContext)
+	// EnterNotExpr is called when entering the NotExpr production.
+	EnterNotExpr(c *NotExprContext)
 
 	// EnterModExpr is called when entering the ModExpr production.
 	EnterModExpr(c *ModExprContext)
 
 	// EnterParenExpr is called when entering the ParenExpr production.
 	EnterParenExpr(c *ParenExprContext)
-
-	// EnterExpExpr is called when entering the ExpExpr production.
-	EnterExpExpr(c *ExpExprContext)
 
 	// EnterAssignStmt is called when entering the AssignStmt production.
 	EnterAssignStmt(c *AssignStmtContext)
@@ -221,29 +248,56 @@ type haruListener interface {
 	// ExitMulExpr is called when exiting the MulExpr production.
 	ExitMulExpr(c *MulExprContext)
 
-	// ExitDivExpr is called when exiting the DivExpr production.
-	ExitDivExpr(c *DivExprContext)
+	// ExitAndExpr is called when exiting the AndExpr production.
+	ExitAndExpr(c *AndExprContext)
 
 	// ExitLitExpr is called when exiting the LitExpr production.
 	ExitLitExpr(c *LitExprContext)
 
+	// ExitNeExpr is called when exiting the NeExpr production.
+	ExitNeExpr(c *NeExprContext)
+
 	// ExitSubExpr is called when exiting the SubExpr production.
 	ExitSubExpr(c *SubExprContext)
+
+	// ExitLtExpr is called when exiting the LtExpr production.
+	ExitLtExpr(c *LtExprContext)
+
+	// ExitGtExpr is called when exiting the GtExpr production.
+	ExitGtExpr(c *GtExprContext)
+
+	// ExitAddExpr is called when exiting the AddExpr production.
+	ExitAddExpr(c *AddExprContext)
+
+	// ExitGeExpr is called when exiting the GeExpr production.
+	ExitGeExpr(c *GeExprContext)
+
+	// ExitExpExpr is called when exiting the ExpExpr production.
+	ExitExpExpr(c *ExpExprContext)
+
+	// ExitLeExpr is called when exiting the LeExpr production.
+	ExitLeExpr(c *LeExprContext)
+
+	// ExitOrExpr is called when exiting the OrExpr production.
+	ExitOrExpr(c *OrExprContext)
+
+	// ExitDivExpr is called when exiting the DivExpr production.
+	ExitDivExpr(c *DivExprContext)
+
+	// ExitEqExpr is called when exiting the EqExpr production.
+	ExitEqExpr(c *EqExprContext)
 
 	// ExitVarExpr is called when exiting the VarExpr production.
 	ExitVarExpr(c *VarExprContext)
 
-	// ExitAddExpr is called when exiting the AddExpr production.
-	ExitAddExpr(c *AddExprContext)
+	// ExitNotExpr is called when exiting the NotExpr production.
+	ExitNotExpr(c *NotExprContext)
 
 	// ExitModExpr is called when exiting the ModExpr production.
 	ExitModExpr(c *ModExprContext)
 
 	// ExitParenExpr is called when exiting the ParenExpr production.
 	ExitParenExpr(c *ParenExprContext)
-
-	// ExitExpExpr is called when exiting the ExpExpr production.
-	ExitExpExpr(c *ExpExprContext)
 
 	// ExitAssignStmt is called when exiting the AssignStmt production.
 	ExitAssignStmt(c *AssignStmtContext)

@@ -98,29 +98,56 @@ type haruVisitor interface {
 	// Visit a parse tree produced by haruParser#MulExpr.
 	VisitMulExpr(ctx *MulExprContext) interface{}
 
-	// Visit a parse tree produced by haruParser#DivExpr.
-	VisitDivExpr(ctx *DivExprContext) interface{}
+	// Visit a parse tree produced by haruParser#AndExpr.
+	VisitAndExpr(ctx *AndExprContext) interface{}
 
 	// Visit a parse tree produced by haruParser#LitExpr.
 	VisitLitExpr(ctx *LitExprContext) interface{}
 
+	// Visit a parse tree produced by haruParser#NeExpr.
+	VisitNeExpr(ctx *NeExprContext) interface{}
+
 	// Visit a parse tree produced by haruParser#SubExpr.
 	VisitSubExpr(ctx *SubExprContext) interface{}
+
+	// Visit a parse tree produced by haruParser#LtExpr.
+	VisitLtExpr(ctx *LtExprContext) interface{}
+
+	// Visit a parse tree produced by haruParser#GtExpr.
+	VisitGtExpr(ctx *GtExprContext) interface{}
+
+	// Visit a parse tree produced by haruParser#AddExpr.
+	VisitAddExpr(ctx *AddExprContext) interface{}
+
+	// Visit a parse tree produced by haruParser#GeExpr.
+	VisitGeExpr(ctx *GeExprContext) interface{}
+
+	// Visit a parse tree produced by haruParser#ExpExpr.
+	VisitExpExpr(ctx *ExpExprContext) interface{}
+
+	// Visit a parse tree produced by haruParser#LeExpr.
+	VisitLeExpr(ctx *LeExprContext) interface{}
+
+	// Visit a parse tree produced by haruParser#OrExpr.
+	VisitOrExpr(ctx *OrExprContext) interface{}
+
+	// Visit a parse tree produced by haruParser#DivExpr.
+	VisitDivExpr(ctx *DivExprContext) interface{}
+
+	// Visit a parse tree produced by haruParser#EqExpr.
+	VisitEqExpr(ctx *EqExprContext) interface{}
 
 	// Visit a parse tree produced by haruParser#VarExpr.
 	VisitVarExpr(ctx *VarExprContext) interface{}
 
-	// Visit a parse tree produced by haruParser#AddExpr.
-	VisitAddExpr(ctx *AddExprContext) interface{}
+	// Visit a parse tree produced by haruParser#NotExpr.
+	VisitNotExpr(ctx *NotExprContext) interface{}
 
 	// Visit a parse tree produced by haruParser#ModExpr.
 	VisitModExpr(ctx *ModExprContext) interface{}
 
 	// Visit a parse tree produced by haruParser#ParenExpr.
 	VisitParenExpr(ctx *ParenExprContext) interface{}
-
-	// Visit a parse tree produced by haruParser#ExpExpr.
-	VisitExpExpr(ctx *ExpExprContext) interface{}
 
 	// Visit a parse tree produced by haruParser#AssignStmt.
 	VisitAssignStmt(ctx *AssignStmtContext) interface{}
