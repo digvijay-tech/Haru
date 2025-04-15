@@ -28,24 +28,24 @@ func captureOutput(f func()) string {
 
 func TestArithmeticExpressions(t *testing.T) {
 	input := `
-		print 5 + 3;
-		print 10 - 2;
-		print 4 * 2;
-		print 20 / 5;
-		print 10 % 3;
-		print 2 ** 3;
-		print 3.5 + 1.5;
-		print 5 + 3.5;
+		print 2 + 3 * 4;
+		print (2 + 3) * 4;
+		print 10 - 3 - 2;
+		print 10 - (3 - 2);
+		print (2 + 3) * (4 + 5);
+		print 2 ** (3 ** 2);
+		print (2 ** 3) ** 2;
+		print 100 / (5 * (2 + 3));
 	`
 
-	expected := `8
-8
-8
-4
-1
-8
+	expected := `14
+20
 5
-8.5
+9
+45
+512
+64
+4
 `
 
 	// cleaning source input with custom preprocessor

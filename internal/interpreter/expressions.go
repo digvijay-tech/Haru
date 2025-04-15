@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"math"
+	"strconv"
 
 	"github.com/digvijay-tech/Haru/internal/parser"
 )
@@ -15,9 +16,9 @@ func (v *HaruVisitor) VisitLitExpr(ctx *parser.LitExprContext) any {
 
 	switch {
 	case isInt(text):
-		return Value{Value: text, Typ: "i32"}
+		return Value{Value: text, Typ: "i32"} // same as Rust
 	case isFloat(text):
-		return Value{Value: text, Typ: "f64"}
+		return Value{Value: text, Typ: "f64"} // same as Rust
 	case text == "true" || text == "false":
 		return Value{Value: text, Typ: "bool"}
 	case isByte(text):
@@ -161,4 +162,28 @@ func (v *HaruVisitor) VisitExpExpr(ctx *parser.ExpExprContext) any {
 
 	exp := math.Pow(l, r)
 	return Value{Value: fmt.Sprintf("%v", exp), Typ: resultType}
+}
+
+// VisitParenExpr evaluates the inner expression
+func (v *HaruVisitor) VisitParenExpr(ctx *parser.ParenExprContext) interface{} {
+	return v.Visit(ctx.Expr())
+}
+
+// VisitNotExpr evaluates logical not (!)
+func (v *HaruVisitor) VisitNotExpr(ctx *parser.NotExprContext) interface{} {
+	val := v.Visit(ctx.Expr()).(Value)
+
+	if val.Typ != "bool" {
+		log.Fatalf("Type error: '!' operator can only be applied to boolean, got '%s'", val.Typ)
+	}
+
+	boolVal, err := strconv.ParseBool(val.Value)
+	if err != nil {
+		log.Fatalf("Runtime error: invalid boolean value '%s'", val.Value)
+	}
+
+	return Value{
+		Value: fmt.Sprintf("%v", !boolVal),
+		Typ:   "bool",
+	}
 }
