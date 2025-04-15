@@ -22,7 +22,7 @@ func NewHaruVisitor() *HaruVisitor {
 }
 
 // Visit dispatches to specific VisitX methods
-func (v *HaruVisitor) Visit(tree antlr.ParseTree) interface{} {
+func (v *HaruVisitor) Visit(tree antlr.ParseTree) any {
 	switch ctx := tree.(type) {
 	case *parser.ProgramContext:
 		return v.VisitProgram(ctx)
@@ -30,6 +30,18 @@ func (v *HaruVisitor) Visit(tree antlr.ParseTree) interface{} {
 		return v.VisitPrintStatement(ctx)
 	case *parser.LitExprContext:
 		return v.VisitLitExpr(ctx)
+	case *parser.AddExprContext:
+		return v.VisitAddExpr(ctx)
+	case *parser.SubExprContext:
+		return v.VisitSubExpr(ctx)
+	case *parser.MulExprContext:
+		return v.VisitMulExpr(ctx)
+	case *parser.DivExprContext:
+		return v.VisitDivExpr(ctx)
+	case *parser.ModExprContext:
+		return v.VisitModExpr(ctx)
+	case *parser.ExpExprContext:
+		return v.VisitExpExpr(ctx)
 	}
 
 	return v.VisitChildren(tree.(antlr.RuleNode))
