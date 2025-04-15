@@ -4,14 +4,9 @@ Copyright © 2025 Digvijaysinh Padhiyar
 package cmd
 
 import (
-	"bufio"
 	"fmt"
 	"os"
-	"strings"
 
-	"github.com/antlr4-go/antlr/v4"
-	"github.com/digvijay-tech/Haru/internal/interpreter"
-	"github.com/digvijay-tech/Haru/internal/parser"
 	"github.com/spf13/cobra"
 )
 
@@ -23,40 +18,7 @@ var rootCmd = &cobra.Command{
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Haru REPL - type 'exit' to quit")
-		visitor := interpreter.NewHaruVisitor()
-		scanner := bufio.NewScanner(os.Stdin)
-
-		for {
-			fmt.Print("> ")
-			if !scanner.Scan() {
-				break
-			}
-
-			line := scanner.Text()
-			if strings.TrimSpace(line) == "exit" {
-				break
-			}
-
-			if !strings.HasSuffix(line, ";") && !strings.HasSuffix(line, "}") {
-				line += ";"
-			}
-
-			input := antlr.NewInputStream(line)
-			lexer := parser.NewharuLexer(input)
-
-			stream := antlr.NewCommonTokenStream(lexer, antlr.TokenDefaultChannel)
-			p := parser.NewharuParser(stream)
-
-			tree := p.Program()
-
-			visitor.Visit(tree)
-			fmt.Println("Vars:", visitor.Vars)
-		}
-
-		if err := scanner.Err(); err != nil {
-			fmt.Println("Error:", err)
-		}
+		fmt.Println("Haru REPL")
 	},
 }
 

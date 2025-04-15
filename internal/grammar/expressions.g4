@@ -16,13 +16,14 @@ expr: '!' expr              # NotExpr
     | expr '!=' expr        # NeExpr
     | expr '&&' expr        # AndExpr
     | expr '||' expr        # OrExpr
+    | '[' (expr (',' expr)*)? ']' # ArrayExpr
     | ID                    # VarExpr
     | literal               # LitExpr ;
 
 assign: ID '=' expr         # AssignStmt ;
 
-literal: NUMBER             # IntLiteral
-       | FLOAT              # FloatLiteral
+literal: ('-')? NUMBER      # IntLiteral
+       | ('-')? FLOAT       # FloatLiteral
        | 'true'             # TrueLiteral
        | 'false'            # FalseLiteral
        | STRING             # StringLiteral
@@ -34,3 +35,4 @@ FLOAT: [0-9]+ '.' [0-9]+ ;
 STRING: ('"' (ESC|.)*? '"') | ('\'' (ESC|.)*? '\'') ;
 BYTE: '0b' [0-1]+ ;
 fragment ESC: '\\' ['"\\] ;
+
