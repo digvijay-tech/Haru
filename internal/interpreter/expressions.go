@@ -168,12 +168,12 @@ func (v *HaruVisitor) VisitExpExpr(ctx *parser.ExpExprContext) any {
 }
 
 // VisitParenExpr evaluates the inner expression
-func (v *HaruVisitor) VisitParenExpr(ctx *parser.ParenExprContext) interface{} {
+func (v *HaruVisitor) VisitParenExpr(ctx *parser.ParenExprContext) any {
 	return v.Visit(ctx.Expr())
 }
 
-// VisitNotExpr evaluates logical not (!)
-func (v *HaruVisitor) VisitNotExpr(ctx *parser.NotExprContext) interface{} {
+// VisitNotExpr evaluates logical NOT (!)
+func (v *HaruVisitor) VisitNotExpr(ctx *parser.NotExprContext) any {
 	val := v.Visit(ctx.Expr()).(Value)
 
 	if val.Typ != "bool" {
@@ -189,4 +189,34 @@ func (v *HaruVisitor) VisitNotExpr(ctx *parser.NotExprContext) interface{} {
 		Value: fmt.Sprintf("%v", !boolVal),
 		Typ:   "bool",
 	}
+}
+
+// VisitAndExpr evaluates logical AND (&&)
+func (v *HaruVisitor) VisitAndExpr(ctx *parser.AndExprContext) any {
+	leftVal := v.Visit(ctx.Expr(0)).(Value)
+	rightVal := v.Visit(ctx.Expr(1)).(Value)
+
+	if leftVal.Typ != "bool" || rightVal.Typ != "bool" {
+		log.Fatalf("Logical AND requires boolean operands, got %s and %s", leftVal.Typ, rightVal.Typ)
+	}
+
+	l, _ := strconv.ParseBool(leftVal.Value)
+	r, _ := strconv.ParseBool(rightVal.Value)
+
+	return Value{Value: fmt.Sprintf("%v", l && r), Typ: "bool"}
+}
+
+// VisitOrExpr evaluates logical OR (||)
+func (v *HaruVisitor) VisitOrExpr(ctx *parser.OrExprContext) any {
+	leftVal := v.Visit(ctx.Expr(0)).(Value)
+	rightVal := v.Visit(ctx.Expr(1)).(Value)
+
+	if leftVal.Typ != "bool" || rightVal.Typ != "bool" {
+		log.Fatalf("Logical OR requires boolean operands, got %s and %s", leftVal.Typ, rightVal.Typ)
+	}
+
+	l, _ := strconv.ParseBool(leftVal.Value)
+	r, _ := strconv.ParseBool(rightVal.Value)
+
+	return Value{Value: fmt.Sprintf("%v", l || r), Typ: "bool"}
 }

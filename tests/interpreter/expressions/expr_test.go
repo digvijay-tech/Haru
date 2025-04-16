@@ -28,6 +28,8 @@ func captureOutput(f func()) string {
 
 func TestArithmeticExpressions(t *testing.T) {
 	input := `
+		--- ARITHMETIC EXPRESSIONS
+		print "ARITHMETIC EXPRESSIONS";
 		print 2 + 3 * 4;
 		print (2 + 3) * 4;
 		print 10 - 3 - 2;
@@ -36,9 +38,22 @@ func TestArithmeticExpressions(t *testing.T) {
 		print 2 ** (3 ** 2);
 		print (2 ** 3) ** 2;
 		print 100 / (5 * (2 + 3));
+		print (2 + 3) * (4 + 1) - 6;
+		print ((20 - (4 * 2)) / 2) + 1;
+		print 100 / (5 + 5) + (6 * 3 - 2);
+
+		--- LOGICAL EXPRESSIONS
+		print "LOGICAL EXPRESSIONS";
+		print true && true;         	--- true
+		print true && false;        	--- false
+		print false || true;        	--- true
+		print false || false;       	--- false
+		print true && false || true; 	--- true (evaluates as (true && false) || true)
+		print (true || false) && false; --- false
 	`
 
-	expected := `14
+	expected := `ARITHMETIC EXPRESSIONS
+14
 20
 5
 9
@@ -46,6 +61,16 @@ func TestArithmeticExpressions(t *testing.T) {
 512
 64
 4
+19
+7
+26
+LOGICAL EXPRESSIONS
+true
+false
+true
+false
+true
+false
 `
 
 	// cleaning source input with custom preprocessor
