@@ -145,6 +145,9 @@ func (v *HaruVisitor) VisitModExpr(ctx *parser.ModExprContext) any {
 }
 
 // VisitExpExpr evaluates exponent expressions
+// TODO: Exponentiation (**) is left-associative, so 2 ** 3 ** 2 = 64
+// Should be right-associative to return 512 or support pow(x, y) instead
+// Revisit this later to implement right-associativity
 func (v *HaruVisitor) VisitExpExpr(ctx *parser.ExpExprContext) any {
 	leftVal := v.Visit(ctx.Expr(0)).(Value)
 	rightVal := v.Visit(ctx.Expr(1)).(Value)
