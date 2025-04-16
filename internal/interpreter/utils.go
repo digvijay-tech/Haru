@@ -37,6 +37,11 @@ func convertToFloat64(val string) (float64, error) {
 	return strconv.ParseFloat(val, 64)
 }
 
+func isNumericType(t string) bool {
+	_, ok := typeCategory[t]
+	return ok
+}
+
 func promoteType(t1, t2 string) string {
 	// guarding against promoting type categories instead of real types
 	if _, ok := bitSize[t1]; !ok {
@@ -90,4 +95,25 @@ func promoteType(t1, t2 string) string {
 
 	// same width return t2 by default (right-side wins)
 	return t2
+}
+
+// compareNumbers will compare numeric types using the given operator
+func compareNumbers(op string, leftVal, rightVal Value) bool {
+	l, _ := convertToFloat64(leftVal.Value)
+	r, _ := convertToFloat64(rightVal.Value)
+
+	switch op {
+	case "<":
+		return l < r
+	case "<=":
+		return l <= r
+	case ">":
+		return l > r
+	case ">=":
+		return l >= r
+	}
+
+	// no match
+	log.Fatalf("Unknown operator: %s", op)
+	return false
 }

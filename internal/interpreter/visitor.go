@@ -50,6 +50,18 @@ func (v *HaruVisitor) Visit(tree antlr.ParseTree) any {
 		return v.VisitAndExpr(ctx)
 	case *parser.OrExprContext:
 		return v.VisitOrExpr(ctx)
+	case *parser.EqExprContext:
+		return v.VisitEqExpr(ctx)
+	case *parser.NeExprContext:
+		return v.VisitNeExpr(ctx)
+	case *parser.LtExprContext:
+		return v.VisitLtExpr(ctx)
+	case *parser.LeExprContext:
+		return v.VisitLeExpr(ctx)
+	case *parser.GtExprContext:
+		return v.VisitGtExpr(ctx)
+	case *parser.GeExprContext:
+		return v.VisitGeExpr(ctx)
 	}
 
 	return v.VisitChildren(tree.(antlr.RuleNode))

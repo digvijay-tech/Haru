@@ -30,6 +30,8 @@ func TestArithmeticExpressions(t *testing.T) {
 	input := `
 		--- ARITHMETIC EXPRESSIONS
 		print "ARITHMETIC EXPRESSIONS";
+		print 3 - 10;
+		print 7.947 - 0.97;
 		print 2 + 3 * 4;
 		print (2 + 3) * 4;
 		print 10 - 3 - 2;
@@ -44,15 +46,49 @@ func TestArithmeticExpressions(t *testing.T) {
 
 		--- LOGICAL EXPRESSIONS
 		print "LOGICAL EXPRESSIONS";
+		print !true;					--- false
+		print !false;					--- true
+		print !!true;					--- true
+		print !!false;					--- false
 		print true && true;         	--- true
 		print true && false;        	--- false
 		print false || true;        	--- true
 		print false || false;       	--- false
 		print true && false || true; 	--- true (evaluates as (true && false) || true)
 		print (true || false) && false; --- false
+
+		--- COMPARISION EXPRESSIONS
+		print "COMPARISION EXPRESSIONS";
+		print 3 < 5;           				--- true
+		print 10 > 7;          				--- true
+		print 4 <= 4;          				--- true
+		print 6 >= 10;         				--- false
+		print 2 < 2;           				--- false
+		print 5 >= 5;          				--- true
+		print 5.0 < 10.0;	   				--- true
+		print 3.0 >= 3.1;      				--- false
+		print (2 + 3) * 4 > 10;     		--- true evaluates as (5 * 4 = 20) > 10
+		print (5 * 2) <= (3 + 7);   		--- true evaluates as 10 <= 10
+		print (10 - 2) > (2 * 4);   		--- false evaluates as 8 > 8
+		print 3 + 2 < 6 && 7 > 2;   		--- true evaluates as 5 < 6 && true
+		print 2 + 3 > 4 || 1 > 10;  		--- true evaluates as 5 > 4 || false
+		print ((2 + 2) * (3 + 1)) >= 16; 	--- true evaluates as (4 * 4 = 16) >= 16
+		print ((10 - 5) * 2) < (3 * 4);  	--- true evaluates as (5 * 2 = 10) < 12
+		print (5 + 3) > (2 * 2) + 1;     	--- true evaluates as 8 > 5
+		print ((2 + 3) * (4 + 1) > 20) || (6 / 2 + 1 < 5 && 3 * 3 == 9); --- true
+		print 5 == 5;						--- true
+		print 3.14 == 3.14;					--- true
+		print 'hello' == 'hello';			--- true
+		print 10 == (3 + 7); 				--- true
+		print 5 != 3;						--- true
+		print 3.14 != 2.71;					--- true
+		print 'hello' != 'hello';			--- false
+		print 5 != (2 + 3);					--- false
 	`
 
 	expected := `ARITHMETIC EXPRESSIONS
+-7
+6.977
 14
 20
 5
@@ -65,11 +101,41 @@ func TestArithmeticExpressions(t *testing.T) {
 7
 26
 LOGICAL EXPRESSIONS
+false
+true
 true
 false
 true
 false
 true
+false
+true
+false
+COMPARISION EXPRESSIONS
+true
+true
+true
+false
+false
+true
+true
+false
+true
+true
+false
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+true
+false
 false
 `
 
