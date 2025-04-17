@@ -46,20 +46,7 @@ func isNumericType(t string) bool {
 }
 
 func promoteType(t1, t2 string) string {
-	// guarding against promoting type categories instead of real types
-	if _, ok := bitSize[t1]; !ok {
-		runtimeErr(fmt.Sprintf("'%s' is not a concrete type", t1))
-	}
-
-	if _, ok := bitSize[t2]; !ok {
-		runtimeErr(fmt.Sprintf("'%s' is not a concrete type", t2))
-	}
-
-	// getting the category of given types
-	cat1, ok1 := typeCategory[t1]
-	cat2, ok2 := typeCategory[t2]
-
-	// handles concatenation type
+	// allowing Allow string + string (concatenation)
 	if t1 == "string" && t2 == "string" {
 		return "string"
 	}
@@ -69,12 +56,28 @@ func promoteType(t1, t2 string) string {
 		runtimeErr(fmt.Sprintf("cannot operate on types '%s' and '%s'", t1, t2))
 	}
 
-	// fallback for non-numeric types
-	if !ok1 || !ok2 {
-		runtimeErr(fmt.Sprintf("unknown types '%s' and '%s'", t1, t2))
+	// guarding against promoting type categories instead of real types
+	if _, ok := bitSize[t1]; !ok {
+		runtimeErr(fmt.Sprintf("'%s' is not a concrete type", t1))
 	}
 
-	// getting the rank of both categories
+	if _, ok := bitSize[t2]; !ok {
+		runtimeErr(fmt.Sprintf("'%s' is not a concrete type", t2))
+	}
+
+	// now guaranteed t1 and t2 are numeric
+	if _, ok := bitSize[t1]; !ok {
+		runtimeErr(fmt.Sprintf("'%s' is not a concrete numeric type", t1))
+	}
+
+	if _, ok := bitSize[t2]; !ok {
+		runtimeErr(fmt.Sprintf("'%s' is not a concrete numeric type", t2))
+	}
+
+	// getting categories (numeric only)
+	cat1 := typeCategory[t1]
+	cat2 := typeCategory[t2]
+
 	r1 := typeRank[cat1]
 	r2 := typeRank[cat2]
 

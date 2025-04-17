@@ -12,7 +12,7 @@ import (
 	utils_test "github.com/digvijay-tech/Haru/tests/interpreter/utils"
 )
 
-func TestConstantsImplicitConstants(t *testing.T) {
+func TestImplicitConstant(t *testing.T) {
 	input := `
 	print "IMPLICIT CONSTANT DECLARATION";
 

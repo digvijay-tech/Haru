@@ -275,7 +275,19 @@ func (v *HaruVisitor) VisitEqExpr(ctx *parser.EqExprContext) any {
 	leftVal := v.Visit(ctx.Expr(0)).(Value)
 	rightVal := v.Visit(ctx.Expr(1)).(Value)
 
-	// type compatibility check
+	// allowing operation for numeric types only
+	if isNumericType(leftVal.Typ) && isNumericType(rightVal.Typ) {
+		l, err1 := convertToFloat64(leftVal.Value)
+		r, err2 := convertToFloat64(rightVal.Value)
+
+		if err1 != nil || err2 != nil {
+			runtimeErr(fmt.Sprintf("cannot convert '%s' and '%s' to numbers for comparison", leftVal.Typ, rightVal.Typ))
+		}
+
+		return Value{Value: fmt.Sprintf("%v", l == r), Typ: "bool"}
+	}
+
+	// strict type compatibility check for others
 	if leftVal.Typ != rightVal.Typ {
 		runtimeErr(fmt.Sprintf("cannot compare types '%s' and '%s' using '=='", leftVal.Typ, rightVal.Typ))
 	}
@@ -289,7 +301,19 @@ func (v *HaruVisitor) VisitNeExpr(ctx *parser.NeExprContext) any {
 	leftVal := v.Visit(ctx.Expr(0)).(Value)
 	rightVal := v.Visit(ctx.Expr(1)).(Value)
 
-	// type compatibility check
+	// allowing operation for numeric types only
+	if isNumericType(leftVal.Typ) && isNumericType(rightVal.Typ) {
+		l, err1 := convertToFloat64(leftVal.Value)
+		r, err2 := convertToFloat64(rightVal.Value)
+
+		if err1 != nil || err2 != nil {
+			runtimeErr(fmt.Sprintf("cannot convert '%s' and '%s' to numbers for comparison", leftVal.Typ, rightVal.Typ))
+		}
+
+		return Value{Value: fmt.Sprintf("%v", l != r), Typ: "bool"}
+	}
+
+	// type compatibility check for others
 	if leftVal.Typ != rightVal.Typ {
 		runtimeErr(fmt.Sprintf("cannot compare types '%s' and '%s' using '!='", leftVal.Typ, rightVal.Typ))
 	}
@@ -303,14 +327,8 @@ func (v *HaruVisitor) VisitLtExpr(ctx *parser.LtExprContext) any {
 	leftVal := v.Visit(ctx.Expr(0)).(Value)
 	rightVal := v.Visit(ctx.Expr(1)).(Value)
 
-	// strict type compatibility check
-	if leftVal.Typ != rightVal.Typ {
-		runtimeErr(fmt.Sprintf("cannot compare types '%s' and '%s' using '<'", leftVal.Typ, rightVal.Typ))
-	}
-
-	// only numeric comparision is allowed
-	if isNumericType(leftVal.Typ) {
-		// converting to f64 to safely represent all integer and float variants
+	// allowing operation for numeric types only
+	if isNumericType(leftVal.Typ) && isNumericType(rightVal.Typ) {
 		l, err1 := convertToFloat64(leftVal.Value)
 		r, err2 := convertToFloat64(rightVal.Value)
 
@@ -321,8 +339,13 @@ func (v *HaruVisitor) VisitLtExpr(ctx *parser.LtExprContext) any {
 		return Value{Value: fmt.Sprintf("%v", l < r), Typ: "bool"}
 	}
 
-	runtimeErr(fmt.Sprintf("Type error: '<' not supported between values of type '%s'", leftVal.Typ))
-	return Value{Value: "", Typ: "unknown"}
+	// strict type compatibility check
+	if leftVal.Typ != rightVal.Typ {
+		runtimeErr(fmt.Sprintf("cannot compare types '%s' and '%s' using '<'", leftVal.Typ, rightVal.Typ))
+	}
+
+	runtimeErr(fmt.Sprintf("'<' not supported between values of type '%s'", leftVal.Typ))
+	return nil
 }
 
 // VisitLeExpr evaluates Less Than Equals comparision operator (<=)
@@ -330,26 +353,26 @@ func (v *HaruVisitor) VisitLeExpr(ctx *parser.LeExprContext) any {
 	leftVal := v.Visit(ctx.Expr(0)).(Value)
 	rightVal := v.Visit(ctx.Expr(1)).(Value)
 
-	// strict type compatibility check
-	if leftVal.Typ != rightVal.Typ {
-		runtimeErr(fmt.Sprintf("Type error: cannot compare types '%s' and '%s' using '<='", leftVal.Typ, rightVal.Typ))
-	}
-
 	// only numeric comparision is allowed
-	if isNumericType(leftVal.Typ) {
+	if isNumericType(leftVal.Typ) && isNumericType(rightVal.Typ) {
 		// converting to f64 to safely represent all integer and float variants
 		l, err1 := convertToFloat64(leftVal.Value)
 		r, err2 := convertToFloat64(rightVal.Value)
 
 		if err1 != nil || err2 != nil {
-			runtimeErr(fmt.Sprintf("Type error: cannot convert '%s' and '%s' to numbers for comparison", leftVal.Typ, rightVal.Typ))
+			runtimeErr(fmt.Sprintf("cannot convert '%s' and '%s' to numbers for comparison", leftVal.Typ, rightVal.Typ))
 		}
 
 		return Value{Value: fmt.Sprintf("%v", l <= r), Typ: "bool"}
 	}
 
-	runtimeErr(fmt.Sprintf("Type error: '<=' not supported between values of type '%s'", leftVal.Typ))
-	return Value{Value: "", Typ: "unknown"}
+	// strict type compatibility for others
+	if leftVal.Typ != rightVal.Typ {
+		runtimeErr(fmt.Sprintf("cannot compare types '%s' and '%s' using '<='", leftVal.Typ, rightVal.Typ))
+	}
+
+	runtimeErr(fmt.Sprintf("'<=' not supported between values of type '%s'", leftVal.Typ))
+	return nil
 }
 
 // VisitGtExpr evaluates Greater Than comparision operator (>)
@@ -357,26 +380,26 @@ func (v *HaruVisitor) VisitGtExpr(ctx *parser.GtExprContext) any {
 	leftVal := v.Visit(ctx.Expr(0)).(Value)
 	rightVal := v.Visit(ctx.Expr(1)).(Value)
 
-	// strict type compatibility check
-	if leftVal.Typ != rightVal.Typ {
-		runtimeErr(fmt.Sprintf("Type error: cannot compare types '%s' and '%s' using '>'", leftVal.Typ, rightVal.Typ))
-	}
-
 	// only numeric comparision is allowed
-	if isNumericType(leftVal.Typ) {
+	if isNumericType(leftVal.Typ) && isNumericType(rightVal.Typ) {
 		// converting to f64 to safely represent all integer and float variants
 		l, err1 := convertToFloat64(leftVal.Value)
 		r, err2 := convertToFloat64(rightVal.Value)
 
 		if err1 != nil || err2 != nil {
-			runtimeErr(fmt.Sprintf("Type error: cannot convert '%s' and '%s' to numbers for comparison", leftVal.Typ, rightVal.Typ))
+			runtimeErr(fmt.Sprintf("cannot convert '%s' and '%s' to numbers for comparison", leftVal.Typ, rightVal.Typ))
 		}
 
 		return Value{Value: fmt.Sprintf("%v", l > r), Typ: "bool"}
 	}
 
-	runtimeErr(fmt.Sprintf("Type error: '>' not supported between values of type '%s'", leftVal.Typ))
-	return Value{Value: "", Typ: "unknown"}
+	// strict type compatibility check for others
+	if leftVal.Typ != rightVal.Typ {
+		runtimeErr(fmt.Sprintf("cannot compare types '%s' and '%s' using '>'", leftVal.Typ, rightVal.Typ))
+	}
+
+	runtimeErr(fmt.Sprintf("'>' not supported between values of type '%s'", leftVal.Typ))
+	return nil
 }
 
 // VisitGeExpr evaluates Greater Than Equals comparision operator (>=)
@@ -384,24 +407,24 @@ func (v *HaruVisitor) VisitGeExpr(ctx *parser.GeExprContext) any {
 	leftVal := v.Visit(ctx.Expr(0)).(Value)
 	rightVal := v.Visit(ctx.Expr(1)).(Value)
 
-	// strict type compatibility check
-	if leftVal.Typ != rightVal.Typ {
-		runtimeErr(fmt.Sprintf("Type error: cannot compare types '%s' and '%s' using '>='", leftVal.Typ, rightVal.Typ))
-	}
-
 	// only numeric comparision is allowed
-	if isNumericType(leftVal.Typ) {
+	if isNumericType(leftVal.Typ) && isNumericType(rightVal.Typ) {
 		// converting to f64 to safely represent all integer and float variants
 		l, err1 := convertToFloat64(leftVal.Value)
 		r, err2 := convertToFloat64(rightVal.Value)
 
 		if err1 != nil || err2 != nil {
-			runtimeErr(fmt.Sprintf("Type error: cannot convert '%s' and '%s' to numbers for comparison", leftVal.Typ, rightVal.Typ))
+			runtimeErr(fmt.Sprintf("cannot convert '%s' and '%s' to numbers for comparison", leftVal.Typ, rightVal.Typ))
 		}
 
 		return Value{Value: fmt.Sprintf("%v", l >= r), Typ: "bool"}
 	}
 
-	runtimeErr(fmt.Sprintf("Type error: '>=' not supported between values of type '%s'", leftVal.Typ))
-	return Value{Value: "", Typ: "unknown"}
+	// strict type compatibility check for others
+	if leftVal.Typ != rightVal.Typ {
+		runtimeErr(fmt.Sprintf("cannot compare types '%s' and '%s' using '>='", leftVal.Typ, rightVal.Typ))
+	}
+
+	runtimeErr(fmt.Sprintf("'>=' not supported between values of type '%s'", leftVal.Typ))
+	return nil
 }

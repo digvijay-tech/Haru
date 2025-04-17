@@ -12,7 +12,7 @@ import (
 	utils_test "github.com/digvijay-tech/Haru/tests/interpreter/utils"
 )
 
-func TestConstantsExplicitConstants(t *testing.T) {
+func TestExplicitConstant(t *testing.T) {
 	input := `
 	--- EXPLICITE CONSTANT DECLARATIONS
 	print "EXPLICITE CONSTANT DECLARATIONS";

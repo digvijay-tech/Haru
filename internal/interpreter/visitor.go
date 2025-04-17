@@ -74,6 +74,8 @@ func (v *HaruVisitor) Visit(tree antlr.ParseTree) any {
 		return v.VisitImplicitConstDecl(ctx)
 	case *parser.LetDeclContext:
 		return v.VisitExplicitLetDecl(ctx)
+	case *parser.LetInferDeclContext:
+		return v.VisitImplicitLetDecl(ctx)
 	default:
 		fmt.Printf("Reached: %T\n", tree)
 	}

@@ -47,3 +47,27 @@ func (v *HaruVisitor) VisitExplicitLetDecl(ctx *parser.LetDeclContext) any {
 
 	return let
 }
+
+// VisitImplicitConstDecl evaluates constants declared without a type
+func (v *HaruVisitor) VisitImplicitLetDecl(ctx *parser.LetInferDeclContext) any {
+	varName := ctx.ID().GetText()
+
+	// evaluating expression to get value assigned to the let
+	result := v.Visit(ctx.Expr())
+	val, ok := result.(Value)
+	if !ok {
+		runtimeErr("Invalid let value")
+	}
+
+	// infering type from literal
+	// VisitLitExpr will convert numeric literals to either i32 or i64 and floats to f32 or f64
+	updatedValue, err := convertType(val.Value, val.Typ, val.Typ)
+	if err != nil {
+		runtimeErr(fmt.Sprintf("Type inference failed for %s: %v", varName, err))
+	}
+
+	let := updatedValue.(Value)
+	v.symbolTable[varName] = let
+
+	return let
+}
