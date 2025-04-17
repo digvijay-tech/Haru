@@ -11,47 +11,12 @@ import (
 	utils_test "github.com/digvijay-tech/Haru/tests/interpreter/utils"
 )
 
-func TestConstantsExplicitConstants(t *testing.T) {
+func TestConstantsImplicitConstants(t *testing.T) {
 	input := `
-	--- EXPLICITE CONSTANT DECLARATIONS
-	print "EXPLICITE CONSTANT DECLARATIONS";
-	const a:i8 = 1;
-	const b: f64 = 3.14;
-	const c: bool = true;
-	const d: string = "hello";
-
-	print a;
-	print b;
-	print c;
-	print d;
-	print a + 4 * 2; --- expression with constant
-
-	const e: bool = false;
-	const f: bool = !e;
-	const g: bool = !e == true && (e != f); --- true
-	const z: string = d; --- assigning value from other constant
-	--- z = "new value"; --- will stop execution from this line
-
-	print e;
-	print f;
-	print e && f;
-	print e || f;
-	print g;
-	print z;
+	print "IMPLICIT CONSTANT DECLARATION";
 `
 
-	expected := `EXPLICITE CONSTANT DECLARATIONS
-1
-3.14
-true
-hello
-9
-false
-true
-false
-true
-true
-hello
+	expected := `IMPLICIT CONSTANT DECLARATION
 `
 
 	// cleaning source input with custom preprocessor

@@ -1,8 +1,6 @@
 package interpreter_test
 
 import (
-	"bytes"
-	"os"
 	"strings"
 	"testing"
 
@@ -10,22 +8,8 @@ import (
 	"github.com/digvijay-tech/Haru/internal/interpreter"
 	"github.com/digvijay-tech/Haru/internal/parser"
 	"github.com/digvijay-tech/Haru/internal/preprocessor"
+	utils_test "github.com/digvijay-tech/Haru/tests/interpreter/utils"
 )
-
-func captureOutput(f func()) string {
-	var buf bytes.Buffer
-	stdout := os.Stdout
-	r, w, _ := os.Pipe()
-	os.Stdout = w
-
-	// running the code
-	f()
-
-	w.Close()
-	os.Stdout = stdout
-	buf.ReadFrom(r)
-	return buf.String()
-}
 
 func TestPrintLiterals(t *testing.T) {
 	input := `
@@ -80,7 +64,7 @@ true
 	tree := p.Program()
 
 	// capturing the output
-	output := captureOutput(func() {
+	output := utils_test.CaptureOutput(func() {
 		visitor := interpreter.NewHaruVisitor()
 		visitor.Visit(tree)
 	})
