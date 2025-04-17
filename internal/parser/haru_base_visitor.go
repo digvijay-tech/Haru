@@ -12,7 +12,11 @@ func (v *BaseharuVisitor) VisitProgram(ctx *ProgramContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
-func (v *BaseharuVisitor) VisitStatement(ctx *StatementContext) interface{} {
+func (v *BaseharuVisitor) VisitPrintStmtStatement(ctx *PrintStmtStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitVarDeclStatement(ctx *VarDeclStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -121,5 +125,89 @@ func (v *BaseharuVisitor) VisitStringLiteral(ctx *StringLiteralContext) interfac
 }
 
 func (v *BaseharuVisitor) VisitByteLiteral(ctx *ByteLiteralContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitLetDecl(ctx *LetDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitLetInferDecl(ctx *LetInferDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitMutDecl(ctx *MutDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitMutInferDecl(ctx *MutInferDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitConstDecl(ctx *ConstDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitConstInferDecl(ctx *ConstInferDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitI8Type(ctx *I8TypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitI16Type(ctx *I16TypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitI32Type(ctx *I32TypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitI64Type(ctx *I64TypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitIntType(ctx *IntTypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitUI8Type(ctx *UI8TypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitUI16Type(ctx *UI16TypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitUI32Type(ctx *UI32TypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitUI64Type(ctx *UI64TypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitUIntType(ctx *UIntTypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitF32Type(ctx *F32TypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitF64Type(ctx *F64TypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitBoolType(ctx *BoolTypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitStringType(ctx *StringTypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitByteType(ctx *ByteTypeContext) interface{} {
 	return v.VisitChildren(ctx)
 }

@@ -27,46 +27,42 @@ func captureOutput(f func()) string {
 	return buf.String()
 }
 
-func TestPrintLiterals(t *testing.T) {
+func TestConstants(t *testing.T) {
 	input := `
-	--- Comment: testing print statement with basic literal values
-	print 0;
-	print 42;
+	--- EXPLICITE CONSTANT DECLARATIONS
+	print "EXPLICITE CONSTANT DECLARATIONS";
+	const a:i8 = 1;
+	const b: f64 = 3.14;
+	const c: bool = true;
+	const d: string = "hello";
 
+	print a;
+	print b;
+	print c;
+	print d;
+	print a + 4 * 2; --- expression with constant
 
-		print 3.14;
-	print -137.9928;
-	print "hello";
-
-	print 'hello';
-	print " Hello World! "; --- test comment
-	print true;
-	print false;
-	print 0b1010;
---- print "This message is ignored";
-
-	--- TESTING PRINTING CONSTANTS
-	const name: string = "Digvijaysinh Padhiyar";
-	const isProgrammer: bool = !false;
-	const iq: f32 = -50.0;
-	print name;
-	print isProgrammer;
-	print iq;
+	const e: bool = false;
+	const f: bool = !e;
+	const g: bool = !e == true && (e != f); --- true
+	print e;
+	print f;
+	print e && f;
+	print e || f;
+	print g;
 `
 
-	expected := `0
-42
+	expected := `EXPLICITE CONSTANT DECLARATIONS
+1
 3.14
--137.9928
+true
 hello
-hello
- Hello World! 
+9
+false
 true
 false
-0b1010
-Digvijaysinh Padhiyar
 true
--50.000000
+true
 `
 
 	// cleaning source input with custom preprocessor
@@ -74,6 +70,7 @@ true
 
 	// setup ANTLR input and parsing
 	is := antlr.NewInputStream(cleanIn)
+
 	lexer := parser.NewharuLexer(is)
 	stream := antlr.NewCommonTokenStream(lexer, 0)
 	p := parser.NewharuParser(stream)

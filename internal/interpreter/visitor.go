@@ -11,13 +11,13 @@ import (
 // Main Haru visitor struct
 type HaruVisitor struct {
 	parser.BaseharuVisitor
-	Vars map[string]Value
+	symbolTable map[string]Value
 }
 
 // NewHaruVisitor initializes the visitor with empty state
 func NewHaruVisitor() *HaruVisitor {
 	return &HaruVisitor{
-		Vars: make(map[string]Value),
+		symbolTable: make(map[string]Value),
 	}
 }
 
@@ -26,6 +26,8 @@ func (v *HaruVisitor) Visit(tree antlr.ParseTree) any {
 	switch ctx := tree.(type) {
 	case *parser.ProgramContext:
 		return v.VisitProgram(ctx)
+	case *parser.PrintStmtStatementContext:
+		return v.VisitPrintStmtStatement(ctx)
 	case *parser.PrintStatementContext:
 		return v.VisitPrintStatement(ctx)
 	case *parser.LitExprContext:
@@ -62,6 +64,14 @@ func (v *HaruVisitor) Visit(tree antlr.ParseTree) any {
 		return v.VisitGtExpr(ctx)
 	case *parser.GeExprContext:
 		return v.VisitGeExpr(ctx)
+	case *parser.VarExprContext:
+		return v.VisitVarExpr(ctx)
+	case *parser.VarDeclStatementContext:
+		return v.VisitVarDeclStatement(ctx)
+	case *parser.ConstDeclContext:
+		return v.VisitConstDecl(ctx)
+	default:
+		fmt.Printf("Reached: %T\n", tree)
 	}
 
 	return v.VisitChildren(tree.(antlr.RuleNode))

@@ -84,6 +84,9 @@ func TestArithmeticExpressions(t *testing.T) {
 		print 3.14 != 2.71;					--- true
 		print 'hello' != 'hello';			--- false
 		print 5 != (2 + 3);					--- false
+		print "Digvijay" == "digvijay";		--- false
+		print true == true;					--- true
+		print false == true;				--- false
 	`
 
 	expected := `ARITHMETIC EXPRESSIONS
@@ -136,6 +139,9 @@ true
 true
 true
 false
+false
+false
+true
 false
 `
 

@@ -27,11 +27,17 @@ func (s *BaseharuListener) EnterProgram(ctx *ProgramContext) {}
 // ExitProgram is called when production program is exited.
 func (s *BaseharuListener) ExitProgram(ctx *ProgramContext) {}
 
-// EnterStatement is called when production statement is entered.
-func (s *BaseharuListener) EnterStatement(ctx *StatementContext) {}
+// EnterPrintStmtStatement is called when production PrintStmtStatement is entered.
+func (s *BaseharuListener) EnterPrintStmtStatement(ctx *PrintStmtStatementContext) {}
 
-// ExitStatement is called when production statement is exited.
-func (s *BaseharuListener) ExitStatement(ctx *StatementContext) {}
+// ExitPrintStmtStatement is called when production PrintStmtStatement is exited.
+func (s *BaseharuListener) ExitPrintStmtStatement(ctx *PrintStmtStatementContext) {}
+
+// EnterVarDeclStatement is called when production VarDeclStatement is entered.
+func (s *BaseharuListener) EnterVarDeclStatement(ctx *VarDeclStatementContext) {}
+
+// ExitVarDeclStatement is called when production VarDeclStatement is exited.
+func (s *BaseharuListener) ExitVarDeclStatement(ctx *VarDeclStatementContext) {}
 
 // EnterPrintStatement is called when production PrintStatement is entered.
 func (s *BaseharuListener) EnterPrintStatement(ctx *PrintStatementContext) {}
@@ -194,3 +200,129 @@ func (s *BaseharuListener) EnterByteLiteral(ctx *ByteLiteralContext) {}
 
 // ExitByteLiteral is called when production ByteLiteral is exited.
 func (s *BaseharuListener) ExitByteLiteral(ctx *ByteLiteralContext) {}
+
+// EnterLetDecl is called when production LetDecl is entered.
+func (s *BaseharuListener) EnterLetDecl(ctx *LetDeclContext) {}
+
+// ExitLetDecl is called when production LetDecl is exited.
+func (s *BaseharuListener) ExitLetDecl(ctx *LetDeclContext) {}
+
+// EnterLetInferDecl is called when production LetInferDecl is entered.
+func (s *BaseharuListener) EnterLetInferDecl(ctx *LetInferDeclContext) {}
+
+// ExitLetInferDecl is called when production LetInferDecl is exited.
+func (s *BaseharuListener) ExitLetInferDecl(ctx *LetInferDeclContext) {}
+
+// EnterMutDecl is called when production MutDecl is entered.
+func (s *BaseharuListener) EnterMutDecl(ctx *MutDeclContext) {}
+
+// ExitMutDecl is called when production MutDecl is exited.
+func (s *BaseharuListener) ExitMutDecl(ctx *MutDeclContext) {}
+
+// EnterMutInferDecl is called when production MutInferDecl is entered.
+func (s *BaseharuListener) EnterMutInferDecl(ctx *MutInferDeclContext) {}
+
+// ExitMutInferDecl is called when production MutInferDecl is exited.
+func (s *BaseharuListener) ExitMutInferDecl(ctx *MutInferDeclContext) {}
+
+// EnterConstDecl is called when production ConstDecl is entered.
+func (s *BaseharuListener) EnterConstDecl(ctx *ConstDeclContext) {}
+
+// ExitConstDecl is called when production ConstDecl is exited.
+func (s *BaseharuListener) ExitConstDecl(ctx *ConstDeclContext) {}
+
+// EnterConstInferDecl is called when production ConstInferDecl is entered.
+func (s *BaseharuListener) EnterConstInferDecl(ctx *ConstInferDeclContext) {}
+
+// ExitConstInferDecl is called when production ConstInferDecl is exited.
+func (s *BaseharuListener) ExitConstInferDecl(ctx *ConstInferDeclContext) {}
+
+// EnterI8Type is called when production I8Type is entered.
+func (s *BaseharuListener) EnterI8Type(ctx *I8TypeContext) {}
+
+// ExitI8Type is called when production I8Type is exited.
+func (s *BaseharuListener) ExitI8Type(ctx *I8TypeContext) {}
+
+// EnterI16Type is called when production I16Type is entered.
+func (s *BaseharuListener) EnterI16Type(ctx *I16TypeContext) {}
+
+// ExitI16Type is called when production I16Type is exited.
+func (s *BaseharuListener) ExitI16Type(ctx *I16TypeContext) {}
+
+// EnterI32Type is called when production I32Type is entered.
+func (s *BaseharuListener) EnterI32Type(ctx *I32TypeContext) {}
+
+// ExitI32Type is called when production I32Type is exited.
+func (s *BaseharuListener) ExitI32Type(ctx *I32TypeContext) {}
+
+// EnterI64Type is called when production I64Type is entered.
+func (s *BaseharuListener) EnterI64Type(ctx *I64TypeContext) {}
+
+// ExitI64Type is called when production I64Type is exited.
+func (s *BaseharuListener) ExitI64Type(ctx *I64TypeContext) {}
+
+// EnterIntType is called when production IntType is entered.
+func (s *BaseharuListener) EnterIntType(ctx *IntTypeContext) {}
+
+// ExitIntType is called when production IntType is exited.
+func (s *BaseharuListener) ExitIntType(ctx *IntTypeContext) {}
+
+// EnterUI8Type is called when production UI8Type is entered.
+func (s *BaseharuListener) EnterUI8Type(ctx *UI8TypeContext) {}
+
+// ExitUI8Type is called when production UI8Type is exited.
+func (s *BaseharuListener) ExitUI8Type(ctx *UI8TypeContext) {}
+
+// EnterUI16Type is called when production UI16Type is entered.
+func (s *BaseharuListener) EnterUI16Type(ctx *UI16TypeContext) {}
+
+// ExitUI16Type is called when production UI16Type is exited.
+func (s *BaseharuListener) ExitUI16Type(ctx *UI16TypeContext) {}
+
+// EnterUI32Type is called when production UI32Type is entered.
+func (s *BaseharuListener) EnterUI32Type(ctx *UI32TypeContext) {}
+
+// ExitUI32Type is called when production UI32Type is exited.
+func (s *BaseharuListener) ExitUI32Type(ctx *UI32TypeContext) {}
+
+// EnterUI64Type is called when production UI64Type is entered.
+func (s *BaseharuListener) EnterUI64Type(ctx *UI64TypeContext) {}
+
+// ExitUI64Type is called when production UI64Type is exited.
+func (s *BaseharuListener) ExitUI64Type(ctx *UI64TypeContext) {}
+
+// EnterUIntType is called when production UIntType is entered.
+func (s *BaseharuListener) EnterUIntType(ctx *UIntTypeContext) {}
+
+// ExitUIntType is called when production UIntType is exited.
+func (s *BaseharuListener) ExitUIntType(ctx *UIntTypeContext) {}
+
+// EnterF32Type is called when production F32Type is entered.
+func (s *BaseharuListener) EnterF32Type(ctx *F32TypeContext) {}
+
+// ExitF32Type is called when production F32Type is exited.
+func (s *BaseharuListener) ExitF32Type(ctx *F32TypeContext) {}
+
+// EnterF64Type is called when production F64Type is entered.
+func (s *BaseharuListener) EnterF64Type(ctx *F64TypeContext) {}
+
+// ExitF64Type is called when production F64Type is exited.
+func (s *BaseharuListener) ExitF64Type(ctx *F64TypeContext) {}
+
+// EnterBoolType is called when production BoolType is entered.
+func (s *BaseharuListener) EnterBoolType(ctx *BoolTypeContext) {}
+
+// ExitBoolType is called when production BoolType is exited.
+func (s *BaseharuListener) ExitBoolType(ctx *BoolTypeContext) {}
+
+// EnterStringType is called when production StringType is entered.
+func (s *BaseharuListener) EnterStringType(ctx *StringTypeContext) {}
+
+// ExitStringType is called when production StringType is exited.
+func (s *BaseharuListener) ExitStringType(ctx *StringTypeContext) {}
+
+// EnterByteType is called when production ByteType is entered.
+func (s *BaseharuListener) EnterByteType(ctx *ByteTypeContext) {}
+
+// ExitByteType is called when production ByteType is exited.
+func (s *BaseharuListener) ExitByteType(ctx *ByteTypeContext) {}

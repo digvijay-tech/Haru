@@ -1,9 +1,10 @@
 grammar haru;
 
-import Output, Expressions;
+import Output, Expressions, Variables;
 
 program: statement* ;
 
-statement: printStmt ;
+statement: printStmt # PrintStmtStatement
+         | varDecl   # VarDeclStatement ;
 
 WS: [ \t\r\n]+ -> skip ;

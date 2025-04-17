@@ -11,8 +11,11 @@ type haruVisitor interface {
 	// Visit a parse tree produced by haruParser#program.
 	VisitProgram(ctx *ProgramContext) interface{}
 
-	// Visit a parse tree produced by haruParser#statement.
-	VisitStatement(ctx *StatementContext) interface{}
+	// Visit a parse tree produced by haruParser#PrintStmtStatement.
+	VisitPrintStmtStatement(ctx *PrintStmtStatementContext) interface{}
+
+	// Visit a parse tree produced by haruParser#VarDeclStatement.
+	VisitVarDeclStatement(ctx *VarDeclStatementContext) interface{}
 
 	// Visit a parse tree produced by haruParser#PrintStatement.
 	VisitPrintStatement(ctx *PrintStatementContext) interface{}
@@ -94,4 +97,67 @@ type haruVisitor interface {
 
 	// Visit a parse tree produced by haruParser#ByteLiteral.
 	VisitByteLiteral(ctx *ByteLiteralContext) interface{}
+
+	// Visit a parse tree produced by haruParser#LetDecl.
+	VisitLetDecl(ctx *LetDeclContext) interface{}
+
+	// Visit a parse tree produced by haruParser#LetInferDecl.
+	VisitLetInferDecl(ctx *LetInferDeclContext) interface{}
+
+	// Visit a parse tree produced by haruParser#MutDecl.
+	VisitMutDecl(ctx *MutDeclContext) interface{}
+
+	// Visit a parse tree produced by haruParser#MutInferDecl.
+	VisitMutInferDecl(ctx *MutInferDeclContext) interface{}
+
+	// Visit a parse tree produced by haruParser#ConstDecl.
+	VisitConstDecl(ctx *ConstDeclContext) interface{}
+
+	// Visit a parse tree produced by haruParser#ConstInferDecl.
+	VisitConstInferDecl(ctx *ConstInferDeclContext) interface{}
+
+	// Visit a parse tree produced by haruParser#I8Type.
+	VisitI8Type(ctx *I8TypeContext) interface{}
+
+	// Visit a parse tree produced by haruParser#I16Type.
+	VisitI16Type(ctx *I16TypeContext) interface{}
+
+	// Visit a parse tree produced by haruParser#I32Type.
+	VisitI32Type(ctx *I32TypeContext) interface{}
+
+	// Visit a parse tree produced by haruParser#I64Type.
+	VisitI64Type(ctx *I64TypeContext) interface{}
+
+	// Visit a parse tree produced by haruParser#IntType.
+	VisitIntType(ctx *IntTypeContext) interface{}
+
+	// Visit a parse tree produced by haruParser#UI8Type.
+	VisitUI8Type(ctx *UI8TypeContext) interface{}
+
+	// Visit a parse tree produced by haruParser#UI16Type.
+	VisitUI16Type(ctx *UI16TypeContext) interface{}
+
+	// Visit a parse tree produced by haruParser#UI32Type.
+	VisitUI32Type(ctx *UI32TypeContext) interface{}
+
+	// Visit a parse tree produced by haruParser#UI64Type.
+	VisitUI64Type(ctx *UI64TypeContext) interface{}
+
+	// Visit a parse tree produced by haruParser#UIntType.
+	VisitUIntType(ctx *UIntTypeContext) interface{}
+
+	// Visit a parse tree produced by haruParser#F32Type.
+	VisitF32Type(ctx *F32TypeContext) interface{}
+
+	// Visit a parse tree produced by haruParser#F64Type.
+	VisitF64Type(ctx *F64TypeContext) interface{}
+
+	// Visit a parse tree produced by haruParser#BoolType.
+	VisitBoolType(ctx *BoolTypeContext) interface{}
+
+	// Visit a parse tree produced by haruParser#StringType.
+	VisitStringType(ctx *StringTypeContext) interface{}
+
+	// Visit a parse tree produced by haruParser#ByteType.
+	VisitByteType(ctx *ByteTypeContext) interface{}
 }
