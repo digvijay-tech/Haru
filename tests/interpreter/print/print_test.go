@@ -1,6 +1,7 @@
 package interpreter_test
 
 import (
+	"fmt"
 	"strings"
 	"testing"
 
@@ -65,6 +66,12 @@ true
 
 	// capturing the output
 	output := utils_test.CaptureOutput(func() {
+		defer func() {
+			if r := recover(); r != nil {
+				fmt.Println(r)
+			}
+		}()
+
 		visitor := interpreter.NewHaruVisitor()
 		visitor.Visit(tree)
 	})
