@@ -18,8 +18,8 @@ func TestPrintLiterals(t *testing.T) {
 	print 42;
 
 
-		print 3.14;
-	print -137.9928;
+		print 3.14; --- 3.140000
+	print -137.9928; --- -137.992798
 	print "hello";
 
 	print 'hello';
@@ -32,7 +32,7 @@ func TestPrintLiterals(t *testing.T) {
 	--- TESTING PRINTING CONSTANTS
 	const name: string = "Digvijaysinh Padhiyar";
 	const isProgrammer: bool = !false;
-	const iq: f32 = -50.0;
+	const iq: f32 = -50.0; --- -50.000000
 	print name;
 	print isProgrammer;
 	print iq;
@@ -40,8 +40,8 @@ func TestPrintLiterals(t *testing.T) {
 
 	expected := `0
 42
-3.14
--137.9928
+3.140000
+-137.992798
 hello
 hello
  Hello World! 

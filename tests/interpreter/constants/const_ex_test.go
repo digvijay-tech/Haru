@@ -16,7 +16,7 @@ func TestConstantsExplicitConstants(t *testing.T) {
 	--- EXPLICITE CONSTANT DECLARATIONS
 	print "EXPLICITE CONSTANT DECLARATIONS";
 	const a:i8 = 1;
-	const b: f64 = 3.14;
+	const b: f64 = 3.14; --- 3.140000
 	const c: bool = true;
 	const d: string = "hello";
 
@@ -42,7 +42,7 @@ func TestConstantsExplicitConstants(t *testing.T) {
 
 	expected := `EXPLICITE CONSTANT DECLARATIONS
 1
-3.14
+3.140000
 true
 hello
 9

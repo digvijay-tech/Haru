@@ -16,9 +16,47 @@ func (v *HaruVisitor) VisitLitExpr(ctx *parser.LitExprContext) any {
 
 	switch {
 	case isInt(text):
-		return Value{Value: text, Typ: "i32"} // same as Rust
+		num, err := strconv.ParseInt(text, 10, 64)
+		if err != nil {
+			runtimeErr(fmt.Sprintf("parsing failed at literal: %s", text))
+		}
+
+		// size check for type assertion
+		if num >= math.MinInt32 && num <= math.MaxInt32 {
+			return Value{Value: text, Typ: "i32"}
+		}
+
+		// making sure the number is within 64bit integer width
+		if num < math.MinInt64 || num > math.MaxInt64 {
+			runtimeErr(fmt.Sprintf("number is too big: %s", text))
+		}
+
+		return Value{Value: text, Typ: "i64"}
 	case isFloat(text):
-		return Value{Value: text, Typ: "f64"} // same as Rust
+		// parsing as f32
+		if len(text) <= 39 {
+			val, err := strconv.ParseFloat(text, 32)
+			if err != nil {
+				runtimeErr(fmt.Sprintf("parsing failed at literal: %s", text))
+			}
+
+			f32 := float32(val)
+			return Value{Value: fmt.Sprintf("%f", f32), Typ: "f32"}
+		}
+
+		// parsing as f64
+		if len(text) <= 309 {
+			val, err := strconv.ParseFloat(text, 64)
+			if err != nil {
+				runtimeErr(fmt.Sprintf("parsing failed at literal: %s", text))
+			}
+
+			f64 := float64(val)
+			return Value{Value: fmt.Sprintf("%f", f64), Typ: "f64"}
+		}
+
+		runtimeErr(fmt.Sprintf("number is too big for float64: %s", text))
+		return nil // runtimeErr stopped execution but this is here to avoid syntax error
 	case text == "true" || text == "false":
 		return Value{Value: text, Typ: "bool"}
 	case isByte(text):

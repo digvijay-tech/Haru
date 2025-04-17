@@ -10,11 +10,13 @@ import (
 	"strings"
 )
 
+// isInt returns true if is s is a valid integer
 func isInt(s string) bool {
 	match, _ := regexp.MatchString(`^-?[0-9]+$`, s)
 	return match
 }
 
+// isFloat returns true is s is a valid float
 func isFloat(s string) bool {
 	match, _ := regexp.MatchString(`^-?[0-9]+\.[0-9]+$`, s)
 	return match
