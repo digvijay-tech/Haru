@@ -3,7 +3,6 @@ package interpreter
 
 import (
 	"fmt"
-	"log"
 	"math"
 	"regexp"
 	"strconv"
@@ -49,11 +48,11 @@ func isNumericType(t string) bool {
 func promoteType(t1, t2 string) string {
 	// guarding against promoting type categories instead of real types
 	if _, ok := bitSize[t1]; !ok {
-		log.Fatalf("Type error: '%s' is not a concrete type", t1)
+		runtimeErr(fmt.Sprintf("'%s' is not a concrete type", t1))
 	}
 
 	if _, ok := bitSize[t2]; !ok {
-		log.Fatalf("Type error: '%s' is not a concrete type", t2)
+		runtimeErr(fmt.Sprintf("'%s' is not a concrete type", t2))
 	}
 
 	// getting the category of given types
@@ -67,12 +66,12 @@ func promoteType(t1, t2 string) string {
 
 	// preventing invalid operations like string + number, or bool + anything
 	if t1 == "string" || t2 == "string" || t1 == "bool" || t2 == "bool" {
-		log.Fatalf("Type error: cannot operate on types '%s' and '%s'", t1, t2)
+		runtimeErr(fmt.Sprintf("cannot operate on types '%s' and '%s'", t1, t2))
 	}
 
 	// fallback for non-numeric types
 	if !ok1 || !ok2 {
-		log.Fatalf("Type error: unknown types '%s' and '%s'", t1, t2)
+		runtimeErr(fmt.Sprintf("unknown types '%s' and '%s'", t1, t2))
 	}
 
 	// getting the rank of both categories

@@ -3,7 +3,6 @@ package interpreter
 
 import (
 	"fmt"
-	"log"
 	"math"
 	"strconv"
 
@@ -96,7 +95,7 @@ func (v *HaruVisitor) VisitAddExpr(ctx *parser.AddExprContext) any {
 	r, err2 := convertToFloat64(rightVal.Value)
 
 	if err1 != nil || err2 != nil {
-		log.Fatalf("Type error: cannot convert operands '%s' and '%s' to numbers", leftVal.Value, rightVal.Value)
+		runtimeErr(fmt.Sprintf("Type error: cannot convert operands '%s' and '%s' to numbers", leftVal.Value, rightVal.Value))
 	}
 
 	sum := l + r
@@ -116,7 +115,7 @@ func (v *HaruVisitor) VisitSubExpr(ctx *parser.SubExprContext) any {
 	r, err2 := convertToFloat64(rightVal.Value)
 
 	if err1 != nil || err2 != nil {
-		log.Fatalf("Type error: cannot convert operands '%s' and '%s' to numbers", leftVal.Value, rightVal.Value)
+		runtimeErr(fmt.Sprintf("Type error: cannot convert operands '%s' and '%s' to numbers", leftVal.Value, rightVal.Value))
 	}
 
 	difference := l - r
@@ -136,7 +135,7 @@ func (v *HaruVisitor) VisitMulExpr(ctx *parser.MulExprContext) any {
 	r, err2 := convertToFloat64(rightVal.Value)
 
 	if err1 != nil || err2 != nil {
-		log.Fatalf("Type error: cannot convert operands '%s' and '%s' to numbers", leftVal.Value, rightVal.Value)
+		runtimeErr(fmt.Sprintf("Type error: cannot convert operands '%s' and '%s' to numbers", leftVal.Value, rightVal.Value))
 	}
 
 	product := l * r
@@ -156,11 +155,11 @@ func (v *HaruVisitor) VisitDivExpr(ctx *parser.DivExprContext) any {
 	r, err2 := convertToFloat64(rightVal.Value)
 
 	if err1 != nil || err2 != nil {
-		log.Fatalf("Type error: cannot convert operands '%s' and '%s' to numbers", leftVal.Value, rightVal.Value)
+		runtimeErr(fmt.Sprintf("Type error: cannot convert operands '%s' and '%s' to numbers", leftVal.Value, rightVal.Value))
 	}
 
 	if r == 0 {
-		log.Fatal("Runtime error: division by zero")
+		runtimeErr("division by zero")
 	}
 
 	quotient := l / r
@@ -180,11 +179,11 @@ func (v *HaruVisitor) VisitModExpr(ctx *parser.ModExprContext) any {
 	r, err2 := convertToFloat64(rightVal.Value)
 
 	if err1 != nil || err2 != nil {
-		log.Fatalf("Type error: cannot convert operands '%s' and '%s' to numbers", leftVal.Value, rightVal.Value)
+		runtimeErr(fmt.Sprintf("Type error: cannot convert operands '%s' and '%s' to numbers", leftVal.Value, rightVal.Value))
 	}
 
 	if r == 0 {
-		log.Fatal("Runtime error: modulo by zero")
+		runtimeErr("Runtime error: modulo by zero")
 	}
 
 	mod := float64(int64(l) % int64(r))
@@ -207,7 +206,7 @@ func (v *HaruVisitor) VisitExpExpr(ctx *parser.ExpExprContext) any {
 	r, err2 := convertToFloat64(rightVal.Value)
 
 	if err1 != nil || err2 != nil {
-		log.Fatalf("Type error: cannot convert operands '%s' and '%s' to numbers", leftVal.Value, rightVal.Value)
+		runtimeErr(fmt.Sprintf("Type error: cannot convert operands '%s' and '%s' to numbers", leftVal.Value, rightVal.Value))
 	}
 
 	exp := math.Pow(l, r)
@@ -223,12 +222,12 @@ func (v *HaruVisitor) VisitNotExpr(ctx *parser.NotExprContext) any {
 	val := v.Visit(ctx.Expr()).(Value)
 
 	if val.Typ != "bool" {
-		log.Fatalf("Type error: '!' operator can only be applied to boolean, got '%s'", val.Typ)
+		runtimeErr(fmt.Sprintf("Type error: '!' operator can only be applied to boolean, got '%s'", val.Typ))
 	}
 
 	boolVal, err := strconv.ParseBool(val.Value)
 	if err != nil {
-		log.Fatalf("Runtime error: invalid boolean value '%s'", val.Value)
+		runtimeErr(fmt.Sprintf("Runtime error: invalid boolean value '%s'", val.Value))
 	}
 
 	return Value{
@@ -243,7 +242,7 @@ func (v *HaruVisitor) VisitAndExpr(ctx *parser.AndExprContext) any {
 	rightVal := v.Visit(ctx.Expr(1)).(Value)
 
 	if leftVal.Typ != "bool" || rightVal.Typ != "bool" {
-		log.Fatalf("Logical AND requires boolean operands, got %s and %s", leftVal.Typ, rightVal.Typ)
+		runtimeErr(fmt.Sprintf("Logical AND requires boolean operands, got %s and %s", leftVal.Typ, rightVal.Typ))
 	}
 
 	l, _ := strconv.ParseBool(leftVal.Value)
@@ -258,7 +257,7 @@ func (v *HaruVisitor) VisitOrExpr(ctx *parser.OrExprContext) any {
 	rightVal := v.Visit(ctx.Expr(1)).(Value)
 
 	if leftVal.Typ != "bool" || rightVal.Typ != "bool" {
-		log.Fatalf("Logical OR requires boolean operands, got %s and %s", leftVal.Typ, rightVal.Typ)
+		runtimeErr(fmt.Sprintf("Logical OR requires boolean operands, got %s and %s", leftVal.Typ, rightVal.Typ))
 	}
 
 	l, _ := strconv.ParseBool(leftVal.Value)
@@ -278,7 +277,7 @@ func (v *HaruVisitor) VisitEqExpr(ctx *parser.EqExprContext) any {
 
 	// type compatibility check
 	if leftVal.Typ != rightVal.Typ {
-		log.Fatalf("Type error: cannot compare types '%s' and '%s' using '=='", leftVal.Typ, rightVal.Typ)
+		runtimeErr(fmt.Sprintf("cannot compare types '%s' and '%s' using '=='", leftVal.Typ, rightVal.Typ))
 	}
 
 	result := leftVal.Value == rightVal.Value
@@ -292,7 +291,7 @@ func (v *HaruVisitor) VisitNeExpr(ctx *parser.NeExprContext) any {
 
 	// type compatibility check
 	if leftVal.Typ != rightVal.Typ {
-		log.Fatalf("Type error: cannot compare types '%s' and '%s' using '!='", leftVal.Typ, rightVal.Typ)
+		runtimeErr(fmt.Sprintf("cannot compare types '%s' and '%s' using '!='", leftVal.Typ, rightVal.Typ))
 	}
 
 	result := leftVal.Value != rightVal.Value
@@ -306,7 +305,7 @@ func (v *HaruVisitor) VisitLtExpr(ctx *parser.LtExprContext) any {
 
 	// strict type compatibility check
 	if leftVal.Typ != rightVal.Typ {
-		log.Fatalf("Type error: cannot compare types '%s' and '%s' using '<'", leftVal.Typ, rightVal.Typ)
+		runtimeErr(fmt.Sprintf("cannot compare types '%s' and '%s' using '<'", leftVal.Typ, rightVal.Typ))
 	}
 
 	// only numeric comparision is allowed
@@ -316,13 +315,13 @@ func (v *HaruVisitor) VisitLtExpr(ctx *parser.LtExprContext) any {
 		r, err2 := convertToFloat64(rightVal.Value)
 
 		if err1 != nil || err2 != nil {
-			log.Fatalf("Type error: cannot convert '%s' and '%s' to numbers for comparison", leftVal.Typ, rightVal.Typ)
+			runtimeErr(fmt.Sprintf("cannot convert '%s' and '%s' to numbers for comparison", leftVal.Typ, rightVal.Typ))
 		}
 
 		return Value{Value: fmt.Sprintf("%v", l < r), Typ: "bool"}
 	}
 
-	log.Fatalf("Type error: '<' not supported between values of type '%s'", leftVal.Typ)
+	runtimeErr(fmt.Sprintf("Type error: '<' not supported between values of type '%s'", leftVal.Typ))
 	return Value{Value: "", Typ: "unknown"}
 }
 
@@ -333,7 +332,7 @@ func (v *HaruVisitor) VisitLeExpr(ctx *parser.LeExprContext) any {
 
 	// strict type compatibility check
 	if leftVal.Typ != rightVal.Typ {
-		log.Fatalf("Type error: cannot compare types '%s' and '%s' using '<='", leftVal.Typ, rightVal.Typ)
+		runtimeErr(fmt.Sprintf("Type error: cannot compare types '%s' and '%s' using '<='", leftVal.Typ, rightVal.Typ))
 	}
 
 	// only numeric comparision is allowed
@@ -343,13 +342,13 @@ func (v *HaruVisitor) VisitLeExpr(ctx *parser.LeExprContext) any {
 		r, err2 := convertToFloat64(rightVal.Value)
 
 		if err1 != nil || err2 != nil {
-			log.Fatalf("Type error: cannot convert '%s' and '%s' to numbers for comparison", leftVal.Typ, rightVal.Typ)
+			runtimeErr(fmt.Sprintf("Type error: cannot convert '%s' and '%s' to numbers for comparison", leftVal.Typ, rightVal.Typ))
 		}
 
 		return Value{Value: fmt.Sprintf("%v", l <= r), Typ: "bool"}
 	}
 
-	log.Fatalf("Type error: '<=' not supported between values of type '%s'", leftVal.Typ)
+	runtimeErr(fmt.Sprintf("Type error: '<=' not supported between values of type '%s'", leftVal.Typ))
 	return Value{Value: "", Typ: "unknown"}
 }
 
@@ -360,7 +359,7 @@ func (v *HaruVisitor) VisitGtExpr(ctx *parser.GtExprContext) any {
 
 	// strict type compatibility check
 	if leftVal.Typ != rightVal.Typ {
-		log.Fatalf("Type error: cannot compare types '%s' and '%s' using '>'", leftVal.Typ, rightVal.Typ)
+		runtimeErr(fmt.Sprintf("Type error: cannot compare types '%s' and '%s' using '>'", leftVal.Typ, rightVal.Typ))
 	}
 
 	// only numeric comparision is allowed
@@ -370,13 +369,13 @@ func (v *HaruVisitor) VisitGtExpr(ctx *parser.GtExprContext) any {
 		r, err2 := convertToFloat64(rightVal.Value)
 
 		if err1 != nil || err2 != nil {
-			log.Fatalf("Type error: cannot convert '%s' and '%s' to numbers for comparison", leftVal.Typ, rightVal.Typ)
+			runtimeErr(fmt.Sprintf("Type error: cannot convert '%s' and '%s' to numbers for comparison", leftVal.Typ, rightVal.Typ))
 		}
 
 		return Value{Value: fmt.Sprintf("%v", l > r), Typ: "bool"}
 	}
 
-	log.Fatalf("Type error: '>' not supported between values of type '%s'", leftVal.Typ)
+	runtimeErr(fmt.Sprintf("Type error: '>' not supported between values of type '%s'", leftVal.Typ))
 	return Value{Value: "", Typ: "unknown"}
 }
 
@@ -387,7 +386,7 @@ func (v *HaruVisitor) VisitGeExpr(ctx *parser.GeExprContext) any {
 
 	// strict type compatibility check
 	if leftVal.Typ != rightVal.Typ {
-		log.Fatalf("Type error: cannot compare types '%s' and '%s' using '>='", leftVal.Typ, rightVal.Typ)
+		runtimeErr(fmt.Sprintf("Type error: cannot compare types '%s' and '%s' using '>='", leftVal.Typ, rightVal.Typ))
 	}
 
 	// only numeric comparision is allowed
@@ -397,12 +396,12 @@ func (v *HaruVisitor) VisitGeExpr(ctx *parser.GeExprContext) any {
 		r, err2 := convertToFloat64(rightVal.Value)
 
 		if err1 != nil || err2 != nil {
-			log.Fatalf("Type error: cannot convert '%s' and '%s' to numbers for comparison", leftVal.Typ, rightVal.Typ)
+			runtimeErr(fmt.Sprintf("Type error: cannot convert '%s' and '%s' to numbers for comparison", leftVal.Typ, rightVal.Typ))
 		}
 
 		return Value{Value: fmt.Sprintf("%v", l >= r), Typ: "bool"}
 	}
 
-	log.Fatalf("Type error: '>=' not supported between values of type '%s'", leftVal.Typ)
+	runtimeErr(fmt.Sprintf("Type error: '>=' not supported between values of type '%s'", leftVal.Typ))
 	return Value{Value: "", Typ: "unknown"}
 }
