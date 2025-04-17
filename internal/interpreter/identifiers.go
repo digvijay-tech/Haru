@@ -2,9 +2,12 @@
 package interpreter
 
 import (
+	"fmt"
+
 	"github.com/digvijay-tech/Haru/internal/parser"
 )
 
+// VisitVarExpr looks up a variable by name in the symbol table and returns its value, or raises a runtime error if it's undefined
 func (v *HaruVisitor) VisitVarExpr(ctx *parser.VarExprContext) any {
 	name := ctx.ID().GetText()
 
@@ -12,5 +15,6 @@ func (v *HaruVisitor) VisitVarExpr(ctx *parser.VarExprContext) any {
 		return value
 	}
 
-	return nil
+	runtimeErr(fmt.Sprintf("undefined variable '%s'", name))
+	return nil // don't need this but have to keep it here for syntax warning
 }
