@@ -113,6 +113,33 @@ func (v *HaruVisitor) VisitExplicitMutDecl(ctx *parser.MutDeclContext) any {
 	return zeroedMut
 }
 
+// VisitImplicitMutDecl evaluates mut variable declared without a type
+func (v *HaruVisitor) VisitImplicitMutDecl(ctx *parser.MutInferDeclContext) any {
+	// mut name = "haru";
+	varName := ctx.ID().GetText()
+
+	// evaluating expression to get value assigned
+	result := v.Visit(ctx.Expr())
+	val, ok := result.(Value)
+
+	if !ok {
+		runtimeErr("Invalid mut value")
+	}
+
+	// infering type from literal
+	// VisitLitExpr will convert numeric literals to either i32 or i64 and floats to f32 or f64
+	updatedValue, err := convertType(val.Value, val.Typ, val.Typ)
+	if err != nil {
+		runtimeErr(fmt.Sprintf("Type inference failed for %s: %v", varName, err))
+	}
+
+	mut := updatedValue.(Value)
+	mut.isMutable = true
+	v.symbolTable[varName] = mut
+
+	return mut
+}
+
 // VisitMutReassignment evaluates mut reassignment statements for both implicit and explicit mut declaration
 func (v *HaruVisitor) VisitMutReassignment(ctx *parser.AssignStmtStatementContext) any {
 	// getting the context from nested child

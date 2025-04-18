@@ -78,6 +78,8 @@ func (v *HaruVisitor) Visit(tree antlr.ParseTree) any {
 		return v.VisitImplicitLetDecl(ctx)
 	case *parser.MutDeclContext:
 		return v.VisitExplicitMutDecl(ctx)
+	case *parser.MutInferDeclContext:
+		return v.VisitImplicitMutDecl(ctx)
 	case *parser.AssignStmtStatementContext:
 		return v.VisitMutReassignment(ctx)
 	case *parser.IfStmtStatementContext:
