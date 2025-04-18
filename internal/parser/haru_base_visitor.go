@@ -24,6 +24,10 @@ func (v *BaseharuVisitor) VisitAssignStmtStatement(ctx *AssignStmtStatementConte
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseharuVisitor) VisitIfStmtStatement(ctx *IfStmtStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseharuVisitor) VisitPrintStatement(ctx *PrintStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -213,5 +217,25 @@ func (v *BaseharuVisitor) VisitStringType(ctx *StringTypeContext) interface{} {
 }
 
 func (v *BaseharuVisitor) VisitByteType(ctx *ByteTypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitIfBlockOnly(ctx *IfBlockOnlyContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitIfElseChain(ctx *IfElseChainContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitElseIfBlock(ctx *ElseIfBlockContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitElseBlock(ctx *ElseBlockContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitBlock(ctx *BlockContext) interface{} {
 	return v.VisitChildren(ctx)
 }

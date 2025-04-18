@@ -20,6 +20,9 @@ type haruVisitor interface {
 	// Visit a parse tree produced by haruParser#AssignStmtStatement.
 	VisitAssignStmtStatement(ctx *AssignStmtStatementContext) interface{}
 
+	// Visit a parse tree produced by haruParser#IfStmtStatement.
+	VisitIfStmtStatement(ctx *IfStmtStatementContext) interface{}
+
 	// Visit a parse tree produced by haruParser#PrintStatement.
 	VisitPrintStatement(ctx *PrintStatementContext) interface{}
 
@@ -163,4 +166,19 @@ type haruVisitor interface {
 
 	// Visit a parse tree produced by haruParser#ByteType.
 	VisitByteType(ctx *ByteTypeContext) interface{}
+
+	// Visit a parse tree produced by haruParser#IfBlockOnly.
+	VisitIfBlockOnly(ctx *IfBlockOnlyContext) interface{}
+
+	// Visit a parse tree produced by haruParser#IfElseChain.
+	VisitIfElseChain(ctx *IfElseChainContext) interface{}
+
+	// Visit a parse tree produced by haruParser#elseIfBlock.
+	VisitElseIfBlock(ctx *ElseIfBlockContext) interface{}
+
+	// Visit a parse tree produced by haruParser#elseBlock.
+	VisitElseBlock(ctx *ElseBlockContext) interface{}
+
+	// Visit a parse tree produced by haruParser#block.
+	VisitBlock(ctx *BlockContext) interface{}
 }

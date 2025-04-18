@@ -80,6 +80,8 @@ func (v *HaruVisitor) Visit(tree antlr.ParseTree) any {
 		return v.VisitExplicitMutDecl(ctx)
 	case *parser.AssignStmtStatementContext:
 		return v.VisitMutReassignment(ctx)
+	case *parser.IfStmtStatementContext:
+		return v.VisitIfStmt(ctx.IfStmt())
 	default:
 		fmt.Printf("Reached: %T\n", tree)
 	}

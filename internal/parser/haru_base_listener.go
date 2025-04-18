@@ -45,6 +45,12 @@ func (s *BaseharuListener) EnterAssignStmtStatement(ctx *AssignStmtStatementCont
 // ExitAssignStmtStatement is called when production AssignStmtStatement is exited.
 func (s *BaseharuListener) ExitAssignStmtStatement(ctx *AssignStmtStatementContext) {}
 
+// EnterIfStmtStatement is called when production IfStmtStatement is entered.
+func (s *BaseharuListener) EnterIfStmtStatement(ctx *IfStmtStatementContext) {}
+
+// ExitIfStmtStatement is called when production IfStmtStatement is exited.
+func (s *BaseharuListener) ExitIfStmtStatement(ctx *IfStmtStatementContext) {}
+
 // EnterPrintStatement is called when production PrintStatement is entered.
 func (s *BaseharuListener) EnterPrintStatement(ctx *PrintStatementContext) {}
 
@@ -332,3 +338,33 @@ func (s *BaseharuListener) EnterByteType(ctx *ByteTypeContext) {}
 
 // ExitByteType is called when production ByteType is exited.
 func (s *BaseharuListener) ExitByteType(ctx *ByteTypeContext) {}
+
+// EnterIfBlockOnly is called when production IfBlockOnly is entered.
+func (s *BaseharuListener) EnterIfBlockOnly(ctx *IfBlockOnlyContext) {}
+
+// ExitIfBlockOnly is called when production IfBlockOnly is exited.
+func (s *BaseharuListener) ExitIfBlockOnly(ctx *IfBlockOnlyContext) {}
+
+// EnterIfElseChain is called when production IfElseChain is entered.
+func (s *BaseharuListener) EnterIfElseChain(ctx *IfElseChainContext) {}
+
+// ExitIfElseChain is called when production IfElseChain is exited.
+func (s *BaseharuListener) ExitIfElseChain(ctx *IfElseChainContext) {}
+
+// EnterElseIfBlock is called when production elseIfBlock is entered.
+func (s *BaseharuListener) EnterElseIfBlock(ctx *ElseIfBlockContext) {}
+
+// ExitElseIfBlock is called when production elseIfBlock is exited.
+func (s *BaseharuListener) ExitElseIfBlock(ctx *ElseIfBlockContext) {}
+
+// EnterElseBlock is called when production elseBlock is entered.
+func (s *BaseharuListener) EnterElseBlock(ctx *ElseBlockContext) {}
+
+// ExitElseBlock is called when production elseBlock is exited.
+func (s *BaseharuListener) ExitElseBlock(ctx *ElseBlockContext) {}
+
+// EnterBlock is called when production block is entered.
+func (s *BaseharuListener) EnterBlock(ctx *BlockContext) {}
+
+// ExitBlock is called when production block is exited.
+func (s *BaseharuListener) ExitBlock(ctx *BlockContext) {}

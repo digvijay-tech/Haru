@@ -20,6 +20,9 @@ type haruListener interface {
 	// EnterAssignStmtStatement is called when entering the AssignStmtStatement production.
 	EnterAssignStmtStatement(c *AssignStmtStatementContext)
 
+	// EnterIfStmtStatement is called when entering the IfStmtStatement production.
+	EnterIfStmtStatement(c *IfStmtStatementContext)
+
 	// EnterPrintStatement is called when entering the PrintStatement production.
 	EnterPrintStatement(c *PrintStatementContext)
 
@@ -164,6 +167,21 @@ type haruListener interface {
 	// EnterByteType is called when entering the ByteType production.
 	EnterByteType(c *ByteTypeContext)
 
+	// EnterIfBlockOnly is called when entering the IfBlockOnly production.
+	EnterIfBlockOnly(c *IfBlockOnlyContext)
+
+	// EnterIfElseChain is called when entering the IfElseChain production.
+	EnterIfElseChain(c *IfElseChainContext)
+
+	// EnterElseIfBlock is called when entering the elseIfBlock production.
+	EnterElseIfBlock(c *ElseIfBlockContext)
+
+	// EnterElseBlock is called when entering the elseBlock production.
+	EnterElseBlock(c *ElseBlockContext)
+
+	// EnterBlock is called when entering the block production.
+	EnterBlock(c *BlockContext)
+
 	// ExitProgram is called when exiting the program production.
 	ExitProgram(c *ProgramContext)
 
@@ -175,6 +193,9 @@ type haruListener interface {
 
 	// ExitAssignStmtStatement is called when exiting the AssignStmtStatement production.
 	ExitAssignStmtStatement(c *AssignStmtStatementContext)
+
+	// ExitIfStmtStatement is called when exiting the IfStmtStatement production.
+	ExitIfStmtStatement(c *IfStmtStatementContext)
 
 	// ExitPrintStatement is called when exiting the PrintStatement production.
 	ExitPrintStatement(c *PrintStatementContext)
@@ -319,4 +340,19 @@ type haruListener interface {
 
 	// ExitByteType is called when exiting the ByteType production.
 	ExitByteType(c *ByteTypeContext)
+
+	// ExitIfBlockOnly is called when exiting the IfBlockOnly production.
+	ExitIfBlockOnly(c *IfBlockOnlyContext)
+
+	// ExitIfElseChain is called when exiting the IfElseChain production.
+	ExitIfElseChain(c *IfElseChainContext)
+
+	// ExitElseIfBlock is called when exiting the elseIfBlock production.
+	ExitElseIfBlock(c *ElseIfBlockContext)
+
+	// ExitElseBlock is called when exiting the elseBlock production.
+	ExitElseBlock(c *ElseBlockContext)
+
+	// ExitBlock is called when exiting the block production.
+	ExitBlock(c *BlockContext)
 }
