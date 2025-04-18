@@ -15,7 +15,7 @@ func (v *HaruVisitor) VisitPrintStmtStatement(ctx *parser.PrintStmtStatementCont
 // VisitPrintStatement handles the print statement
 func (v *HaruVisitor) VisitPrintStatement(ctx *parser.PrintStatementContext) any {
 	// walks the parse tree for the expression and eventually return the result of type Value
-	exprCtx := ctx.GetChild(1).(parser.IExprContext)
+	exprCtx := ctx.Expr()
 	result := v.Visit(exprCtx)
 
 	// verifying the type result to be Value

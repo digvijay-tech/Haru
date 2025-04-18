@@ -112,3 +112,49 @@ func (v *HaruVisitor) VisitExplicitMutDecl(ctx *parser.MutDeclContext) any {
 
 	return zeroedMut
 }
+
+// VisitMutReassignment evaluates mut reassignment statements for both implicit and explicit mut declaration
+func (v *HaruVisitor) VisitMutReassignment(ctx *parser.AssignStmtStatementContext) any {
+	// getting the context from nested child
+	assignCtx, resolved := ctx.Assign().(*parser.AssignStmtContext)
+
+	if !resolved || assignCtx == nil {
+		runtimeErr("invalid assignment context")
+	}
+
+	varName := assignCtx.ID().GetText()
+
+	// making sure variable is declared
+	currentVar, exists := v.symbolTable[varName]
+	if !exists {
+		runtimeErr(fmt.Sprintf("variable '%s' is not declared", varName))
+	}
+
+	// making sure variable is of mutable type
+	if !currentVar.isMutable {
+		runtimeErr(fmt.Sprintf("cannot assign to immutable variable '%s'", varName))
+	}
+
+	// evaluating new value that user is trying to assign
+	result := v.Visit(assignCtx.Expr())
+	newVal, ok := result.(Value)
+
+	if !ok {
+		runtimeErr(fmt.Sprintf("invalid value in assignment to '%s'", varName))
+	}
+
+	// converting to target type
+	converted, err := convertType(newVal.Value, newVal.Typ, currentVar.Typ)
+
+	if err != nil {
+		runtimeErr(fmt.Sprintf("type mismatch in assignment to '%s': %v", varName, err))
+	}
+
+	updated := converted.(Value)
+	updated.isMutable = true
+
+	// changing variable in symbol table
+	v.symbolTable[varName] = updated
+
+	return updated
+}

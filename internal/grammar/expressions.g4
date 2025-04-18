@@ -20,7 +20,7 @@ expr: '!' expr              # NotExpr
     | ID                    # VarExpr
     | literal               # LitExpr ;
 
-assign: ID '=' expr         # AssignStmt ;
+assign: ID '=' expr ';'     # AssignStmt ;
 
 literal: ('-')? NUMBER      # IntLiteral
        | ('-')? FLOAT       # FloatLiteral

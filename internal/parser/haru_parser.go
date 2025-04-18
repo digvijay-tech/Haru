@@ -52,7 +52,7 @@ func haruParserInit() {
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 50, 183, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 50, 184, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 1, 0, 5, 0, 18, 8, 0, 10, 0, 12,
 		0, 21, 9, 0, 1, 1, 1, 1, 1, 1, 3, 1, 26, 8, 1, 1, 2, 1, 2, 1, 2, 1, 2,
 		1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 5, 3,
@@ -61,82 +61,82 @@ func haruParserInit() {
 		1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3,
 		1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3,
 		1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 5, 3, 97, 8, 3, 10, 3,
-		12, 3, 100, 9, 3, 1, 4, 1, 4, 1, 4, 1, 4, 1, 5, 3, 5, 107, 8, 5, 1, 5,
-		1, 5, 3, 5, 111, 8, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 3, 5, 118, 8, 5, 1,
+		12, 3, 100, 9, 3, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 1, 5, 3, 5, 108, 8, 5,
+		1, 5, 1, 5, 3, 5, 112, 8, 5, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 3, 5, 119, 8,
+		5, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1,
+		6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 3, 6, 141, 8, 6, 1,
 		6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1,
-		6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 3, 6, 140, 8, 6, 1, 6, 1,
-		6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1,
-		6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 3, 6, 164, 8, 6, 1,
-		7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1,
-		7, 1, 7, 1, 7, 3, 7, 181, 8, 7, 1, 7, 0, 1, 6, 8, 0, 2, 4, 6, 8, 10, 12,
-		14, 0, 0, 224, 0, 19, 1, 0, 0, 0, 2, 25, 1, 0, 0, 0, 4, 27, 1, 0, 0, 0,
-		6, 52, 1, 0, 0, 0, 8, 101, 1, 0, 0, 0, 10, 117, 1, 0, 0, 0, 12, 163, 1,
-		0, 0, 0, 14, 180, 1, 0, 0, 0, 16, 18, 3, 2, 1, 0, 17, 16, 1, 0, 0, 0, 18,
-		21, 1, 0, 0, 0, 19, 17, 1, 0, 0, 0, 19, 20, 1, 0, 0, 0, 20, 1, 1, 0, 0,
-		0, 21, 19, 1, 0, 0, 0, 22, 26, 3, 4, 2, 0, 23, 26, 3, 12, 6, 0, 24, 26,
-		3, 8, 4, 0, 25, 22, 1, 0, 0, 0, 25, 23, 1, 0, 0, 0, 25, 24, 1, 0, 0, 0,
-		26, 3, 1, 0, 0, 0, 27, 28, 5, 1, 0, 0, 28, 29, 3, 6, 3, 0, 29, 30, 5, 2,
-		0, 0, 30, 5, 1, 0, 0, 0, 31, 32, 6, 3, -1, 0, 32, 33, 5, 3, 0, 0, 33, 53,
-		3, 6, 3, 19, 34, 35, 5, 4, 0, 0, 35, 36, 3, 6, 3, 0, 36, 37, 5, 5, 0, 0,
-		37, 53, 1, 0, 0, 0, 38, 47, 5, 20, 0, 0, 39, 44, 3, 6, 3, 0, 40, 41, 5,
-		21, 0, 0, 41, 43, 3, 6, 3, 0, 42, 40, 1, 0, 0, 0, 43, 46, 1, 0, 0, 0, 44,
-		42, 1, 0, 0, 0, 44, 45, 1, 0, 0, 0, 45, 48, 1, 0, 0, 0, 46, 44, 1, 0, 0,
-		0, 47, 39, 1, 0, 0, 0, 47, 48, 1, 0, 0, 0, 48, 49, 1, 0, 0, 0, 49, 53,
-		5, 22, 0, 0, 50, 53, 5, 46, 0, 0, 51, 53, 3, 10, 5, 0, 52, 31, 1, 0, 0,
-		0, 52, 34, 1, 0, 0, 0, 52, 38, 1, 0, 0, 0, 52, 50, 1, 0, 0, 0, 52, 51,
-		1, 0, 0, 0, 53, 98, 1, 0, 0, 0, 54, 55, 10, 17, 0, 0, 55, 56, 5, 6, 0,
-		0, 56, 97, 3, 6, 3, 18, 57, 58, 10, 16, 0, 0, 58, 59, 5, 7, 0, 0, 59, 97,
-		3, 6, 3, 17, 60, 61, 10, 15, 0, 0, 61, 62, 5, 8, 0, 0, 62, 97, 3, 6, 3,
-		16, 63, 64, 10, 14, 0, 0, 64, 65, 5, 9, 0, 0, 65, 97, 3, 6, 3, 15, 66,
-		67, 10, 13, 0, 0, 67, 68, 5, 10, 0, 0, 68, 97, 3, 6, 3, 14, 69, 70, 10,
-		12, 0, 0, 70, 71, 5, 11, 0, 0, 71, 97, 3, 6, 3, 13, 72, 73, 10, 11, 0,
-		0, 73, 74, 5, 12, 0, 0, 74, 97, 3, 6, 3, 12, 75, 76, 10, 10, 0, 0, 76,
-		77, 5, 13, 0, 0, 77, 97, 3, 6, 3, 11, 78, 79, 10, 9, 0, 0, 79, 80, 5, 14,
-		0, 0, 80, 97, 3, 6, 3, 10, 81, 82, 10, 8, 0, 0, 82, 83, 5, 15, 0, 0, 83,
-		97, 3, 6, 3, 9, 84, 85, 10, 7, 0, 0, 85, 86, 5, 16, 0, 0, 86, 97, 3, 6,
-		3, 8, 87, 88, 10, 6, 0, 0, 88, 89, 5, 17, 0, 0, 89, 97, 3, 6, 3, 7, 90,
-		91, 10, 5, 0, 0, 91, 92, 5, 18, 0, 0, 92, 97, 3, 6, 3, 6, 93, 94, 10, 4,
-		0, 0, 94, 95, 5, 19, 0, 0, 95, 97, 3, 6, 3, 5, 96, 54, 1, 0, 0, 0, 96,
-		57, 1, 0, 0, 0, 96, 60, 1, 0, 0, 0, 96, 63, 1, 0, 0, 0, 96, 66, 1, 0, 0,
-		0, 96, 69, 1, 0, 0, 0, 96, 72, 1, 0, 0, 0, 96, 75, 1, 0, 0, 0, 96, 78,
-		1, 0, 0, 0, 96, 81, 1, 0, 0, 0, 96, 84, 1, 0, 0, 0, 96, 87, 1, 0, 0, 0,
-		96, 90, 1, 0, 0, 0, 96, 93, 1, 0, 0, 0, 97, 100, 1, 0, 0, 0, 98, 96, 1,
-		0, 0, 0, 98, 99, 1, 0, 0, 0, 99, 7, 1, 0, 0, 0, 100, 98, 1, 0, 0, 0, 101,
-		102, 5, 46, 0, 0, 102, 103, 5, 23, 0, 0, 103, 104, 3, 6, 3, 0, 104, 9,
-		1, 0, 0, 0, 105, 107, 5, 11, 0, 0, 106, 105, 1, 0, 0, 0, 106, 107, 1, 0,
-		0, 0, 107, 108, 1, 0, 0, 0, 108, 118, 5, 47, 0, 0, 109, 111, 5, 11, 0,
-		0, 110, 109, 1, 0, 0, 0, 110, 111, 1, 0, 0, 0, 111, 112, 1, 0, 0, 0, 112,
-		118, 5, 48, 0, 0, 113, 118, 5, 24, 0, 0, 114, 118, 5, 25, 0, 0, 115, 118,
-		5, 49, 0, 0, 116, 118, 5, 50, 0, 0, 117, 106, 1, 0, 0, 0, 117, 110, 1,
-		0, 0, 0, 117, 113, 1, 0, 0, 0, 117, 114, 1, 0, 0, 0, 117, 115, 1, 0, 0,
-		0, 117, 116, 1, 0, 0, 0, 118, 11, 1, 0, 0, 0, 119, 120, 5, 26, 0, 0, 120,
-		121, 5, 46, 0, 0, 121, 122, 5, 27, 0, 0, 122, 123, 3, 14, 7, 0, 123, 124,
-		5, 23, 0, 0, 124, 125, 3, 6, 3, 0, 125, 126, 5, 2, 0, 0, 126, 164, 1, 0,
-		0, 0, 127, 128, 5, 26, 0, 0, 128, 129, 5, 46, 0, 0, 129, 130, 5, 23, 0,
-		0, 130, 131, 3, 6, 3, 0, 131, 132, 5, 2, 0, 0, 132, 164, 1, 0, 0, 0, 133,
-		134, 5, 28, 0, 0, 134, 135, 5, 46, 0, 0, 135, 136, 5, 27, 0, 0, 136, 139,
-		3, 14, 7, 0, 137, 138, 5, 23, 0, 0, 138, 140, 3, 6, 3, 0, 139, 137, 1,
-		0, 0, 0, 139, 140, 1, 0, 0, 0, 140, 141, 1, 0, 0, 0, 141, 142, 5, 2, 0,
-		0, 142, 164, 1, 0, 0, 0, 143, 144, 5, 28, 0, 0, 144, 145, 5, 46, 0, 0,
-		145, 146, 5, 23, 0, 0, 146, 147, 3, 6, 3, 0, 147, 148, 5, 2, 0, 0, 148,
-		164, 1, 0, 0, 0, 149, 150, 5, 29, 0, 0, 150, 151, 5, 46, 0, 0, 151, 152,
-		5, 27, 0, 0, 152, 153, 3, 14, 7, 0, 153, 154, 5, 23, 0, 0, 154, 155, 3,
-		6, 3, 0, 155, 156, 5, 2, 0, 0, 156, 164, 1, 0, 0, 0, 157, 158, 5, 29, 0,
-		0, 158, 159, 5, 46, 0, 0, 159, 160, 5, 23, 0, 0, 160, 161, 3, 6, 3, 0,
-		161, 162, 5, 2, 0, 0, 162, 164, 1, 0, 0, 0, 163, 119, 1, 0, 0, 0, 163,
-		127, 1, 0, 0, 0, 163, 133, 1, 0, 0, 0, 163, 143, 1, 0, 0, 0, 163, 149,
-		1, 0, 0, 0, 163, 157, 1, 0, 0, 0, 164, 13, 1, 0, 0, 0, 165, 181, 5, 30,
-		0, 0, 166, 181, 5, 31, 0, 0, 167, 181, 5, 32, 0, 0, 168, 181, 5, 33, 0,
-		0, 169, 181, 5, 34, 0, 0, 170, 181, 5, 35, 0, 0, 171, 181, 5, 36, 0, 0,
-		172, 181, 5, 37, 0, 0, 173, 181, 5, 38, 0, 0, 174, 181, 5, 39, 0, 0, 175,
-		181, 5, 40, 0, 0, 176, 181, 5, 41, 0, 0, 177, 181, 5, 42, 0, 0, 178, 181,
-		5, 43, 0, 0, 179, 181, 5, 44, 0, 0, 180, 165, 1, 0, 0, 0, 180, 166, 1,
-		0, 0, 0, 180, 167, 1, 0, 0, 0, 180, 168, 1, 0, 0, 0, 180, 169, 1, 0, 0,
-		0, 180, 170, 1, 0, 0, 0, 180, 171, 1, 0, 0, 0, 180, 172, 1, 0, 0, 0, 180,
-		173, 1, 0, 0, 0, 180, 174, 1, 0, 0, 0, 180, 175, 1, 0, 0, 0, 180, 176,
-		1, 0, 0, 0, 180, 177, 1, 0, 0, 0, 180, 178, 1, 0, 0, 0, 180, 179, 1, 0,
-		0, 0, 181, 15, 1, 0, 0, 0, 13, 19, 25, 44, 47, 52, 96, 98, 106, 110, 117,
-		139, 163, 180,
+		6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 3, 6, 165, 8,
+		6, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1,
+		7, 1, 7, 1, 7, 1, 7, 3, 7, 182, 8, 7, 1, 7, 0, 1, 6, 8, 0, 2, 4, 6, 8,
+		10, 12, 14, 0, 0, 225, 0, 19, 1, 0, 0, 0, 2, 25, 1, 0, 0, 0, 4, 27, 1,
+		0, 0, 0, 6, 52, 1, 0, 0, 0, 8, 101, 1, 0, 0, 0, 10, 118, 1, 0, 0, 0, 12,
+		164, 1, 0, 0, 0, 14, 181, 1, 0, 0, 0, 16, 18, 3, 2, 1, 0, 17, 16, 1, 0,
+		0, 0, 18, 21, 1, 0, 0, 0, 19, 17, 1, 0, 0, 0, 19, 20, 1, 0, 0, 0, 20, 1,
+		1, 0, 0, 0, 21, 19, 1, 0, 0, 0, 22, 26, 3, 4, 2, 0, 23, 26, 3, 12, 6, 0,
+		24, 26, 3, 8, 4, 0, 25, 22, 1, 0, 0, 0, 25, 23, 1, 0, 0, 0, 25, 24, 1,
+		0, 0, 0, 26, 3, 1, 0, 0, 0, 27, 28, 5, 1, 0, 0, 28, 29, 3, 6, 3, 0, 29,
+		30, 5, 2, 0, 0, 30, 5, 1, 0, 0, 0, 31, 32, 6, 3, -1, 0, 32, 33, 5, 3, 0,
+		0, 33, 53, 3, 6, 3, 19, 34, 35, 5, 4, 0, 0, 35, 36, 3, 6, 3, 0, 36, 37,
+		5, 5, 0, 0, 37, 53, 1, 0, 0, 0, 38, 47, 5, 20, 0, 0, 39, 44, 3, 6, 3, 0,
+		40, 41, 5, 21, 0, 0, 41, 43, 3, 6, 3, 0, 42, 40, 1, 0, 0, 0, 43, 46, 1,
+		0, 0, 0, 44, 42, 1, 0, 0, 0, 44, 45, 1, 0, 0, 0, 45, 48, 1, 0, 0, 0, 46,
+		44, 1, 0, 0, 0, 47, 39, 1, 0, 0, 0, 47, 48, 1, 0, 0, 0, 48, 49, 1, 0, 0,
+		0, 49, 53, 5, 22, 0, 0, 50, 53, 5, 46, 0, 0, 51, 53, 3, 10, 5, 0, 52, 31,
+		1, 0, 0, 0, 52, 34, 1, 0, 0, 0, 52, 38, 1, 0, 0, 0, 52, 50, 1, 0, 0, 0,
+		52, 51, 1, 0, 0, 0, 53, 98, 1, 0, 0, 0, 54, 55, 10, 17, 0, 0, 55, 56, 5,
+		6, 0, 0, 56, 97, 3, 6, 3, 18, 57, 58, 10, 16, 0, 0, 58, 59, 5, 7, 0, 0,
+		59, 97, 3, 6, 3, 17, 60, 61, 10, 15, 0, 0, 61, 62, 5, 8, 0, 0, 62, 97,
+		3, 6, 3, 16, 63, 64, 10, 14, 0, 0, 64, 65, 5, 9, 0, 0, 65, 97, 3, 6, 3,
+		15, 66, 67, 10, 13, 0, 0, 67, 68, 5, 10, 0, 0, 68, 97, 3, 6, 3, 14, 69,
+		70, 10, 12, 0, 0, 70, 71, 5, 11, 0, 0, 71, 97, 3, 6, 3, 13, 72, 73, 10,
+		11, 0, 0, 73, 74, 5, 12, 0, 0, 74, 97, 3, 6, 3, 12, 75, 76, 10, 10, 0,
+		0, 76, 77, 5, 13, 0, 0, 77, 97, 3, 6, 3, 11, 78, 79, 10, 9, 0, 0, 79, 80,
+		5, 14, 0, 0, 80, 97, 3, 6, 3, 10, 81, 82, 10, 8, 0, 0, 82, 83, 5, 15, 0,
+		0, 83, 97, 3, 6, 3, 9, 84, 85, 10, 7, 0, 0, 85, 86, 5, 16, 0, 0, 86, 97,
+		3, 6, 3, 8, 87, 88, 10, 6, 0, 0, 88, 89, 5, 17, 0, 0, 89, 97, 3, 6, 3,
+		7, 90, 91, 10, 5, 0, 0, 91, 92, 5, 18, 0, 0, 92, 97, 3, 6, 3, 6, 93, 94,
+		10, 4, 0, 0, 94, 95, 5, 19, 0, 0, 95, 97, 3, 6, 3, 5, 96, 54, 1, 0, 0,
+		0, 96, 57, 1, 0, 0, 0, 96, 60, 1, 0, 0, 0, 96, 63, 1, 0, 0, 0, 96, 66,
+		1, 0, 0, 0, 96, 69, 1, 0, 0, 0, 96, 72, 1, 0, 0, 0, 96, 75, 1, 0, 0, 0,
+		96, 78, 1, 0, 0, 0, 96, 81, 1, 0, 0, 0, 96, 84, 1, 0, 0, 0, 96, 87, 1,
+		0, 0, 0, 96, 90, 1, 0, 0, 0, 96, 93, 1, 0, 0, 0, 97, 100, 1, 0, 0, 0, 98,
+		96, 1, 0, 0, 0, 98, 99, 1, 0, 0, 0, 99, 7, 1, 0, 0, 0, 100, 98, 1, 0, 0,
+		0, 101, 102, 5, 46, 0, 0, 102, 103, 5, 23, 0, 0, 103, 104, 3, 6, 3, 0,
+		104, 105, 5, 2, 0, 0, 105, 9, 1, 0, 0, 0, 106, 108, 5, 11, 0, 0, 107, 106,
+		1, 0, 0, 0, 107, 108, 1, 0, 0, 0, 108, 109, 1, 0, 0, 0, 109, 119, 5, 47,
+		0, 0, 110, 112, 5, 11, 0, 0, 111, 110, 1, 0, 0, 0, 111, 112, 1, 0, 0, 0,
+		112, 113, 1, 0, 0, 0, 113, 119, 5, 48, 0, 0, 114, 119, 5, 24, 0, 0, 115,
+		119, 5, 25, 0, 0, 116, 119, 5, 49, 0, 0, 117, 119, 5, 50, 0, 0, 118, 107,
+		1, 0, 0, 0, 118, 111, 1, 0, 0, 0, 118, 114, 1, 0, 0, 0, 118, 115, 1, 0,
+		0, 0, 118, 116, 1, 0, 0, 0, 118, 117, 1, 0, 0, 0, 119, 11, 1, 0, 0, 0,
+		120, 121, 5, 26, 0, 0, 121, 122, 5, 46, 0, 0, 122, 123, 5, 27, 0, 0, 123,
+		124, 3, 14, 7, 0, 124, 125, 5, 23, 0, 0, 125, 126, 3, 6, 3, 0, 126, 127,
+		5, 2, 0, 0, 127, 165, 1, 0, 0, 0, 128, 129, 5, 26, 0, 0, 129, 130, 5, 46,
+		0, 0, 130, 131, 5, 23, 0, 0, 131, 132, 3, 6, 3, 0, 132, 133, 5, 2, 0, 0,
+		133, 165, 1, 0, 0, 0, 134, 135, 5, 28, 0, 0, 135, 136, 5, 46, 0, 0, 136,
+		137, 5, 27, 0, 0, 137, 140, 3, 14, 7, 0, 138, 139, 5, 23, 0, 0, 139, 141,
+		3, 6, 3, 0, 140, 138, 1, 0, 0, 0, 140, 141, 1, 0, 0, 0, 141, 142, 1, 0,
+		0, 0, 142, 143, 5, 2, 0, 0, 143, 165, 1, 0, 0, 0, 144, 145, 5, 28, 0, 0,
+		145, 146, 5, 46, 0, 0, 146, 147, 5, 23, 0, 0, 147, 148, 3, 6, 3, 0, 148,
+		149, 5, 2, 0, 0, 149, 165, 1, 0, 0, 0, 150, 151, 5, 29, 0, 0, 151, 152,
+		5, 46, 0, 0, 152, 153, 5, 27, 0, 0, 153, 154, 3, 14, 7, 0, 154, 155, 5,
+		23, 0, 0, 155, 156, 3, 6, 3, 0, 156, 157, 5, 2, 0, 0, 157, 165, 1, 0, 0,
+		0, 158, 159, 5, 29, 0, 0, 159, 160, 5, 46, 0, 0, 160, 161, 5, 23, 0, 0,
+		161, 162, 3, 6, 3, 0, 162, 163, 5, 2, 0, 0, 163, 165, 1, 0, 0, 0, 164,
+		120, 1, 0, 0, 0, 164, 128, 1, 0, 0, 0, 164, 134, 1, 0, 0, 0, 164, 144,
+		1, 0, 0, 0, 164, 150, 1, 0, 0, 0, 164, 158, 1, 0, 0, 0, 165, 13, 1, 0,
+		0, 0, 166, 182, 5, 30, 0, 0, 167, 182, 5, 31, 0, 0, 168, 182, 5, 32, 0,
+		0, 169, 182, 5, 33, 0, 0, 170, 182, 5, 34, 0, 0, 171, 182, 5, 35, 0, 0,
+		172, 182, 5, 36, 0, 0, 173, 182, 5, 37, 0, 0, 174, 182, 5, 38, 0, 0, 175,
+		182, 5, 39, 0, 0, 176, 182, 5, 40, 0, 0, 177, 182, 5, 41, 0, 0, 178, 182,
+		5, 42, 0, 0, 179, 182, 5, 43, 0, 0, 180, 182, 5, 44, 0, 0, 181, 166, 1,
+		0, 0, 0, 181, 167, 1, 0, 0, 0, 181, 168, 1, 0, 0, 0, 181, 169, 1, 0, 0,
+		0, 181, 170, 1, 0, 0, 0, 181, 171, 1, 0, 0, 0, 181, 172, 1, 0, 0, 0, 181,
+		173, 1, 0, 0, 0, 181, 174, 1, 0, 0, 0, 181, 175, 1, 0, 0, 0, 181, 176,
+		1, 0, 0, 0, 181, 177, 1, 0, 0, 0, 181, 178, 1, 0, 0, 0, 181, 179, 1, 0,
+		0, 0, 181, 180, 1, 0, 0, 0, 182, 15, 1, 0, 0, 0, 13, 19, 25, 44, 47, 52,
+		96, 98, 107, 111, 118, 140, 164, 181,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -2957,6 +2957,14 @@ func (p *haruParser) Assign() (localctx IAssignContext) {
 		p.SetState(103)
 		p.expr(0)
 	}
+	{
+		p.SetState(104)
+		p.Match(haruParserT__1)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
 
 errorExit:
 	if p.HasError() {
@@ -3286,7 +3294,7 @@ func (p *haruParser) Literal() (localctx ILiteralContext) {
 	p.EnterRule(localctx, 10, haruParserRULE_literal)
 	var _la int
 
-	p.SetState(117)
+	p.SetState(118)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3296,7 +3304,7 @@ func (p *haruParser) Literal() (localctx ILiteralContext) {
 	case 1:
 		localctx = NewIntLiteralContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
-		p.SetState(106)
+		p.SetState(107)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -3305,7 +3313,7 @@ func (p *haruParser) Literal() (localctx ILiteralContext) {
 
 		if _la == haruParserT__10 {
 			{
-				p.SetState(105)
+				p.SetState(106)
 				p.Match(haruParserT__10)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -3315,7 +3323,7 @@ func (p *haruParser) Literal() (localctx ILiteralContext) {
 
 		}
 		{
-			p.SetState(108)
+			p.SetState(109)
 			p.Match(haruParserNUMBER)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3326,7 +3334,7 @@ func (p *haruParser) Literal() (localctx ILiteralContext) {
 	case 2:
 		localctx = NewFloatLiteralContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
-		p.SetState(110)
+		p.SetState(111)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -3335,7 +3343,7 @@ func (p *haruParser) Literal() (localctx ILiteralContext) {
 
 		if _la == haruParserT__10 {
 			{
-				p.SetState(109)
+				p.SetState(110)
 				p.Match(haruParserT__10)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -3345,7 +3353,7 @@ func (p *haruParser) Literal() (localctx ILiteralContext) {
 
 		}
 		{
-			p.SetState(112)
+			p.SetState(113)
 			p.Match(haruParserFLOAT)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3357,7 +3365,7 @@ func (p *haruParser) Literal() (localctx ILiteralContext) {
 		localctx = NewTrueLiteralContext(p, localctx)
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(113)
+			p.SetState(114)
 			p.Match(haruParserT__23)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3369,7 +3377,7 @@ func (p *haruParser) Literal() (localctx ILiteralContext) {
 		localctx = NewFalseLiteralContext(p, localctx)
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(114)
+			p.SetState(115)
 			p.Match(haruParserT__24)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3381,7 +3389,7 @@ func (p *haruParser) Literal() (localctx ILiteralContext) {
 		localctx = NewStringLiteralContext(p, localctx)
 		p.EnterOuterAlt(localctx, 5)
 		{
-			p.SetState(115)
+			p.SetState(116)
 			p.Match(haruParserSTRING)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3393,7 +3401,7 @@ func (p *haruParser) Literal() (localctx ILiteralContext) {
 		localctx = NewByteLiteralContext(p, localctx)
 		p.EnterOuterAlt(localctx, 6)
 		{
-			p.SetState(116)
+			p.SetState(117)
 			p.Match(haruParserBYTE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3885,7 +3893,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 	p.EnterRule(localctx, 12, haruParserRULE_varDecl)
 	var _la int
 
-	p.SetState(163)
+	p.SetState(164)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3896,7 +3904,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 		localctx = NewLetDeclContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(119)
+			p.SetState(120)
 			p.Match(haruParserT__25)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3904,7 +3912,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(120)
+			p.SetState(121)
 			p.Match(haruParserID)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3912,7 +3920,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(121)
+			p.SetState(122)
 			p.Match(haruParserT__26)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3920,11 +3928,11 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(122)
+			p.SetState(123)
 			p.Type_()
 		}
 		{
-			p.SetState(123)
+			p.SetState(124)
 			p.Match(haruParserT__22)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3932,11 +3940,11 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(124)
+			p.SetState(125)
 			p.expr(0)
 		}
 		{
-			p.SetState(125)
+			p.SetState(126)
 			p.Match(haruParserT__1)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3948,7 +3956,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 		localctx = NewLetInferDeclContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(127)
+			p.SetState(128)
 			p.Match(haruParserT__25)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3956,7 +3964,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(128)
+			p.SetState(129)
 			p.Match(haruParserID)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3964,7 +3972,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(129)
+			p.SetState(130)
 			p.Match(haruParserT__22)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3972,11 +3980,11 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(130)
+			p.SetState(131)
 			p.expr(0)
 		}
 		{
-			p.SetState(131)
+			p.SetState(132)
 			p.Match(haruParserT__1)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3988,7 +3996,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 		localctx = NewMutDeclContext(p, localctx)
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(133)
+			p.SetState(134)
 			p.Match(haruParserT__27)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3996,7 +4004,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(134)
+			p.SetState(135)
 			p.Match(haruParserID)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4004,7 +4012,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(135)
+			p.SetState(136)
 			p.Match(haruParserT__26)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4012,10 +4020,10 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(136)
+			p.SetState(137)
 			p.Type_()
 		}
-		p.SetState(139)
+		p.SetState(140)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4024,7 +4032,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 
 		if _la == haruParserT__22 {
 			{
-				p.SetState(137)
+				p.SetState(138)
 				p.Match(haruParserT__22)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -4032,13 +4040,13 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 				}
 			}
 			{
-				p.SetState(138)
+				p.SetState(139)
 				p.expr(0)
 			}
 
 		}
 		{
-			p.SetState(141)
+			p.SetState(142)
 			p.Match(haruParserT__1)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4050,7 +4058,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 		localctx = NewMutInferDeclContext(p, localctx)
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(143)
+			p.SetState(144)
 			p.Match(haruParserT__27)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4058,7 +4066,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(144)
+			p.SetState(145)
 			p.Match(haruParserID)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4066,7 +4074,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(145)
+			p.SetState(146)
 			p.Match(haruParserT__22)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4074,11 +4082,11 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(146)
+			p.SetState(147)
 			p.expr(0)
 		}
 		{
-			p.SetState(147)
+			p.SetState(148)
 			p.Match(haruParserT__1)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4090,7 +4098,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 		localctx = NewConstDeclContext(p, localctx)
 		p.EnterOuterAlt(localctx, 5)
 		{
-			p.SetState(149)
+			p.SetState(150)
 			p.Match(haruParserT__28)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4098,7 +4106,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(150)
+			p.SetState(151)
 			p.Match(haruParserID)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4106,7 +4114,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(151)
+			p.SetState(152)
 			p.Match(haruParserT__26)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4114,11 +4122,11 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(152)
+			p.SetState(153)
 			p.Type_()
 		}
 		{
-			p.SetState(153)
+			p.SetState(154)
 			p.Match(haruParserT__22)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4126,11 +4134,11 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(154)
+			p.SetState(155)
 			p.expr(0)
 		}
 		{
-			p.SetState(155)
+			p.SetState(156)
 			p.Match(haruParserT__1)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4142,7 +4150,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 		localctx = NewConstInferDeclContext(p, localctx)
 		p.EnterOuterAlt(localctx, 6)
 		{
-			p.SetState(157)
+			p.SetState(158)
 			p.Match(haruParserT__28)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4150,7 +4158,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(158)
+			p.SetState(159)
 			p.Match(haruParserID)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4158,7 +4166,7 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(159)
+			p.SetState(160)
 			p.Match(haruParserT__22)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4166,11 +4174,11 @@ func (p *haruParser) VarDecl() (localctx IVarDeclContext) {
 			}
 		}
 		{
-			p.SetState(160)
+			p.SetState(161)
 			p.expr(0)
 		}
 		{
-			p.SetState(161)
+			p.SetState(162)
 			p.Match(haruParserT__1)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4852,7 +4860,7 @@ func (s *UIntTypeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 func (p *haruParser) Type_() (localctx ITypeContext) {
 	localctx = NewTypeContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 14, haruParserRULE_type)
-	p.SetState(180)
+	p.SetState(181)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4863,7 +4871,7 @@ func (p *haruParser) Type_() (localctx ITypeContext) {
 		localctx = NewI8TypeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(165)
+			p.SetState(166)
 			p.Match(haruParserT__29)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4875,7 +4883,7 @@ func (p *haruParser) Type_() (localctx ITypeContext) {
 		localctx = NewI16TypeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(166)
+			p.SetState(167)
 			p.Match(haruParserT__30)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4887,7 +4895,7 @@ func (p *haruParser) Type_() (localctx ITypeContext) {
 		localctx = NewI32TypeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(167)
+			p.SetState(168)
 			p.Match(haruParserT__31)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4899,7 +4907,7 @@ func (p *haruParser) Type_() (localctx ITypeContext) {
 		localctx = NewI64TypeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(168)
+			p.SetState(169)
 			p.Match(haruParserT__32)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4911,7 +4919,7 @@ func (p *haruParser) Type_() (localctx ITypeContext) {
 		localctx = NewIntTypeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 5)
 		{
-			p.SetState(169)
+			p.SetState(170)
 			p.Match(haruParserT__33)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4923,7 +4931,7 @@ func (p *haruParser) Type_() (localctx ITypeContext) {
 		localctx = NewUI8TypeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 6)
 		{
-			p.SetState(170)
+			p.SetState(171)
 			p.Match(haruParserT__34)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4935,7 +4943,7 @@ func (p *haruParser) Type_() (localctx ITypeContext) {
 		localctx = NewUI16TypeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 7)
 		{
-			p.SetState(171)
+			p.SetState(172)
 			p.Match(haruParserT__35)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4947,7 +4955,7 @@ func (p *haruParser) Type_() (localctx ITypeContext) {
 		localctx = NewUI32TypeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 8)
 		{
-			p.SetState(172)
+			p.SetState(173)
 			p.Match(haruParserT__36)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4959,7 +4967,7 @@ func (p *haruParser) Type_() (localctx ITypeContext) {
 		localctx = NewUI64TypeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 9)
 		{
-			p.SetState(173)
+			p.SetState(174)
 			p.Match(haruParserT__37)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4971,7 +4979,7 @@ func (p *haruParser) Type_() (localctx ITypeContext) {
 		localctx = NewUIntTypeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 10)
 		{
-			p.SetState(174)
+			p.SetState(175)
 			p.Match(haruParserT__38)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4983,7 +4991,7 @@ func (p *haruParser) Type_() (localctx ITypeContext) {
 		localctx = NewF32TypeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 11)
 		{
-			p.SetState(175)
+			p.SetState(176)
 			p.Match(haruParserT__39)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4995,7 +5003,7 @@ func (p *haruParser) Type_() (localctx ITypeContext) {
 		localctx = NewF64TypeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 12)
 		{
-			p.SetState(176)
+			p.SetState(177)
 			p.Match(haruParserT__40)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -5007,7 +5015,7 @@ func (p *haruParser) Type_() (localctx ITypeContext) {
 		localctx = NewBoolTypeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 13)
 		{
-			p.SetState(177)
+			p.SetState(178)
 			p.Match(haruParserT__41)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -5019,7 +5027,7 @@ func (p *haruParser) Type_() (localctx ITypeContext) {
 		localctx = NewStringTypeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 14)
 		{
-			p.SetState(178)
+			p.SetState(179)
 			p.Match(haruParserT__42)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -5031,7 +5039,7 @@ func (p *haruParser) Type_() (localctx ITypeContext) {
 		localctx = NewByteTypeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 15)
 		{
-			p.SetState(179)
+			p.SetState(180)
 			p.Match(haruParserT__43)
 			if p.HasError() {
 				// Recognition error - abort rule
