@@ -39,6 +39,12 @@ func (s *BaseharuListener) EnterVarDeclStatement(ctx *VarDeclStatementContext) {
 // ExitVarDeclStatement is called when production VarDeclStatement is exited.
 func (s *BaseharuListener) ExitVarDeclStatement(ctx *VarDeclStatementContext) {}
 
+// EnterAssignStmtStatement is called when production AssignStmtStatement is entered.
+func (s *BaseharuListener) EnterAssignStmtStatement(ctx *AssignStmtStatementContext) {}
+
+// ExitAssignStmtStatement is called when production AssignStmtStatement is exited.
+func (s *BaseharuListener) ExitAssignStmtStatement(ctx *AssignStmtStatementContext) {}
+
 // EnterPrintStatement is called when production PrintStatement is entered.
 func (s *BaseharuListener) EnterPrintStatement(ctx *PrintStatementContext) {}
 

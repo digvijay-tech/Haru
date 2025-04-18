@@ -17,6 +17,9 @@ type haruVisitor interface {
 	// Visit a parse tree produced by haruParser#VarDeclStatement.
 	VisitVarDeclStatement(ctx *VarDeclStatementContext) interface{}
 
+	// Visit a parse tree produced by haruParser#AssignStmtStatement.
+	VisitAssignStmtStatement(ctx *AssignStmtStatementContext) interface{}
+
 	// Visit a parse tree produced by haruParser#PrintStatement.
 	VisitPrintStatement(ctx *PrintStatementContext) interface{}
 

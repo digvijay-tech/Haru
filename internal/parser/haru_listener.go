@@ -17,6 +17,9 @@ type haruListener interface {
 	// EnterVarDeclStatement is called when entering the VarDeclStatement production.
 	EnterVarDeclStatement(c *VarDeclStatementContext)
 
+	// EnterAssignStmtStatement is called when entering the AssignStmtStatement production.
+	EnterAssignStmtStatement(c *AssignStmtStatementContext)
+
 	// EnterPrintStatement is called when entering the PrintStatement production.
 	EnterPrintStatement(c *PrintStatementContext)
 
@@ -169,6 +172,9 @@ type haruListener interface {
 
 	// ExitVarDeclStatement is called when exiting the VarDeclStatement production.
 	ExitVarDeclStatement(c *VarDeclStatementContext)
+
+	// ExitAssignStmtStatement is called when exiting the AssignStmtStatement production.
+	ExitAssignStmtStatement(c *AssignStmtStatementContext)
 
 	// ExitPrintStatement is called when exiting the PrintStatement production.
 	ExitPrintStatement(c *PrintStatementContext)

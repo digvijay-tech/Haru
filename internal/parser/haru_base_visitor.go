@@ -20,6 +20,10 @@ func (v *BaseharuVisitor) VisitVarDeclStatement(ctx *VarDeclStatementContext) in
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseharuVisitor) VisitAssignStmtStatement(ctx *AssignStmtStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseharuVisitor) VisitPrintStatement(ctx *PrintStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
