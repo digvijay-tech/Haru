@@ -59,6 +59,39 @@ func TestIfElseStatements(t *testing.T) {
 		}
 
 		--- IF/ELSE CHAIN
+		print "IF/ELSE CONDITIONS";
+
+		mut fiveIsBig: bool = false;
+		if (5 > 3 && 4 < 5) {
+			fiveIsBig = !fiveIsBig;
+		} else {
+			fiveIsBig = false; 
+		}
+
+		print fiveIsBig;
+
+		const x: i64 = 100;
+		let y = 2;
+		mut z: i8 = x / y; --- 50
+
+		if (z > 50) {
+			print "z is greater than 50";
+		} else if (z < 50) {
+			print "z is less than 50"; 
+		} else if (z != 50) {
+			print "z is not equal to 50"; 
+		} else if (z == 50) {
+			print "z is equal to 50";
+
+			if (x < y) {
+				print "x is less than y";
+			} else {
+			 	print "x is greater than y";
+			}
+		} else {
+			print "Value of z is below:";
+			print z; 
+		}
 `
 
 	expected := `TESTING IF CONDITIONS ONLY
@@ -71,6 +104,10 @@ John Doe cannot drive
 Name is not empty!
 Name is John Doe
 John Doe is not old enough to drive!
+IF/ELSE CONDITIONS
+true
+z is equal to 50
+x is greater than y
 `
 
 	// cleaning source input with custom preprocessor
