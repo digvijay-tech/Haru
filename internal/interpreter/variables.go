@@ -71,3 +71,44 @@ func (v *HaruVisitor) VisitImplicitLetDecl(ctx *parser.LetInferDeclContext) any 
 
 	return let
 }
+
+// VisitExplicitMutDecl evaluates mut declared with a type
+func (v *HaruVisitor) VisitExplicitMutDecl(ctx *parser.MutDeclContext) any {
+	varName := ctx.ID().GetText()
+	varType := ctx.Type_().GetText()
+
+	// the variable has an initializer
+	if ctx.Expr() != nil {
+		result := v.Visit(ctx.Expr())
+		val, ok := result.(Value)
+		if !ok {
+			runtimeErr(fmt.Sprintf("invalid value in 'mut' declaration for '%s'", varName))
+		}
+
+		// converting to declared type
+		updatedVal, err := convertType(val.Value, val.Typ, varType)
+		if err != nil {
+			runtimeErr(fmt.Sprintf("type conversion failed for '%s': %v", varName, err))
+		}
+
+		mut := updatedVal.(Value)
+		mut.isMutable = true
+		v.symbolTable[varName] = mut
+
+		return mut
+	}
+
+	// variable is uninitialized
+	// generating zero value based on type declared
+	zeroedMut, err := zeroValueFor(varType)
+
+	if err != nil {
+		runtimeErr(err.Error())
+	}
+
+	// marking as mutable and adding to symbol table
+	zeroedMut.isMutable = true
+	v.symbolTable[varName] = zeroedMut
+
+	return zeroedMut
+}

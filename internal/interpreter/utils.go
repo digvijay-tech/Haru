@@ -373,3 +373,34 @@ func convertType(value, fromType, toType string) (any, error) {
 	// type is unknown
 	return nil, fmt.Errorf("unsupported type conversion from %s to %s", fromType, toType)
 }
+
+// zeroValueFor takes in a type and produces Value struct for that type's zero value. It does not change isMutable to true
+func zeroValueFor(typ string) (Value, error) {
+	// all numeric type will (0)
+	if isNumericType(typ) {
+		val := Value{Value: "0", Typ: typ}
+		return val, nil
+	}
+
+	// zero type of bool is false
+	if typ == "bool" {
+		val := Value{Value: "false", Typ: typ}
+		return val, nil
+	}
+
+	// zero type of string is empty string literal
+	if typ == "string" {
+		val := Value{Value: "", Typ: typ}
+		return val, nil
+	}
+
+	// zero type of byte is (0)
+	if typ == "byte" {
+		val := Value{Value: "0", Typ: typ}
+		return val, nil
+	}
+
+	// no type match found
+	// returning error with empty Value struct as nil can't be returned
+	return Value{}, fmt.Errorf("unsupported type '%s' in 'mut' declaration", typ)
+}

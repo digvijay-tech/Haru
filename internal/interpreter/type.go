@@ -3,11 +3,12 @@ package interpreter
 
 // Value represents a variable or expression result
 type Value struct {
-	Value string // Literal string value
-	Typ   string // Datatype
+	Value     string // Literal string value
+	Typ       string // Datatype
+	isMutable bool   // Marks as mutable
 }
 
-// Type Category map for type promotion
+// Type Category map for numeric type promotion
 var typeCategory = map[string]string{
 	"i8": "int", "i16": "int", "i32": "int", "i64": "int", "int": "int",
 	"ui8": "uint", "ui16": "uint", "ui32": "uint", "ui64": "uint", "uint": "uint",
