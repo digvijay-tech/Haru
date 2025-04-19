@@ -115,6 +115,9 @@ func (v *HaruVisitor) VisitArrayDeclStatement(ctx *parser.ArrayDeclStatementCont
 		return v.VisitMutFixedArrayNoInitDecl(child)
 	case *parser.MutFixedArrayWithInitContext:
 		return v.VisitMutFixedArrayInitDecl(child)
+	case *parser.MutArrayExplicitNoInitContext:
+		return v.VisitDynamicExplicitMutArrayUnInitDecl(child)
+
 	default:
 		runtimeErr("unknown array declaration type")
 	}
@@ -402,6 +405,20 @@ func (v *HaruVisitor) VisitDynamicExplicitMutArrayDecl(ctx *parser.MutArrayExpli
 
 	v.symbolTable[arrName] = Value{
 		Value:     serialized,
+		Typ:       "[]" + arrType,
+		isMutable: true,
+	}
+
+	return nil
+}
+
+// VisitDynamicExplicitMutArrayUnInitDecl evevalutes dynamic arrays declared with type but no initialization
+func (v *HaruVisitor) VisitDynamicExplicitMutArrayUnInitDecl(ctx *parser.MutArrayExplicitNoInitContext) any {
+	arrName := ctx.ID().GetText()
+	arrType := ctx.ArrayType().Type_().GetText()
+
+	v.symbolTable[arrName] = Value{
+		Value:     "[]",
 		Typ:       "[]" + arrType,
 		isMutable: true,
 	}
