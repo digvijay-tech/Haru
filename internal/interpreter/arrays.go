@@ -43,11 +43,11 @@ func (v *HaruVisitor) VisitIndexExpr(ctx *parser.IndexExprContext) any {
 
 	// only non-float numeric expressions are allowed
 	if !isNumericType(expr.Typ) || expr.Typ == "f32" || expr.Typ == "f64" {
-		runtimeErr(fmt.Sprintf("index for array '%s' must be an integer, got '%s'", varName, expr.Typ))
+		runtimeErr(fmt.Sprintf("index for array '%s' must be an unsigned integer, got '%s'", varName, expr.Typ))
 	}
 
-	// converting to integer
-	index, err := strconv.Atoi(expr.Value)
+	// converting to unsigned int
+	index, err := strconv.ParseUint(expr.Value, 10, 64)
 	if err != nil {
 		runtimeErr(fmt.Sprintf("invalid index value for array '%s': %v", varName, err))
 	}
@@ -77,16 +77,24 @@ func (v *HaruVisitor) VisitIndexExpr(ctx *parser.IndexExprContext) any {
 	parts := strings.Split(raw, ",")
 
 	// making sure index in not out of bound
-	if index < 0 || index >= len(parts) {
+	if int(index) >= len((parts)) {
 		runtimeErr(fmt.Sprintf("index %d out of bounds for array '%s'", index, varName))
 	}
 
 	// getting value without ""
 	value := strings.Trim(parts[index], "\"")
 
+	// cleanup removing [] and extracting type
+	closing := strings.Index(arrayVal.Typ, "]")
+	if closing == -1 || closing == len(arrayVal.Typ)-1 {
+		runtimeErr(fmt.Sprintf("invalid array type format: %s", arrayVal.Typ))
+	}
+
+	cleanType := arrayVal.Typ[closing+1:]
+
 	return Value{
 		Value: value,
-		Typ:   arrayVal.Typ[2:], // removing [] prefix
+		Typ:   cleanType,
 	}
 }
 
@@ -105,6 +113,8 @@ func (v *HaruVisitor) VisitArrayDeclStatement(ctx *parser.ArrayDeclStatementCont
 		return v.VisitDynamicExplicitMutArrayDecl(child)
 	case *parser.MutFixedArrayNoInitContext:
 		return v.VisitMutFixedArrayNoInitDecl(child)
+	case *parser.MutFixedArrayWithInitContext:
+		return v.VisitMutFixedArrayInitDecl(child)
 	default:
 		runtimeErr("unknown array declaration type")
 	}
@@ -426,6 +436,73 @@ func (v *HaruVisitor) VisitMutFixedArrayNoInitDecl(ctx *parser.MutFixedArrayNoIn
 
 	for range int(length) {
 		serializedItems = append(serializedItems, zeroVal.Value)
+	}
+
+	serialized := "[" + strings.Join(serializedItems, ",") + "]"
+
+	v.symbolTable[arrName] = Value{
+		Value:     serialized,
+		Typ:       fmt.Sprintf("[%d]%s", length, arrType),
+		isMutable: true,
+	}
+
+	return nil
+}
+
+// VisitMutFixedArrayInitDecl evaluates fixed length initialized mutable array
+func (v *HaruVisitor) VisitMutFixedArrayInitDecl(ctx *parser.MutFixedArrayWithInitContext) any {
+	arrName := ctx.ID().GetText()
+	arrType := ctx.FixedArrayType().Type_().GetText()
+	number := ctx.FixedArrayType().NUMBER().GetText()
+
+	// evaluating expression to get assigned array literal
+	items, ok := v.Visit(ctx.ArrayLiteral()).([]Value)
+
+	if !ok {
+		runtimeErr("invalid array literal")
+	}
+
+	// parsing to uint from fixed length expression
+	length, err := strconv.ParseUint(number, 10, 64)
+
+	if err != nil || length == 0 {
+		runtimeErr(fmt.Sprintf("invalid array size for '%s'", arrName))
+	}
+
+	// items cannot be more than length
+	if len(items) > int(length) {
+		runtimeErr(fmt.Sprintf("cannot fit more items than %d in %s", length, arrName))
+	}
+
+	// converting items to declared type
+	var serializedItems []string
+
+	// populating array when its either half, full or empty
+	for _, item := range items {
+		// converting the assigned value
+		converted, err := convertType(item.Value, item.Typ, arrType)
+		if err != nil {
+			runtimeErr(err.Error())
+		}
+
+		val := converted.(Value)
+
+		serializedItems = append(serializedItems, val.Value)
+	}
+
+	// populating remaining uninitialized array with zero value
+	zeroVal, err := zeroValueFor(arrType)
+
+	if err != nil {
+		runtimeErr(err.Error())
+	}
+
+	if len(serializedItems) < int(length) {
+		diff := int(length) - len(serializedItems)
+
+		for range diff {
+			serializedItems = append(serializedItems, zeroVal.Value)
+		}
 	}
 
 	serialized := "[" + strings.Join(serializedItems, ",") + "]"
