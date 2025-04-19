@@ -28,6 +28,10 @@ func (v *BaseharuVisitor) VisitIfStmtStatement(ctx *IfStmtStatementContext) inte
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseharuVisitor) VisitArrayDeclStatement(ctx *ArrayDeclStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseharuVisitor) VisitPrintStatement(ctx *PrintStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -77,10 +81,6 @@ func (v *BaseharuVisitor) VisitLeExpr(ctx *LeExprContext) interface{} {
 }
 
 func (v *BaseharuVisitor) VisitOrExpr(ctx *OrExprContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseharuVisitor) VisitArrayExpr(ctx *ArrayExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -237,5 +237,61 @@ func (v *BaseharuVisitor) VisitElseBlock(ctx *ElseBlockContext) interface{} {
 }
 
 func (v *BaseharuVisitor) VisitBlock(ctx *BlockContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitArrayDecl(ctx *ArrayDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitConstExplicitArrayDecl(ctx *ConstExplicitArrayDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitConstImplicitArrayDecl(ctx *ConstImplicitArrayDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitLetExplicitArrayDecl(ctx *LetExplicitArrayDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitLetImplicitArrayDecl(ctx *LetImplicitArrayDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitMutFixedArrayWithInit(ctx *MutFixedArrayWithInitContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitMutFixedArrayNoInit(ctx *MutFixedArrayNoInitContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitMutArrayExplicitWithInit(ctx *MutArrayExplicitWithInitContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitMutArrayExplicitNoInit(ctx *MutArrayExplicitNoInitContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitMutArrayImplicit(ctx *MutArrayImplicitContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitArrayType(ctx *ArrayTypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitFixedArrayType(ctx *FixedArrayTypeContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitArrayLiteralExprList(ctx *ArrayLiteralExprListContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitEmptyArr(ctx *EmptyArrContext) interface{} {
 	return v.VisitChildren(ctx)
 }

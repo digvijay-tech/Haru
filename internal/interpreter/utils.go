@@ -404,3 +404,29 @@ func zeroValueFor(typ string) (Value, error) {
 	// returning error with empty Value struct as nil can't be returned
 	return Value{}, fmt.Errorf("unsupported type '%s' in 'mut' declaration", typ)
 }
+
+// checkTypeMatch checks the given value's type against typeStr and returns true if it matches
+func checkTypeMatch(value any, typeStr string) bool {
+	switch typeStr {
+	case "i8", "i16", "i32", "i64", "int":
+		_, ok := value.(int)
+		return ok
+	case "ui8", "ui16", "ui32", "ui64", "uint":
+		_, ok := value.(uint)
+		return ok
+	case "f32", "f64":
+		_, ok := value.(float64)
+		return ok
+	case "bool":
+		_, ok := value.(bool)
+		return ok
+	case "string":
+		_, ok := value.(string)
+		return ok
+	case "byte":
+		_, ok := value.(byte)
+		return ok
+	default:
+		return false
+	}
+}

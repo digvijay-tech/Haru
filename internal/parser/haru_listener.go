@@ -23,6 +23,9 @@ type haruListener interface {
 	// EnterIfStmtStatement is called when entering the IfStmtStatement production.
 	EnterIfStmtStatement(c *IfStmtStatementContext)
 
+	// EnterArrayDeclStatement is called when entering the ArrayDeclStatement production.
+	EnterArrayDeclStatement(c *ArrayDeclStatementContext)
+
 	// EnterPrintStatement is called when entering the PrintStatement production.
 	EnterPrintStatement(c *PrintStatementContext)
 
@@ -61,9 +64,6 @@ type haruListener interface {
 
 	// EnterOrExpr is called when entering the OrExpr production.
 	EnterOrExpr(c *OrExprContext)
-
-	// EnterArrayExpr is called when entering the ArrayExpr production.
-	EnterArrayExpr(c *ArrayExprContext)
 
 	// EnterDivExpr is called when entering the DivExpr production.
 	EnterDivExpr(c *DivExprContext)
@@ -182,6 +182,48 @@ type haruListener interface {
 	// EnterBlock is called when entering the block production.
 	EnterBlock(c *BlockContext)
 
+	// EnterArrayDecl is called when entering the arrayDecl production.
+	EnterArrayDecl(c *ArrayDeclContext)
+
+	// EnterConstExplicitArrayDecl is called when entering the ConstExplicitArrayDecl production.
+	EnterConstExplicitArrayDecl(c *ConstExplicitArrayDeclContext)
+
+	// EnterConstImplicitArrayDecl is called when entering the ConstImplicitArrayDecl production.
+	EnterConstImplicitArrayDecl(c *ConstImplicitArrayDeclContext)
+
+	// EnterLetExplicitArrayDecl is called when entering the LetExplicitArrayDecl production.
+	EnterLetExplicitArrayDecl(c *LetExplicitArrayDeclContext)
+
+	// EnterLetImplicitArrayDecl is called when entering the LetImplicitArrayDecl production.
+	EnterLetImplicitArrayDecl(c *LetImplicitArrayDeclContext)
+
+	// EnterMutFixedArrayWithInit is called when entering the MutFixedArrayWithInit production.
+	EnterMutFixedArrayWithInit(c *MutFixedArrayWithInitContext)
+
+	// EnterMutFixedArrayNoInit is called when entering the MutFixedArrayNoInit production.
+	EnterMutFixedArrayNoInit(c *MutFixedArrayNoInitContext)
+
+	// EnterMutArrayExplicitWithInit is called when entering the MutArrayExplicitWithInit production.
+	EnterMutArrayExplicitWithInit(c *MutArrayExplicitWithInitContext)
+
+	// EnterMutArrayExplicitNoInit is called when entering the MutArrayExplicitNoInit production.
+	EnterMutArrayExplicitNoInit(c *MutArrayExplicitNoInitContext)
+
+	// EnterMutArrayImplicit is called when entering the MutArrayImplicit production.
+	EnterMutArrayImplicit(c *MutArrayImplicitContext)
+
+	// EnterArrayType is called when entering the arrayType production.
+	EnterArrayType(c *ArrayTypeContext)
+
+	// EnterFixedArrayType is called when entering the fixedArrayType production.
+	EnterFixedArrayType(c *FixedArrayTypeContext)
+
+	// EnterArrayLiteralExprList is called when entering the ArrayLiteralExprList production.
+	EnterArrayLiteralExprList(c *ArrayLiteralExprListContext)
+
+	// EnterEmptyArr is called when entering the EmptyArr production.
+	EnterEmptyArr(c *EmptyArrContext)
+
 	// ExitProgram is called when exiting the program production.
 	ExitProgram(c *ProgramContext)
 
@@ -196,6 +238,9 @@ type haruListener interface {
 
 	// ExitIfStmtStatement is called when exiting the IfStmtStatement production.
 	ExitIfStmtStatement(c *IfStmtStatementContext)
+
+	// ExitArrayDeclStatement is called when exiting the ArrayDeclStatement production.
+	ExitArrayDeclStatement(c *ArrayDeclStatementContext)
 
 	// ExitPrintStatement is called when exiting the PrintStatement production.
 	ExitPrintStatement(c *PrintStatementContext)
@@ -235,9 +280,6 @@ type haruListener interface {
 
 	// ExitOrExpr is called when exiting the OrExpr production.
 	ExitOrExpr(c *OrExprContext)
-
-	// ExitArrayExpr is called when exiting the ArrayExpr production.
-	ExitArrayExpr(c *ArrayExprContext)
 
 	// ExitDivExpr is called when exiting the DivExpr production.
 	ExitDivExpr(c *DivExprContext)
@@ -355,4 +397,46 @@ type haruListener interface {
 
 	// ExitBlock is called when exiting the block production.
 	ExitBlock(c *BlockContext)
+
+	// ExitArrayDecl is called when exiting the arrayDecl production.
+	ExitArrayDecl(c *ArrayDeclContext)
+
+	// ExitConstExplicitArrayDecl is called when exiting the ConstExplicitArrayDecl production.
+	ExitConstExplicitArrayDecl(c *ConstExplicitArrayDeclContext)
+
+	// ExitConstImplicitArrayDecl is called when exiting the ConstImplicitArrayDecl production.
+	ExitConstImplicitArrayDecl(c *ConstImplicitArrayDeclContext)
+
+	// ExitLetExplicitArrayDecl is called when exiting the LetExplicitArrayDecl production.
+	ExitLetExplicitArrayDecl(c *LetExplicitArrayDeclContext)
+
+	// ExitLetImplicitArrayDecl is called when exiting the LetImplicitArrayDecl production.
+	ExitLetImplicitArrayDecl(c *LetImplicitArrayDeclContext)
+
+	// ExitMutFixedArrayWithInit is called when exiting the MutFixedArrayWithInit production.
+	ExitMutFixedArrayWithInit(c *MutFixedArrayWithInitContext)
+
+	// ExitMutFixedArrayNoInit is called when exiting the MutFixedArrayNoInit production.
+	ExitMutFixedArrayNoInit(c *MutFixedArrayNoInitContext)
+
+	// ExitMutArrayExplicitWithInit is called when exiting the MutArrayExplicitWithInit production.
+	ExitMutArrayExplicitWithInit(c *MutArrayExplicitWithInitContext)
+
+	// ExitMutArrayExplicitNoInit is called when exiting the MutArrayExplicitNoInit production.
+	ExitMutArrayExplicitNoInit(c *MutArrayExplicitNoInitContext)
+
+	// ExitMutArrayImplicit is called when exiting the MutArrayImplicit production.
+	ExitMutArrayImplicit(c *MutArrayImplicitContext)
+
+	// ExitArrayType is called when exiting the arrayType production.
+	ExitArrayType(c *ArrayTypeContext)
+
+	// ExitFixedArrayType is called when exiting the fixedArrayType production.
+	ExitFixedArrayType(c *FixedArrayTypeContext)
+
+	// ExitArrayLiteralExprList is called when exiting the ArrayLiteralExprList production.
+	ExitArrayLiteralExprList(c *ArrayLiteralExprListContext)
+
+	// ExitEmptyArr is called when exiting the EmptyArr production.
+	ExitEmptyArr(c *EmptyArrContext)
 }

@@ -16,7 +16,6 @@ expr: '!' expr              # NotExpr
     | expr '!=' expr        # NeExpr
     | expr '&&' expr        # AndExpr
     | expr '||' expr        # OrExpr
-    | '[' (expr (',' expr)*)? ']' # ArrayExpr
     | ID                    # VarExpr
     | literal               # LitExpr ;
 

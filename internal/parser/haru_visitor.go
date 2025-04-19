@@ -23,6 +23,9 @@ type haruVisitor interface {
 	// Visit a parse tree produced by haruParser#IfStmtStatement.
 	VisitIfStmtStatement(ctx *IfStmtStatementContext) interface{}
 
+	// Visit a parse tree produced by haruParser#ArrayDeclStatement.
+	VisitArrayDeclStatement(ctx *ArrayDeclStatementContext) interface{}
+
 	// Visit a parse tree produced by haruParser#PrintStatement.
 	VisitPrintStatement(ctx *PrintStatementContext) interface{}
 
@@ -61,9 +64,6 @@ type haruVisitor interface {
 
 	// Visit a parse tree produced by haruParser#OrExpr.
 	VisitOrExpr(ctx *OrExprContext) interface{}
-
-	// Visit a parse tree produced by haruParser#ArrayExpr.
-	VisitArrayExpr(ctx *ArrayExprContext) interface{}
 
 	// Visit a parse tree produced by haruParser#DivExpr.
 	VisitDivExpr(ctx *DivExprContext) interface{}
@@ -181,4 +181,46 @@ type haruVisitor interface {
 
 	// Visit a parse tree produced by haruParser#block.
 	VisitBlock(ctx *BlockContext) interface{}
+
+	// Visit a parse tree produced by haruParser#arrayDecl.
+	VisitArrayDecl(ctx *ArrayDeclContext) interface{}
+
+	// Visit a parse tree produced by haruParser#ConstExplicitArrayDecl.
+	VisitConstExplicitArrayDecl(ctx *ConstExplicitArrayDeclContext) interface{}
+
+	// Visit a parse tree produced by haruParser#ConstImplicitArrayDecl.
+	VisitConstImplicitArrayDecl(ctx *ConstImplicitArrayDeclContext) interface{}
+
+	// Visit a parse tree produced by haruParser#LetExplicitArrayDecl.
+	VisitLetExplicitArrayDecl(ctx *LetExplicitArrayDeclContext) interface{}
+
+	// Visit a parse tree produced by haruParser#LetImplicitArrayDecl.
+	VisitLetImplicitArrayDecl(ctx *LetImplicitArrayDeclContext) interface{}
+
+	// Visit a parse tree produced by haruParser#MutFixedArrayWithInit.
+	VisitMutFixedArrayWithInit(ctx *MutFixedArrayWithInitContext) interface{}
+
+	// Visit a parse tree produced by haruParser#MutFixedArrayNoInit.
+	VisitMutFixedArrayNoInit(ctx *MutFixedArrayNoInitContext) interface{}
+
+	// Visit a parse tree produced by haruParser#MutArrayExplicitWithInit.
+	VisitMutArrayExplicitWithInit(ctx *MutArrayExplicitWithInitContext) interface{}
+
+	// Visit a parse tree produced by haruParser#MutArrayExplicitNoInit.
+	VisitMutArrayExplicitNoInit(ctx *MutArrayExplicitNoInitContext) interface{}
+
+	// Visit a parse tree produced by haruParser#MutArrayImplicit.
+	VisitMutArrayImplicit(ctx *MutArrayImplicitContext) interface{}
+
+	// Visit a parse tree produced by haruParser#arrayType.
+	VisitArrayType(ctx *ArrayTypeContext) interface{}
+
+	// Visit a parse tree produced by haruParser#fixedArrayType.
+	VisitFixedArrayType(ctx *FixedArrayTypeContext) interface{}
+
+	// Visit a parse tree produced by haruParser#ArrayLiteralExprList.
+	VisitArrayLiteralExprList(ctx *ArrayLiteralExprListContext) interface{}
+
+	// Visit a parse tree produced by haruParser#EmptyArr.
+	VisitEmptyArr(ctx *EmptyArrContext) interface{}
 }

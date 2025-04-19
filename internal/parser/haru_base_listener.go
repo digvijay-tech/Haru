@@ -51,6 +51,12 @@ func (s *BaseharuListener) EnterIfStmtStatement(ctx *IfStmtStatementContext) {}
 // ExitIfStmtStatement is called when production IfStmtStatement is exited.
 func (s *BaseharuListener) ExitIfStmtStatement(ctx *IfStmtStatementContext) {}
 
+// EnterArrayDeclStatement is called when production ArrayDeclStatement is entered.
+func (s *BaseharuListener) EnterArrayDeclStatement(ctx *ArrayDeclStatementContext) {}
+
+// ExitArrayDeclStatement is called when production ArrayDeclStatement is exited.
+func (s *BaseharuListener) ExitArrayDeclStatement(ctx *ArrayDeclStatementContext) {}
+
 // EnterPrintStatement is called when production PrintStatement is entered.
 func (s *BaseharuListener) EnterPrintStatement(ctx *PrintStatementContext) {}
 
@@ -128,12 +134,6 @@ func (s *BaseharuListener) EnterOrExpr(ctx *OrExprContext) {}
 
 // ExitOrExpr is called when production OrExpr is exited.
 func (s *BaseharuListener) ExitOrExpr(ctx *OrExprContext) {}
-
-// EnterArrayExpr is called when production ArrayExpr is entered.
-func (s *BaseharuListener) EnterArrayExpr(ctx *ArrayExprContext) {}
-
-// ExitArrayExpr is called when production ArrayExpr is exited.
-func (s *BaseharuListener) ExitArrayExpr(ctx *ArrayExprContext) {}
 
 // EnterDivExpr is called when production DivExpr is entered.
 func (s *BaseharuListener) EnterDivExpr(ctx *DivExprContext) {}
@@ -368,3 +368,87 @@ func (s *BaseharuListener) EnterBlock(ctx *BlockContext) {}
 
 // ExitBlock is called when production block is exited.
 func (s *BaseharuListener) ExitBlock(ctx *BlockContext) {}
+
+// EnterArrayDecl is called when production arrayDecl is entered.
+func (s *BaseharuListener) EnterArrayDecl(ctx *ArrayDeclContext) {}
+
+// ExitArrayDecl is called when production arrayDecl is exited.
+func (s *BaseharuListener) ExitArrayDecl(ctx *ArrayDeclContext) {}
+
+// EnterConstExplicitArrayDecl is called when production ConstExplicitArrayDecl is entered.
+func (s *BaseharuListener) EnterConstExplicitArrayDecl(ctx *ConstExplicitArrayDeclContext) {}
+
+// ExitConstExplicitArrayDecl is called when production ConstExplicitArrayDecl is exited.
+func (s *BaseharuListener) ExitConstExplicitArrayDecl(ctx *ConstExplicitArrayDeclContext) {}
+
+// EnterConstImplicitArrayDecl is called when production ConstImplicitArrayDecl is entered.
+func (s *BaseharuListener) EnterConstImplicitArrayDecl(ctx *ConstImplicitArrayDeclContext) {}
+
+// ExitConstImplicitArrayDecl is called when production ConstImplicitArrayDecl is exited.
+func (s *BaseharuListener) ExitConstImplicitArrayDecl(ctx *ConstImplicitArrayDeclContext) {}
+
+// EnterLetExplicitArrayDecl is called when production LetExplicitArrayDecl is entered.
+func (s *BaseharuListener) EnterLetExplicitArrayDecl(ctx *LetExplicitArrayDeclContext) {}
+
+// ExitLetExplicitArrayDecl is called when production LetExplicitArrayDecl is exited.
+func (s *BaseharuListener) ExitLetExplicitArrayDecl(ctx *LetExplicitArrayDeclContext) {}
+
+// EnterLetImplicitArrayDecl is called when production LetImplicitArrayDecl is entered.
+func (s *BaseharuListener) EnterLetImplicitArrayDecl(ctx *LetImplicitArrayDeclContext) {}
+
+// ExitLetImplicitArrayDecl is called when production LetImplicitArrayDecl is exited.
+func (s *BaseharuListener) ExitLetImplicitArrayDecl(ctx *LetImplicitArrayDeclContext) {}
+
+// EnterMutFixedArrayWithInit is called when production MutFixedArrayWithInit is entered.
+func (s *BaseharuListener) EnterMutFixedArrayWithInit(ctx *MutFixedArrayWithInitContext) {}
+
+// ExitMutFixedArrayWithInit is called when production MutFixedArrayWithInit is exited.
+func (s *BaseharuListener) ExitMutFixedArrayWithInit(ctx *MutFixedArrayWithInitContext) {}
+
+// EnterMutFixedArrayNoInit is called when production MutFixedArrayNoInit is entered.
+func (s *BaseharuListener) EnterMutFixedArrayNoInit(ctx *MutFixedArrayNoInitContext) {}
+
+// ExitMutFixedArrayNoInit is called when production MutFixedArrayNoInit is exited.
+func (s *BaseharuListener) ExitMutFixedArrayNoInit(ctx *MutFixedArrayNoInitContext) {}
+
+// EnterMutArrayExplicitWithInit is called when production MutArrayExplicitWithInit is entered.
+func (s *BaseharuListener) EnterMutArrayExplicitWithInit(ctx *MutArrayExplicitWithInitContext) {}
+
+// ExitMutArrayExplicitWithInit is called when production MutArrayExplicitWithInit is exited.
+func (s *BaseharuListener) ExitMutArrayExplicitWithInit(ctx *MutArrayExplicitWithInitContext) {}
+
+// EnterMutArrayExplicitNoInit is called when production MutArrayExplicitNoInit is entered.
+func (s *BaseharuListener) EnterMutArrayExplicitNoInit(ctx *MutArrayExplicitNoInitContext) {}
+
+// ExitMutArrayExplicitNoInit is called when production MutArrayExplicitNoInit is exited.
+func (s *BaseharuListener) ExitMutArrayExplicitNoInit(ctx *MutArrayExplicitNoInitContext) {}
+
+// EnterMutArrayImplicit is called when production MutArrayImplicit is entered.
+func (s *BaseharuListener) EnterMutArrayImplicit(ctx *MutArrayImplicitContext) {}
+
+// ExitMutArrayImplicit is called when production MutArrayImplicit is exited.
+func (s *BaseharuListener) ExitMutArrayImplicit(ctx *MutArrayImplicitContext) {}
+
+// EnterArrayType is called when production arrayType is entered.
+func (s *BaseharuListener) EnterArrayType(ctx *ArrayTypeContext) {}
+
+// ExitArrayType is called when production arrayType is exited.
+func (s *BaseharuListener) ExitArrayType(ctx *ArrayTypeContext) {}
+
+// EnterFixedArrayType is called when production fixedArrayType is entered.
+func (s *BaseharuListener) EnterFixedArrayType(ctx *FixedArrayTypeContext) {}
+
+// ExitFixedArrayType is called when production fixedArrayType is exited.
+func (s *BaseharuListener) ExitFixedArrayType(ctx *FixedArrayTypeContext) {}
+
+// EnterArrayLiteralExprList is called when production ArrayLiteralExprList is entered.
+func (s *BaseharuListener) EnterArrayLiteralExprList(ctx *ArrayLiteralExprListContext) {}
+
+// ExitArrayLiteralExprList is called when production ArrayLiteralExprList is exited.
+func (s *BaseharuListener) ExitArrayLiteralExprList(ctx *ArrayLiteralExprListContext) {}
+
+// EnterEmptyArr is called when production EmptyArr is entered.
+func (s *BaseharuListener) EnterEmptyArr(ctx *EmptyArrContext) {}
+
+// ExitEmptyArr is called when production EmptyArr is exited.
+func (s *BaseharuListener) ExitEmptyArr(ctx *EmptyArrContext) {}
