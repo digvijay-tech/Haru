@@ -12,32 +12,30 @@ import (
 	utils_test "github.com/digvijay-tech/Haru/tests/interpreter/utils"
 )
 
-func TestExplicitConstantArrays(t *testing.T) {
+func TestImplicitConstantArrays(t *testing.T) {
 	input := `
-	--- EXPLICITE CONSTANT ARRAYS
-	print "EXPLICITE CONSTANT ARRAYS";
+	--- IMPLICIT CONSTANT ARRAYS
+	print "IMPLICIT CONSTANT ARRAYS";
+	const integers = [1,2,3,4];
+	const floats = [3.24, 4.23, 0.735];
+	const booleans = [true, false];
+	const strings = ["One", "Two", "Three", "Four"];
 
-	const integers: []i16 = [1,2,3,4];
-	const floats: []f64 = [3.24, 4.23, 0.735];
-	const booleans: []bool = [true, false];
-	const strings: []string = ["One", "Two", "Three", "Four"];
-	const bytes: []byte = ["A", "B", 255];
+	--- const bytes = ["A", "B", 255]; --- type mismatch error bytes cannot be inferred
 
-	--- const empty: []int = []; --- output: Runtime Error: invalid/empty array literal in empty
+	--- const empty = []; --- output: Runtime Error: invalid/empty array literal in empty
 
 	print integers;
 	print floats;
 	print booleans;
 	print strings;
-	print bytes;
 `
 
-	expected := `EXPLICITE CONSTANT ARRAYS
+	expected := `IMPLICIT CONSTANT ARRAYS
 [1,2,3,4]
 [3.240000,4.230000,0.735000]
 [true,false]
 ["One","Two","Three","Four"]
-[65,66,255]
 `
 
 	// cleaning source input with custom preprocessor

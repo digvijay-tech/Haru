@@ -110,6 +110,47 @@ func (v *HaruVisitor) VisitConstExplicitArrayDecl(ctx *parser.ConstExplicitArray
 
 // VisitConstImplicitArrayDecl evaluates array declared with const and but type is inferred by associated array literal
 func (v *HaruVisitor) VisitConstImplicitArrayDecl(ctx *parser.ConstImplicitArrayDeclContext) any {
-	fmt.Println("From VisitConstImplicitArrayDecl")
+	arrName := ctx.ID().GetText()
+
+	// getting the parsed array literal from array literal context
+	items, ok := v.Visit(ctx.ArrayLiteral()).([]Value)
+	if !ok {
+		runtimeErr(fmt.Sprintf("invalid/empty array literal in %s", arrName))
+	}
+
+	// array declared with const cannot be empty
+	if len(items) == 0 {
+		runtimeErr(fmt.Sprintf("const array '%s' cannot be empty", arrName))
+	}
+
+	// infering the type from first item
+	inferredType := items[0].Typ
+
+	// making sure all elements have the exact same type as the first element
+	// and parsing them into str array
+	var stringifiedItems []string
+
+	for i, val := range items {
+		if val.Typ != inferredType {
+			runtimeErr(fmt.Sprintf("type mismatch in array '%s': expected all items to be '%s', found '%s' at index: %d", arrName, inferredType, val.Typ, i))
+		}
+
+		// preserving quotes for string
+		if inferredType == "string" {
+			stringifiedItems = append(stringifiedItems, fmt.Sprintf(`"%v"`, val.Value))
+		} else {
+			stringifiedItems = append(stringifiedItems, val.Value)
+		}
+	}
+
+	// serializing final array value/literal by adding [] on both ends
+	serialzed := "[" + strings.Join(stringifiedItems, ",") + "]"
+
+	// storing in symbol table for global access
+	v.symbolTable[arrName] = Value{
+		Value: serialzed,
+		Typ:   "[]" + inferredType,
+	}
+
 	return nil
 }
