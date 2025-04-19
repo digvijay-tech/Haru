@@ -59,6 +59,9 @@ type haruVisitor interface {
 	// Visit a parse tree produced by haruParser#ExpExpr.
 	VisitExpExpr(ctx *ExpExprContext) interface{}
 
+	// Visit a parse tree produced by haruParser#IndexExpr.
+	VisitIndexExpr(ctx *IndexExprContext) interface{}
+
 	// Visit a parse tree produced by haruParser#LeExpr.
 	VisitLeExpr(ctx *LeExprContext) interface{}
 

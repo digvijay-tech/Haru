@@ -88,6 +88,8 @@ func (v *HaruVisitor) Visit(tree antlr.ParseTree) any {
 		return v.VisitArrayLiteralExprList(ctx)
 	case *parser.ArrayDeclStatementContext:
 		return v.VisitArrayDeclStatement(ctx)
+	case *parser.IndexExprContext:
+		return v.VisitIndexExpr(ctx)
 	case *parser.EmptyArrContext:
 		fmt.Println("IN EmptyArrContext")
 		return nil

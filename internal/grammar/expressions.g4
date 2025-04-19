@@ -17,9 +17,12 @@ expr: '!' expr              # NotExpr
     | expr '&&' expr        # AndExpr
     | expr '||' expr        # OrExpr
     | ID                    # VarExpr
+    | ID '[' expr ']'       # IndexExpr
     | literal               # LitExpr ;
 
+
 assign: ID '=' expr ';'     # AssignStmt ;
+
 
 literal: ('-')? NUMBER      # IntLiteral
        | ('-')? FLOAT       # FloatLiteral
@@ -27,6 +30,7 @@ literal: ('-')? NUMBER      # IntLiteral
        | 'false'            # FalseLiteral
        | STRING             # StringLiteral
        | BYTE               # ByteLiteral ;
+
 
 ID: [a-zA-Z][a-zA-Z0-9]* ;
 NUMBER: [0-9]+ ;

@@ -123,6 +123,12 @@ func (s *BaseharuListener) EnterExpExpr(ctx *ExpExprContext) {}
 // ExitExpExpr is called when production ExpExpr is exited.
 func (s *BaseharuListener) ExitExpExpr(ctx *ExpExprContext) {}
 
+// EnterIndexExpr is called when production IndexExpr is entered.
+func (s *BaseharuListener) EnterIndexExpr(ctx *IndexExprContext) {}
+
+// ExitIndexExpr is called when production IndexExpr is exited.
+func (s *BaseharuListener) ExitIndexExpr(ctx *IndexExprContext) {}
+
 // EnterLeExpr is called when production LeExpr is entered.
 func (s *BaseharuListener) EnterLeExpr(ctx *LeExprContext) {}
 

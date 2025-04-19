@@ -76,6 +76,10 @@ func (v *BaseharuVisitor) VisitExpExpr(ctx *ExpExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseharuVisitor) VisitIndexExpr(ctx *IndexExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseharuVisitor) VisitLeExpr(ctx *LeExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }

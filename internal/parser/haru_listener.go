@@ -59,6 +59,9 @@ type haruListener interface {
 	// EnterExpExpr is called when entering the ExpExpr production.
 	EnterExpExpr(c *ExpExprContext)
 
+	// EnterIndexExpr is called when entering the IndexExpr production.
+	EnterIndexExpr(c *IndexExprContext)
+
 	// EnterLeExpr is called when entering the LeExpr production.
 	EnterLeExpr(c *LeExprContext)
 
@@ -274,6 +277,9 @@ type haruListener interface {
 
 	// ExitExpExpr is called when exiting the ExpExpr production.
 	ExitExpExpr(c *ExpExprContext)
+
+	// ExitIndexExpr is called when exiting the IndexExpr production.
+	ExitIndexExpr(c *IndexExprContext)
 
 	// ExitLeExpr is called when exiting the LeExpr production.
 	ExitLeExpr(c *LeExprContext)

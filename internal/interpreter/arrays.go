@@ -2,6 +2,7 @@ package interpreter
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 
 	"github.com/digvijay-tech/Haru/internal/parser"
@@ -26,6 +27,58 @@ func (v *HaruVisitor) VisitArrayLiteralExprList(ctx *parser.ArrayLiteralExprList
 	}
 
 	return items
+}
+
+// VisitIndexExpr evaluates expression to access item based on array index
+func (v *HaruVisitor) VisitIndexExpr(ctx *parser.IndexExprContext) any {
+	varName := ctx.ID().GetText()
+
+	// evaluating expression to get index value
+	expr, ok := v.Visit(ctx.Expr()).(Value)
+
+	if !ok {
+		runtimeErr(fmt.Sprintf("invalid index for %s", varName))
+	}
+
+	// only non-float numeric expressions are allowed
+	if !isNumericType(expr.Typ) || expr.Typ == "f32" || expr.Typ == "f64" {
+		runtimeErr(fmt.Sprintf("index for array '%s' must be an integer, got '%s'", varName, expr.Typ))
+	}
+
+	// converting to integer
+	index, err := strconv.Atoi(expr.Value)
+	if err != nil {
+		runtimeErr(fmt.Sprintf("invalid index value for array '%s': %v", varName, err))
+	}
+
+	// getting the stringified value out from symbol table
+	arrayVal, ok := v.symbolTable[varName]
+	if !ok {
+		runtimeErr(fmt.Sprintf("undefined array '%s'", varName))
+	}
+
+	if !strings.HasPrefix(arrayVal.Typ, "[]") {
+		runtimeErr(fmt.Sprintf("'%s' is not an array", varName))
+	}
+
+	// removing [] from both sides
+	raw := strings.Trim(arrayVal.Value, "[]")
+
+	// splitting the string into a slice of strings
+	parts := strings.Split(raw, ",")
+
+	// making sure index in not out of bound
+	if index < 0 || index >= len(parts) {
+		runtimeErr(fmt.Sprintf("index %d out of bounds for array '%s'", index, varName))
+	}
+
+	// getting value without ""
+	value := strings.Trim(parts[index], "\"")
+
+	return Value{
+		Value: value,
+		Typ:   arrayVal.Typ[2:], // removing [] prefix
+	}
 }
 
 // VisitArrayDeclStatement routes visitor to one of the array category
