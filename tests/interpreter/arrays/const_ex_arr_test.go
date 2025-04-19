@@ -17,11 +17,24 @@ func TestExplicitConstantArrays(t *testing.T) {
 	--- EXPLICITE CONSTANT ARRAYS
 	print "EXPLICITE CONSTANT ARRAYS";
 
-	const integers: []int = [1,2,3,4];
-	const floats = [1.2, 2.3];
+	const integers: []i16 = [1,2,3,4];
+	const floats: []f64 = [3.24, 4.23, 0.735];
+	const booleans: []bool = [true, false];
+	const strings: []string = ["One", "Two", "Three", "Four"];
+
+	--- const empty: []int = []; --- output: Runtime Error: invalid/empty array literal in empty
+
+	print integers;
+	print floats;
+	print booleans;
+	print strings;
 `
 
 	expected := `EXPLICITE CONSTANT ARRAYS
+[1,2,3,4]
+[3.240000,4.230000,0.735000]
+[true,false]
+["One","Two","Three","Four"]
 `
 
 	// cleaning source input with custom preprocessor
