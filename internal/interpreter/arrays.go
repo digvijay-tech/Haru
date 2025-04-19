@@ -2,6 +2,7 @@ package interpreter
 
 import (
 	"fmt"
+	"regexp"
 	"strconv"
 	"strings"
 
@@ -62,7 +63,10 @@ func (v *HaruVisitor) VisitIndexExpr(ctx *parser.IndexExprContext) any {
 		runtimeErr(fmt.Sprintf("array %s is empty", varName))
 	}
 
-	if !strings.HasPrefix(arrayVal.Typ, "[]") {
+	// matching []type and [number]type pattern with regex
+	var arrayTypePattern = regexp.MustCompile(`^\[\d*\]\w+$`)
+
+	if !arrayTypePattern.Match([]byte(arrayVal.Typ)) {
 		runtimeErr(fmt.Sprintf("'%s' is not an array", varName))
 	}
 
@@ -99,6 +103,8 @@ func (v *HaruVisitor) VisitArrayDeclStatement(ctx *parser.ArrayDeclStatementCont
 		return v.VisitLetImplicitArrayDecl(child)
 	case *parser.MutArrayExplicitWithInitContext:
 		return v.VisitDynamicExplicitMutArrayDecl(child)
+	case *parser.MutFixedArrayNoInitContext:
+		return v.VisitMutFixedArrayNoInitDecl(child)
 	default:
 		runtimeErr("unknown array declaration type")
 	}
@@ -331,7 +337,7 @@ func (v *HaruVisitor) VisitLetImplicitArrayDecl(ctx *parser.LetImplicitArrayDecl
 	return nil
 }
 
-// VisitDynamicExplicitMutArrayDecl
+// VisitDynamicExplicitMutArrayDecl evaluates dynamic explicit array
 func (v *HaruVisitor) VisitDynamicExplicitMutArrayDecl(ctx *parser.MutArrayExplicitWithInitContext) any {
 	arrName := ctx.ID().GetText()
 	arrType := ctx.ArrayType().Type_().GetText()
@@ -387,6 +393,46 @@ func (v *HaruVisitor) VisitDynamicExplicitMutArrayDecl(ctx *parser.MutArrayExpli
 	v.symbolTable[arrName] = Value{
 		Value:     serialized,
 		Typ:       "[]" + arrType,
+		isMutable: true,
+	}
+
+	return nil
+}
+
+// VisitMutFixedArrayNoInitDecl evaluates fixed length uninitialized mutable arrays
+// when uninitialised this function will use zero value as a placeholder until new value is assigned
+func (v *HaruVisitor) VisitMutFixedArrayNoInitDecl(ctx *parser.MutFixedArrayNoInitContext) any {
+	arrName := ctx.ID().GetText()
+	arrType := ctx.FixedArrayType().Type_().GetText()
+
+	// extracting length from type expression
+	expr := ctx.FixedArrayType().NUMBER().GetText()
+
+	// parsing expression into uint
+	length, err := strconv.ParseUint(expr, 10, 64)
+
+	if err != nil || length == 0 {
+		runtimeErr(fmt.Sprintf("invalid array size for '%s'", arrName))
+	}
+
+	// generating zero values
+	zeroVal, err := zeroValueFor(arrType)
+	if err != nil {
+		runtimeErr(err.Error())
+	}
+
+	// populating array with zero value
+	var serializedItems []string
+
+	for range int(length) {
+		serializedItems = append(serializedItems, zeroVal.Value)
+	}
+
+	serialized := "[" + strings.Join(serializedItems, ",") + "]"
+
+	v.symbolTable[arrName] = Value{
+		Value:     serialized,
+		Typ:       fmt.Sprintf("[%d]%s", length, arrType),
 		isMutable: true,
 	}
 
