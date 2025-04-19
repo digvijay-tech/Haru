@@ -57,6 +57,11 @@ func (v *HaruVisitor) VisitIndexExpr(ctx *parser.IndexExprContext) any {
 		runtimeErr(fmt.Sprintf("undefined array '%s'", varName))
 	}
 
+	// checking if array is empty/declared empty with mut
+	if arrayVal.isMutable && arrayVal.Value == "[]" {
+		runtimeErr(fmt.Sprintf("array %s is empty", varName))
+	}
+
 	if !strings.HasPrefix(arrayVal.Typ, "[]") {
 		runtimeErr(fmt.Sprintf("'%s' is not an array", varName))
 	}
@@ -92,6 +97,8 @@ func (v *HaruVisitor) VisitArrayDeclStatement(ctx *parser.ArrayDeclStatementCont
 		return v.VisitLetExplicitArrayDecl(child)
 	case *parser.LetImplicitArrayDeclContext:
 		return v.VisitLetImplicitArrayDecl(child)
+	case *parser.MutArrayExplicitWithInitContext:
+		return v.VisitDynamicExplicitMutArrayDecl(child)
 	default:
 		runtimeErr("unknown array declaration type")
 	}
@@ -319,6 +326,68 @@ func (v *HaruVisitor) VisitLetImplicitArrayDecl(ctx *parser.LetImplicitArrayDecl
 	v.symbolTable[arrName] = Value{
 		Value: serialzed,
 		Typ:   "[]" + inferredType,
+	}
+
+	return nil
+}
+
+// VisitDynamicExplicitMutArrayDecl
+func (v *HaruVisitor) VisitDynamicExplicitMutArrayDecl(ctx *parser.MutArrayExplicitWithInitContext) any {
+	arrName := ctx.ID().GetText()
+	arrType := ctx.ArrayType().Type_().GetText()
+
+	// allowing [] empty array initialization
+	if v.Visit(ctx.ArrayLiteral()) == nil {
+		v.symbolTable[arrName] = Value{
+			Value:     "[]",
+			Typ:       "[]" + arrType,
+			isMutable: true,
+		}
+
+		return nil
+	}
+
+	items, ok := v.Visit(ctx.ArrayLiteral()).([]Value)
+
+	if !ok {
+		runtimeErr(fmt.Sprintf("invalid array literal in mut '%s'", arrName))
+	}
+
+	// standardize + validate items
+	var standardizedItems []Value
+
+	for i, value := range items {
+		newVal, err := convertType(value.Value, value.Typ, arrType)
+
+		if err != nil {
+			runtimeErr(fmt.Sprintf("type error at index %d in '%s': %s", i, arrName, err.Error()))
+		}
+
+		casted, ok := newVal.(Value)
+		if !ok {
+			runtimeErr(fmt.Sprintf("failed to cast value at index %d in '%s'", i, arrName))
+		}
+
+		standardizedItems = append(standardizedItems, casted)
+	}
+
+	// converting to serialized form
+	var stringified []string
+
+	for _, val := range standardizedItems {
+		if arrType == "string" {
+			stringified = append(stringified, fmt.Sprintf(`"%v"`, val.Value))
+		} else {
+			stringified = append(stringified, val.Value)
+		}
+	}
+
+	serialized := "[" + strings.Join(stringified, ",") + "]"
+
+	v.symbolTable[arrName] = Value{
+		Value:     serialized,
+		Typ:       "[]" + arrType,
+		isMutable: true,
 	}
 
 	return nil
