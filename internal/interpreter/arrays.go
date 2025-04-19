@@ -117,6 +117,8 @@ func (v *HaruVisitor) VisitArrayDeclStatement(ctx *parser.ArrayDeclStatementCont
 		return v.VisitMutFixedArrayInitDecl(child)
 	case *parser.MutArrayExplicitNoInitContext:
 		return v.VisitDynamicExplicitMutArrayUnInitDecl(child)
+	case *parser.MutArrayImplicitContext:
+		return v.VisitImplicitMutArrayDecl(child)
 
 	default:
 		runtimeErr("unknown array declaration type")
@@ -527,6 +529,49 @@ func (v *HaruVisitor) VisitMutFixedArrayInitDecl(ctx *parser.MutFixedArrayWithIn
 	v.symbolTable[arrName] = Value{
 		Value:     serialized,
 		Typ:       fmt.Sprintf("[%d]%s", length, arrType),
+		isMutable: true,
+	}
+
+	return nil
+}
+
+// VisitImplicitMutArrayDecl evaluates mutable array with no type, it will be inferred from first array literal
+func (v *HaruVisitor) VisitImplicitMutArrayDecl(ctx *parser.MutArrayImplicitContext) any {
+	arrName := ctx.ID().GetText()
+	items, ok := v.Visit(ctx.ArrayLiteral()).([]Value)
+
+	if !ok {
+		runtimeErr("invalid array literal")
+	}
+
+	// assigned array literal must have atleast 1 element inside for type inference
+	if len(items) < 1 {
+		runtimeErr(fmt.Sprintf("array literal cannot be empty for %s", arrName))
+	}
+
+	// infer type from first array element
+	inferredType := items[0].Typ
+
+	// converting items to inferred type
+	var serializedItems []string
+
+	for _, value := range items {
+		converted, err := convertType(value.Value, value.Typ, inferredType)
+
+		if err != nil {
+			runtimeErr(err.Error())
+		}
+
+		newValue := converted.(Value)
+
+		serializedItems = append(serializedItems, newValue.Value)
+	}
+
+	serialized := "[" + strings.Join(serializedItems, ",") + "]"
+
+	v.symbolTable[arrName] = Value{
+		Value:     serialized,
+		Typ:       "[]" + inferredType,
 		isMutable: true,
 	}
 
