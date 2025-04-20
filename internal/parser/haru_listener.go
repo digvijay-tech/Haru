@@ -32,6 +32,12 @@ type haruListener interface {
 	// EnterArrayReassignStatement is called when entering the ArrayReassignStatement production.
 	EnterArrayReassignStatement(c *ArrayReassignStatementContext)
 
+	// EnterFunctionDeclStatement is called when entering the FunctionDeclStatement production.
+	EnterFunctionDeclStatement(c *FunctionDeclStatementContext)
+
+	// EnterReturnStmtStatement is called when entering the ReturnStmtStatement production.
+	EnterReturnStmtStatement(c *ReturnStmtStatementContext)
+
 	// EnterPrintStatement is called when entering the PrintStatement production.
 	EnterPrintStatement(c *PrintStatementContext)
 
@@ -245,6 +251,24 @@ type haruListener interface {
 	// EnterLenFunction is called when entering the lenFunction production.
 	EnterLenFunction(c *LenFunctionContext)
 
+	// EnterFunctionDecl is called when entering the functionDecl production.
+	EnterFunctionDecl(c *FunctionDeclContext)
+
+	// EnterParamList is called when entering the paramList production.
+	EnterParamList(c *ParamListContext)
+
+	// EnterParam is called when entering the param production.
+	EnterParam(c *ParamContext)
+
+	// EnterReturnSignature is called when entering the returnSignature production.
+	EnterReturnSignature(c *ReturnSignatureContext)
+
+	// EnterReturnStmt is called when entering the returnStmt production.
+	EnterReturnStmt(c *ReturnStmtContext)
+
+	// EnterExprList is called when entering the exprList production.
+	EnterExprList(c *ExprListContext)
+
 	// ExitProgram is called when exiting the program production.
 	ExitProgram(c *ProgramContext)
 
@@ -268,6 +292,12 @@ type haruListener interface {
 
 	// ExitArrayReassignStatement is called when exiting the ArrayReassignStatement production.
 	ExitArrayReassignStatement(c *ArrayReassignStatementContext)
+
+	// ExitFunctionDeclStatement is called when exiting the FunctionDeclStatement production.
+	ExitFunctionDeclStatement(c *FunctionDeclStatementContext)
+
+	// ExitReturnStmtStatement is called when exiting the ReturnStmtStatement production.
+	ExitReturnStmtStatement(c *ReturnStmtStatementContext)
 
 	// ExitPrintStatement is called when exiting the PrintStatement production.
 	ExitPrintStatement(c *PrintStatementContext)
@@ -481,4 +511,22 @@ type haruListener interface {
 
 	// ExitLenFunction is called when exiting the lenFunction production.
 	ExitLenFunction(c *LenFunctionContext)
+
+	// ExitFunctionDecl is called when exiting the functionDecl production.
+	ExitFunctionDecl(c *FunctionDeclContext)
+
+	// ExitParamList is called when exiting the paramList production.
+	ExitParamList(c *ParamListContext)
+
+	// ExitParam is called when exiting the param production.
+	ExitParam(c *ParamContext)
+
+	// ExitReturnSignature is called when exiting the returnSignature production.
+	ExitReturnSignature(c *ReturnSignatureContext)
+
+	// ExitReturnStmt is called when exiting the returnStmt production.
+	ExitReturnStmt(c *ReturnStmtContext)
+
+	// ExitExprList is called when exiting the exprList production.
+	ExitExprList(c *ExprListContext)
 }

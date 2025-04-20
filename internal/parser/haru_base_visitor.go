@@ -40,6 +40,14 @@ func (v *BaseharuVisitor) VisitArrayReassignStatement(ctx *ArrayReassignStatemen
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseharuVisitor) VisitFunctionDeclStatement(ctx *FunctionDeclStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitReturnStmtStatement(ctx *ReturnStmtStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseharuVisitor) VisitPrintStatement(ctx *PrintStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -321,5 +329,29 @@ func (v *BaseharuVisitor) VisitArrayReassign(ctx *ArrayReassignContext) interfac
 }
 
 func (v *BaseharuVisitor) VisitLenFunction(ctx *LenFunctionContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitFunctionDecl(ctx *FunctionDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitParamList(ctx *ParamListContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitParam(ctx *ParamContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitReturnSignature(ctx *ReturnSignatureContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitReturnStmt(ctx *ReturnStmtContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitExprList(ctx *ExprListContext) interface{} {
 	return v.VisitChildren(ctx)
 }

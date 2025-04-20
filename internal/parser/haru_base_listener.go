@@ -69,6 +69,18 @@ func (s *BaseharuListener) EnterArrayReassignStatement(ctx *ArrayReassignStateme
 // ExitArrayReassignStatement is called when production ArrayReassignStatement is exited.
 func (s *BaseharuListener) ExitArrayReassignStatement(ctx *ArrayReassignStatementContext) {}
 
+// EnterFunctionDeclStatement is called when production FunctionDeclStatement is entered.
+func (s *BaseharuListener) EnterFunctionDeclStatement(ctx *FunctionDeclStatementContext) {}
+
+// ExitFunctionDeclStatement is called when production FunctionDeclStatement is exited.
+func (s *BaseharuListener) ExitFunctionDeclStatement(ctx *FunctionDeclStatementContext) {}
+
+// EnterReturnStmtStatement is called when production ReturnStmtStatement is entered.
+func (s *BaseharuListener) EnterReturnStmtStatement(ctx *ReturnStmtStatementContext) {}
+
+// ExitReturnStmtStatement is called when production ReturnStmtStatement is exited.
+func (s *BaseharuListener) ExitReturnStmtStatement(ctx *ReturnStmtStatementContext) {}
+
 // EnterPrintStatement is called when production PrintStatement is entered.
 func (s *BaseharuListener) EnterPrintStatement(ctx *PrintStatementContext) {}
 
@@ -494,3 +506,39 @@ func (s *BaseharuListener) EnterLenFunction(ctx *LenFunctionContext) {}
 
 // ExitLenFunction is called when production lenFunction is exited.
 func (s *BaseharuListener) ExitLenFunction(ctx *LenFunctionContext) {}
+
+// EnterFunctionDecl is called when production functionDecl is entered.
+func (s *BaseharuListener) EnterFunctionDecl(ctx *FunctionDeclContext) {}
+
+// ExitFunctionDecl is called when production functionDecl is exited.
+func (s *BaseharuListener) ExitFunctionDecl(ctx *FunctionDeclContext) {}
+
+// EnterParamList is called when production paramList is entered.
+func (s *BaseharuListener) EnterParamList(ctx *ParamListContext) {}
+
+// ExitParamList is called when production paramList is exited.
+func (s *BaseharuListener) ExitParamList(ctx *ParamListContext) {}
+
+// EnterParam is called when production param is entered.
+func (s *BaseharuListener) EnterParam(ctx *ParamContext) {}
+
+// ExitParam is called when production param is exited.
+func (s *BaseharuListener) ExitParam(ctx *ParamContext) {}
+
+// EnterReturnSignature is called when production returnSignature is entered.
+func (s *BaseharuListener) EnterReturnSignature(ctx *ReturnSignatureContext) {}
+
+// ExitReturnSignature is called when production returnSignature is exited.
+func (s *BaseharuListener) ExitReturnSignature(ctx *ReturnSignatureContext) {}
+
+// EnterReturnStmt is called when production returnStmt is entered.
+func (s *BaseharuListener) EnterReturnStmt(ctx *ReturnStmtContext) {}
+
+// ExitReturnStmt is called when production returnStmt is exited.
+func (s *BaseharuListener) ExitReturnStmt(ctx *ReturnStmtContext) {}
+
+// EnterExprList is called when production exprList is entered.
+func (s *BaseharuListener) EnterExprList(ctx *ExprListContext) {}
+
+// ExitExprList is called when production exprList is exited.
+func (s *BaseharuListener) ExitExprList(ctx *ExprListContext) {}

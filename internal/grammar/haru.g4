@@ -1,6 +1,6 @@
 grammar haru;
 
-import Output, Expressions, Variables, ControlFlow, Arrays, Builtins;
+import Output, Expressions, Variables, ControlFlow, Arrays, Builtins, Functions;
 
 
 program: statement* ;
@@ -13,7 +13,10 @@ statement: printStmt            # PrintStmtStatement
          | arrayDecl            # ArrayDeclStatement
          | arrayItemAssign      # ArrayIndexAssignStatement
          | arrayReassign        # ArrayReassignStatement
+         | functionDecl         # FunctionDeclStatement
+         | returnStmt           # ReturnStmtStatement
          ;
 
 
 WS: [ \t\r\n]+ -> skip ;
+

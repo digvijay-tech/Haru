@@ -32,6 +32,12 @@ type haruVisitor interface {
 	// Visit a parse tree produced by haruParser#ArrayReassignStatement.
 	VisitArrayReassignStatement(ctx *ArrayReassignStatementContext) interface{}
 
+	// Visit a parse tree produced by haruParser#FunctionDeclStatement.
+	VisitFunctionDeclStatement(ctx *FunctionDeclStatementContext) interface{}
+
+	// Visit a parse tree produced by haruParser#ReturnStmtStatement.
+	VisitReturnStmtStatement(ctx *ReturnStmtStatementContext) interface{}
+
 	// Visit a parse tree produced by haruParser#PrintStatement.
 	VisitPrintStatement(ctx *PrintStatementContext) interface{}
 
@@ -244,4 +250,22 @@ type haruVisitor interface {
 
 	// Visit a parse tree produced by haruParser#lenFunction.
 	VisitLenFunction(ctx *LenFunctionContext) interface{}
+
+	// Visit a parse tree produced by haruParser#functionDecl.
+	VisitFunctionDecl(ctx *FunctionDeclContext) interface{}
+
+	// Visit a parse tree produced by haruParser#paramList.
+	VisitParamList(ctx *ParamListContext) interface{}
+
+	// Visit a parse tree produced by haruParser#param.
+	VisitParam(ctx *ParamContext) interface{}
+
+	// Visit a parse tree produced by haruParser#returnSignature.
+	VisitReturnSignature(ctx *ReturnSignatureContext) interface{}
+
+	// Visit a parse tree produced by haruParser#returnStmt.
+	VisitReturnStmt(ctx *ReturnStmtContext) interface{}
+
+	// Visit a parse tree produced by haruParser#exprList.
+	VisitExprList(ctx *ExprListContext) interface{}
 }
