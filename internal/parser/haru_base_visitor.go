@@ -32,6 +32,14 @@ func (v *BaseharuVisitor) VisitArrayDeclStatement(ctx *ArrayDeclStatementContext
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseharuVisitor) VisitArrayIndexAssignStatement(ctx *ArrayIndexAssignStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitArrayReassignStatement(ctx *ArrayReassignStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseharuVisitor) VisitPrintStatement(ctx *PrintStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -297,5 +305,13 @@ func (v *BaseharuVisitor) VisitArrayLiteralExprList(ctx *ArrayLiteralExprListCon
 }
 
 func (v *BaseharuVisitor) VisitEmptyArr(ctx *EmptyArrContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitArrayIndexAssign(ctx *ArrayIndexAssignContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitArrayReassign(ctx *ArrayReassignContext) interface{} {
 	return v.VisitChildren(ctx)
 }

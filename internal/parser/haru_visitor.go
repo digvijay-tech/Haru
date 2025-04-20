@@ -26,6 +26,12 @@ type haruVisitor interface {
 	// Visit a parse tree produced by haruParser#ArrayDeclStatement.
 	VisitArrayDeclStatement(ctx *ArrayDeclStatementContext) interface{}
 
+	// Visit a parse tree produced by haruParser#ArrayIndexAssignStatement.
+	VisitArrayIndexAssignStatement(ctx *ArrayIndexAssignStatementContext) interface{}
+
+	// Visit a parse tree produced by haruParser#ArrayReassignStatement.
+	VisitArrayReassignStatement(ctx *ArrayReassignStatementContext) interface{}
+
 	// Visit a parse tree produced by haruParser#PrintStatement.
 	VisitPrintStatement(ctx *PrintStatementContext) interface{}
 
@@ -226,4 +232,10 @@ type haruVisitor interface {
 
 	// Visit a parse tree produced by haruParser#EmptyArr.
 	VisitEmptyArr(ctx *EmptyArrContext) interface{}
+
+	// Visit a parse tree produced by haruParser#ArrayIndexAssign.
+	VisitArrayIndexAssign(ctx *ArrayIndexAssignContext) interface{}
+
+	// Visit a parse tree produced by haruParser#arrayReassign.
+	VisitArrayReassign(ctx *ArrayReassignContext) interface{}
 }

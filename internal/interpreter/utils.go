@@ -45,6 +45,19 @@ func isNumericType(t string) bool {
 	return ok
 }
 
+// stripArrayPrefix removes array type prefixes like []type and [num]type
+func stripArrayPrefix(typeStr string) string {
+	var bracketTypeRegex = regexp.MustCompile(`^\[\d*\](.+)$`)
+
+	matches := bracketTypeRegex.FindStringSubmatch(typeStr)
+
+	if len(matches) == 2 {
+		return matches[1] // captures just the type part
+	}
+
+	return typeStr
+}
+
 func promoteType(t1, t2 string) string {
 	// allowing Allow string + string (concatenation)
 	if t1 == "string" && t2 == "string" {

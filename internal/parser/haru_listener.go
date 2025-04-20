@@ -26,6 +26,12 @@ type haruListener interface {
 	// EnterArrayDeclStatement is called when entering the ArrayDeclStatement production.
 	EnterArrayDeclStatement(c *ArrayDeclStatementContext)
 
+	// EnterArrayIndexAssignStatement is called when entering the ArrayIndexAssignStatement production.
+	EnterArrayIndexAssignStatement(c *ArrayIndexAssignStatementContext)
+
+	// EnterArrayReassignStatement is called when entering the ArrayReassignStatement production.
+	EnterArrayReassignStatement(c *ArrayReassignStatementContext)
+
 	// EnterPrintStatement is called when entering the PrintStatement production.
 	EnterPrintStatement(c *PrintStatementContext)
 
@@ -227,6 +233,12 @@ type haruListener interface {
 	// EnterEmptyArr is called when entering the EmptyArr production.
 	EnterEmptyArr(c *EmptyArrContext)
 
+	// EnterArrayIndexAssign is called when entering the ArrayIndexAssign production.
+	EnterArrayIndexAssign(c *ArrayIndexAssignContext)
+
+	// EnterArrayReassign is called when entering the arrayReassign production.
+	EnterArrayReassign(c *ArrayReassignContext)
+
 	// ExitProgram is called when exiting the program production.
 	ExitProgram(c *ProgramContext)
 
@@ -244,6 +256,12 @@ type haruListener interface {
 
 	// ExitArrayDeclStatement is called when exiting the ArrayDeclStatement production.
 	ExitArrayDeclStatement(c *ArrayDeclStatementContext)
+
+	// ExitArrayIndexAssignStatement is called when exiting the ArrayIndexAssignStatement production.
+	ExitArrayIndexAssignStatement(c *ArrayIndexAssignStatementContext)
+
+	// ExitArrayReassignStatement is called when exiting the ArrayReassignStatement production.
+	ExitArrayReassignStatement(c *ArrayReassignStatementContext)
 
 	// ExitPrintStatement is called when exiting the PrintStatement production.
 	ExitPrintStatement(c *PrintStatementContext)
@@ -445,4 +463,10 @@ type haruListener interface {
 
 	// ExitEmptyArr is called when exiting the EmptyArr production.
 	ExitEmptyArr(c *EmptyArrContext)
+
+	// ExitArrayIndexAssign is called when exiting the ArrayIndexAssign production.
+	ExitArrayIndexAssign(c *ArrayIndexAssignContext)
+
+	// ExitArrayReassign is called when exiting the arrayReassign production.
+	ExitArrayReassign(c *ArrayReassignContext)
 }

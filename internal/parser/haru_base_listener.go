@@ -57,6 +57,18 @@ func (s *BaseharuListener) EnterArrayDeclStatement(ctx *ArrayDeclStatementContex
 // ExitArrayDeclStatement is called when production ArrayDeclStatement is exited.
 func (s *BaseharuListener) ExitArrayDeclStatement(ctx *ArrayDeclStatementContext) {}
 
+// EnterArrayIndexAssignStatement is called when production ArrayIndexAssignStatement is entered.
+func (s *BaseharuListener) EnterArrayIndexAssignStatement(ctx *ArrayIndexAssignStatementContext) {}
+
+// ExitArrayIndexAssignStatement is called when production ArrayIndexAssignStatement is exited.
+func (s *BaseharuListener) ExitArrayIndexAssignStatement(ctx *ArrayIndexAssignStatementContext) {}
+
+// EnterArrayReassignStatement is called when production ArrayReassignStatement is entered.
+func (s *BaseharuListener) EnterArrayReassignStatement(ctx *ArrayReassignStatementContext) {}
+
+// ExitArrayReassignStatement is called when production ArrayReassignStatement is exited.
+func (s *BaseharuListener) ExitArrayReassignStatement(ctx *ArrayReassignStatementContext) {}
+
 // EnterPrintStatement is called when production PrintStatement is entered.
 func (s *BaseharuListener) EnterPrintStatement(ctx *PrintStatementContext) {}
 
@@ -458,3 +470,15 @@ func (s *BaseharuListener) EnterEmptyArr(ctx *EmptyArrContext) {}
 
 // ExitEmptyArr is called when production EmptyArr is exited.
 func (s *BaseharuListener) ExitEmptyArr(ctx *EmptyArrContext) {}
+
+// EnterArrayIndexAssign is called when production ArrayIndexAssign is entered.
+func (s *BaseharuListener) EnterArrayIndexAssign(ctx *ArrayIndexAssignContext) {}
+
+// ExitArrayIndexAssign is called when production ArrayIndexAssign is exited.
+func (s *BaseharuListener) ExitArrayIndexAssign(ctx *ArrayIndexAssignContext) {}
+
+// EnterArrayReassign is called when production arrayReassign is entered.
+func (s *BaseharuListener) EnterArrayReassign(ctx *ArrayReassignContext) {}
+
+// ExitArrayReassign is called when production arrayReassign is exited.
+func (s *BaseharuListener) ExitArrayReassign(ctx *ArrayReassignContext) {}

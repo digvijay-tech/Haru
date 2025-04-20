@@ -45,3 +45,13 @@ arrayLiteral
     | '[' ']'                                                    # EmptyArr
     ;
 
+
+arrayItemAssign
+    : ID '[' expr ']' '=' expr ';'                               # ArrayIndexAssign
+    ;
+
+
+arrayReassign
+    : ID '=' arrayLiteral ';'
+    ;
+

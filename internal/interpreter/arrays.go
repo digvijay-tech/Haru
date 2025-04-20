@@ -577,3 +577,53 @@ func (v *HaruVisitor) VisitImplicitMutArrayDecl(ctx *parser.MutArrayImplicitCont
 
 	return nil
 }
+
+// VisitMutArrayReassignment reassign mut with whole new array of same type
+func (v *HaruVisitor) VisitMutArrayReassignment(ctx *parser.ArrayReassignStatementContext) any {
+	arrName := ctx.ArrayReassign().ID().GetText()
+	items, ok := v.Visit(ctx.ArrayReassign().ArrayLiteral()).([]Value)
+
+	if !ok {
+		runtimeErr("invalid array literal")
+	}
+
+	// prevent if variable is not defined and get variable if it exists
+	variable, ok := v.symbolTable[arrName]
+
+	if !ok {
+		runtimeErr(fmt.Sprintf("undefined variable '%s'", arrName))
+	}
+
+	if !variable.isMutable {
+		runtimeErr(fmt.Sprintf("cannot reassign to immutable '%s'", arrName))
+	}
+
+	// variable is mutable and converting array literals to its type
+	var serializedItems []string
+
+	// removing [] or [num] from type
+	cleanType := stripArrayPrefix(variable.Typ)
+
+	for _, item := range items {
+		converted, err := convertType(item.Value, item.Typ, cleanType)
+
+		if err != nil {
+			runtimeErr(err.Error())
+		}
+
+		newValue := converted.(Value)
+
+		serializedItems = append(serializedItems, newValue.Value)
+	}
+
+	serialized := "[" + strings.Join(serializedItems, ",") + "]"
+
+	// updating the variable in symbol table
+	v.symbolTable[arrName] = Value{
+		Value:     serialized,
+		Typ:       variable.Typ,
+		isMutable: true,
+	}
+
+	return nil
+}

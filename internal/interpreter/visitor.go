@@ -90,6 +90,8 @@ func (v *HaruVisitor) Visit(tree antlr.ParseTree) any {
 		return v.VisitArrayDeclStatement(ctx)
 	case *parser.IndexExprContext:
 		return v.VisitIndexExpr(ctx)
+	case *parser.ArrayReassignStatementContext:
+		return v.VisitMutArrayReassignment(ctx)
 	case *parser.EmptyArrContext:
 		return []Value{}
 	default:

@@ -6,11 +6,13 @@ import Output, Expressions, Variables, ControlFlow, Arrays;
 program: statement* ;
 
 
-statement: printStmt    # PrintStmtStatement
-         | varDecl      # VarDeclStatement
-         | assign       # AssignStmtStatement
-         | ifStmt       # IfStmtStatement
-         | arrayDecl    #ArrayDeclStatement
+statement: printStmt            # PrintStmtStatement
+         | varDecl              # VarDeclStatement
+         | assign               # AssignStmtStatement
+         | ifStmt               # IfStmtStatement
+         | arrayDecl            # ArrayDeclStatement
+         | arrayItemAssign      # ArrayIndexAssignStatement
+         | arrayReassign        # ArrayReassignStatement
          ;
 
 
