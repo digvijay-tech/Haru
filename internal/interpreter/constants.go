@@ -26,7 +26,7 @@ func (v *HaruVisitor) VisitExplicitConstDecl(ctx *parser.ConstDeclContext) any {
 		constant := Value{Value: val.Value, Typ: varType}
 
 		// adding to symbol table
-		v.symbolTable[varName] = constant
+		v.declare(varName, constant)
 
 		return constant
 	}
@@ -39,7 +39,7 @@ func (v *HaruVisitor) VisitExplicitConstDecl(ctx *parser.ConstDeclContext) any {
 
 	// asserting type to be Value
 	constant := updatedValue.(Value)
-	v.symbolTable[varName] = constant
+	v.declare(varName, constant)
 
 	return constant
 }
@@ -63,7 +63,8 @@ func (v *HaruVisitor) VisitImplicitConstDecl(ctx *parser.ConstInferDeclContext) 
 	}
 
 	constant := updatedValue.(Value)
-	v.symbolTable[varName] = constant
+
+	v.declare(varName, constant)
 
 	return constant
 }

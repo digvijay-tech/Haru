@@ -31,7 +31,9 @@ func (v *HaruVisitor) VisitExplicitLetDecl(ctx *parser.LetDeclContext) any {
 		let := Value{Value: val.Value, Typ: varType}
 
 		// adding to symbol table
-		v.symbolTable[varName] = let
+
+		v.declare(varName, let)
+
 		return let
 	}
 
@@ -43,7 +45,8 @@ func (v *HaruVisitor) VisitExplicitLetDecl(ctx *parser.LetDeclContext) any {
 
 	// asserting type to be Value
 	let := updatedValue.(Value)
-	v.symbolTable[varName] = let
+
+	v.declare(varName, let)
 
 	return let
 }
@@ -67,7 +70,8 @@ func (v *HaruVisitor) VisitImplicitLetDecl(ctx *parser.LetInferDeclContext) any 
 	}
 
 	let := updatedValue.(Value)
-	v.symbolTable[varName] = let
+
+	v.declare(varName, let)
 
 	return let
 }
@@ -93,7 +97,8 @@ func (v *HaruVisitor) VisitExplicitMutDecl(ctx *parser.MutDeclContext) any {
 
 		mut := updatedVal.(Value)
 		mut.isMutable = true
-		v.symbolTable[varName] = mut
+
+		v.declare(varName, mut)
 
 		return mut
 	}
@@ -108,7 +113,8 @@ func (v *HaruVisitor) VisitExplicitMutDecl(ctx *parser.MutDeclContext) any {
 
 	// marking as mutable and adding to symbol table
 	zeroedMut.isMutable = true
-	v.symbolTable[varName] = zeroedMut
+
+	v.declare(varName, zeroedMut)
 
 	return zeroedMut
 }
@@ -135,7 +141,8 @@ func (v *HaruVisitor) VisitImplicitMutDecl(ctx *parser.MutInferDeclContext) any 
 
 	mut := updatedValue.(Value)
 	mut.isMutable = true
-	v.symbolTable[varName] = mut
+
+	v.declare(varName, mut)
 
 	return mut
 }
@@ -152,7 +159,8 @@ func (v *HaruVisitor) VisitMutReassignment(ctx *parser.AssignStmtStatementContex
 	varName := assignCtx.ID().GetText()
 
 	// making sure variable is declared
-	currentVar, exists := v.symbolTable[varName]
+	currentVar, exists := v.resolve(varName)
+
 	if !exists {
 		runtimeErr(fmt.Sprintf("variable '%s' is not declared", varName))
 	}
@@ -181,7 +189,8 @@ func (v *HaruVisitor) VisitMutReassignment(ctx *parser.AssignStmtStatementContex
 	updated.isMutable = true
 
 	// changing variable in symbol table
-	v.symbolTable[varName] = updated
+
+	v.assign(varName, updated)
 
 	return updated
 }

@@ -53,7 +53,7 @@ func (v *HaruVisitor) VisitIndexExpr(ctx *parser.IndexExprContext) any {
 	}
 
 	// getting the stringified value out from symbol table
-	arrayVal, ok := v.symbolTable[varName]
+	arrayVal, ok := v.resolve(varName)
 	if !ok {
 		runtimeErr(fmt.Sprintf("undefined array '%s'", varName))
 	}
@@ -185,10 +185,10 @@ func (v *HaruVisitor) VisitConstExplicitArrayDecl(ctx *parser.ConstExplicitArray
 	serialzed := "[" + strings.Join(stringifiedItems, ",") + "]"
 
 	// storing in symbol table for global access
-	v.symbolTable[arrName] = Value{
+	v.declare(arrName, Value{
 		Value: serialzed,
 		Typ:   "[]" + arrType,
-	}
+	})
 
 	return nil
 }
@@ -232,10 +232,10 @@ func (v *HaruVisitor) VisitConstImplicitArrayDecl(ctx *parser.ConstImplicitArray
 	serialzed := "[" + strings.Join(stringifiedItems, ",") + "]"
 
 	// storing in symbol table for global access
-	v.symbolTable[arrName] = Value{
+	v.declare(arrName, Value{
 		Value: serialzed,
 		Typ:   "[]" + inferredType,
-	}
+	})
 
 	return nil
 }
@@ -297,10 +297,10 @@ func (v *HaruVisitor) VisitLetExplicitArrayDecl(ctx *parser.LetExplicitArrayDecl
 	serialzed := "[" + strings.Join(stringifiedItems, ",") + "]"
 
 	// storing in symbol table for global access
-	v.symbolTable[arrName] = Value{
+	v.declare(arrName, Value{
 		Value: serialzed,
 		Typ:   "[]" + arrType,
-	}
+	})
 
 	return nil
 }
@@ -344,10 +344,11 @@ func (v *HaruVisitor) VisitLetImplicitArrayDecl(ctx *parser.LetImplicitArrayDecl
 	serialzed := "[" + strings.Join(stringifiedItems, ",") + "]"
 
 	// storing in symbol table for global access
-	v.symbolTable[arrName] = Value{
+
+	v.declare(arrName, Value{
 		Value: serialzed,
 		Typ:   "[]" + inferredType,
-	}
+	})
 
 	return nil
 }
@@ -359,11 +360,12 @@ func (v *HaruVisitor) VisitDynamicExplicitMutArrayDecl(ctx *parser.MutArrayExpli
 
 	// allowing [] empty array initialization
 	if v.Visit(ctx.ArrayLiteral()) == nil {
-		v.symbolTable[arrName] = Value{
+
+		v.declare(arrName, Value{
 			Value:     "[]",
 			Typ:       "[]" + arrType,
 			isMutable: true,
-		}
+		})
 
 		return nil
 	}
@@ -405,11 +407,11 @@ func (v *HaruVisitor) VisitDynamicExplicitMutArrayDecl(ctx *parser.MutArrayExpli
 
 	serialized := "[" + strings.Join(stringified, ",") + "]"
 
-	v.symbolTable[arrName] = Value{
+	v.declare(arrName, Value{
 		Value:     serialized,
 		Typ:       "[]" + arrType,
 		isMutable: true,
-	}
+	})
 
 	return nil
 }
@@ -419,11 +421,11 @@ func (v *HaruVisitor) VisitDynamicExplicitMutArrayUnInitDecl(ctx *parser.MutArra
 	arrName := ctx.ID().GetText()
 	arrType := ctx.ArrayType().Type_().GetText()
 
-	v.symbolTable[arrName] = Value{
+	v.declare(arrName, Value{
 		Value:     "[]",
 		Typ:       "[]" + arrType,
 		isMutable: true,
-	}
+	})
 
 	return nil
 }
@@ -459,11 +461,11 @@ func (v *HaruVisitor) VisitMutFixedArrayNoInitDecl(ctx *parser.MutFixedArrayNoIn
 
 	serialized := "[" + strings.Join(serializedItems, ",") + "]"
 
-	v.symbolTable[arrName] = Value{
+	v.declare(arrName, Value{
 		Value:     serialized,
 		Typ:       fmt.Sprintf("[%d]%s", length, arrType),
 		isMutable: true,
-	}
+	})
 
 	return nil
 }
@@ -526,11 +528,11 @@ func (v *HaruVisitor) VisitMutFixedArrayInitDecl(ctx *parser.MutFixedArrayWithIn
 
 	serialized := "[" + strings.Join(serializedItems, ",") + "]"
 
-	v.symbolTable[arrName] = Value{
+	v.declare(arrName, Value{
 		Value:     serialized,
 		Typ:       fmt.Sprintf("[%d]%s", length, arrType),
 		isMutable: true,
-	}
+	})
 
 	return nil
 }
@@ -569,11 +571,11 @@ func (v *HaruVisitor) VisitImplicitMutArrayDecl(ctx *parser.MutArrayImplicitCont
 
 	serialized := "[" + strings.Join(serializedItems, ",") + "]"
 
-	v.symbolTable[arrName] = Value{
+	v.declare(arrName, Value{
 		Value:     serialized,
 		Typ:       "[]" + inferredType,
 		isMutable: true,
-	}
+	})
 
 	return nil
 }
@@ -588,7 +590,7 @@ func (v *HaruVisitor) VisitMutArrayReassignment(ctx *parser.ArrayReassignStateme
 	}
 
 	// prevent if variable is not defined and get variable if it exists
-	variable, ok := v.symbolTable[arrName]
+	variable, ok := v.resolve(arrName)
 
 	if !ok {
 		runtimeErr(fmt.Sprintf("undefined variable '%s'", arrName))
@@ -630,11 +632,12 @@ func (v *HaruVisitor) VisitMutArrayReassignment(ctx *parser.ArrayReassignStateme
 	serialized := "[" + strings.Join(serializedItems, ",") + "]"
 
 	// updating the variable in symbol table
-	v.symbolTable[arrName] = Value{
+
+	v.assign(arrName, Value{
 		Value:     serialized,
 		Typ:       variable.Typ,
 		isMutable: true,
-	}
+	})
 
 	return nil
 }
@@ -658,7 +661,7 @@ func (v *HaruVisitor) VisitArrayIndexAssignStatement(ctx *parser.ArrayIndexAssig
 	}
 
 	// check if variable exists
-	variable, ok := v.symbolTable[arrName]
+	variable, ok := v.resolve(arrName)
 	if !ok {
 		runtimeErr(fmt.Sprintf("array '%s' doesn't exist", arrName))
 	}
@@ -708,11 +711,11 @@ func (v *HaruVisitor) VisitArrayIndexAssignStatement(ctx *parser.ArrayIndexAssig
 	// re-serialize array
 	serialized := "[" + strings.Join(items, ",") + "]"
 
-	v.symbolTable[arrName] = Value{
+	v.assign(arrName, Value{
 		Value:     serialized,
 		Typ:       variable.Typ,
 		isMutable: true,
-	}
+	})
 
 	return nil
 }

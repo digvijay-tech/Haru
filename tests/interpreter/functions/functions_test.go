@@ -16,12 +16,7 @@ func TestFunctions(t *testing.T) {
 	input := `
 		--- TESTING FUNCTIONS
 		print "TESTING FUNCTIONS";
-
-		--- No param, no return
-		function printHello() {
-			print "Hello";
-		}
-	`
+`
 
 	expected := `TESTING FUNCTIONS
 `

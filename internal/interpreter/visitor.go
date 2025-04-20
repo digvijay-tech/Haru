@@ -11,14 +11,14 @@ import (
 // Main Haru visitor struct
 type HaruVisitor struct {
 	parser.BaseharuVisitor
-	symbolTable map[string]Value
+
+	// manages variable scopes
+	scopes []map[string]Value
 }
 
 // NewHaruVisitor initializes the visitor with empty state
 func NewHaruVisitor() *HaruVisitor {
-	return &HaruVisitor{
-		symbolTable: make(map[string]Value),
-	}
+	return &HaruVisitor{}
 }
 
 // Visit dispatches to specific VisitX methods
@@ -131,9 +131,15 @@ func (v *HaruVisitor) VisitErrorNode(node antlr.ErrorNode) any {
 
 // VisitProgram loops through all statements and evaluates them by calling v.Visit() method
 func (v *HaruVisitor) VisitProgram(ctx *parser.ProgramContext) any {
+	// setting up global scope
+	v.pushScope()
+
 	for _, stmt := range ctx.AllStatement() {
 		v.Visit(stmt)
 	}
+
+	// cleaning up global scope
+	v.popScope()
 
 	return nil
 }

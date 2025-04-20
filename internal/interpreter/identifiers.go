@@ -11,7 +11,7 @@ import (
 func (v *HaruVisitor) VisitVarExpr(ctx *parser.VarExprContext) any {
 	name := ctx.ID().GetText()
 
-	if value, ok := v.symbolTable[name]; ok {
+	if value, ok := v.resolve(name); ok {
 		return value
 	}
 

@@ -41,9 +41,15 @@ func (v *HaruVisitor) VisitIfBlockOnly(ctx *parser.IfBlockOnlyContext) any {
 
 	// if true, visit all statements wrapped in the if block
 	if isTrue {
+		// adding local scope
+		v.pushScope()
+
 		for _, stmt := range ctx.Block().AllStatement() {
 			v.Visit(stmt)
 		}
+
+		// removing local scope
+		v.popScope()
 	}
 
 	return nil
@@ -68,9 +74,15 @@ func (v *HaruVisitor) VisitIfElseChain(ctx *parser.IfElseChainContext) any {
 
 	// if true, visit all statements wrapped in the if block
 	if isTrue {
+		// adding local scope
+		v.pushScope()
+
 		for _, stmt := range ctx.Block().AllStatement() {
 			v.Visit(stmt)
 		}
+
+		// removing local scope
+		v.popScope()
 
 		// prevents furthur execution beyond if statement
 		return nil
@@ -91,10 +103,16 @@ func (v *HaruVisitor) VisitIfElseChain(ctx *parser.IfElseChainContext) any {
 		}
 
 		if isTrue {
+			// adding local scope
+			v.pushScope()
+
 			// calling visit if there are any nested statements
 			for _, stmt := range elseIf.Block().AllStatement() {
 				v.Visit(stmt)
 			}
+
+			// removing local scope
+			v.popScope()
 
 			// prevents furthur execution beyond else-if statement
 			return nil
@@ -103,9 +121,15 @@ func (v *HaruVisitor) VisitIfElseChain(ctx *parser.IfElseChainContext) any {
 
 	// evaluating else block if present
 	if ctx.ElseBlock() != nil {
+		// adding local scope
+		v.pushScope()
+
 		for _, stmt := range ctx.ElseBlock().Block().AllStatement() {
 			v.Visit(stmt)
 		}
+
+		// removing local scope
+		v.popScope()
 	}
 
 	return nil
