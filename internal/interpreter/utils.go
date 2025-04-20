@@ -58,6 +58,26 @@ func stripArrayPrefix(typeStr string) string {
 	return typeStr
 }
 
+// extractNumFromBrackets uses regex to find and extract any number between brackets [num]type
+// if there is no number it returns zero
+func extractNumFromBrackets(input string) (int, error) {
+	re := regexp.MustCompile(`\[(\d+)\]`)
+	matches := re.FindStringSubmatch(input)
+
+	if len(matches) < 2 {
+		return 0, nil
+	}
+
+	// parsing into int
+	num, err := strconv.Atoi(matches[1])
+
+	if err != nil {
+		return 0, err
+	}
+
+	return num, nil
+}
+
 func promoteType(t1, t2 string) string {
 	// allowing Allow string + string (concatenation)
 	if t1 == "string" && t2 == "string" {

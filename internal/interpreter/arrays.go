@@ -598,6 +598,17 @@ func (v *HaruVisitor) VisitMutArrayReassignment(ctx *parser.ArrayReassignStateme
 		runtimeErr(fmt.Sprintf("cannot reassign to immutable '%s'", arrName))
 	}
 
+	// preventing fixed arrays to have more values than speficied in type declaration
+	// fixed array reassignment must have exact number of items
+	fixedLen, err := extractNumFromBrackets(variable.Typ)
+	if err != nil {
+		runtimeErr(err.Error())
+	}
+
+	if len(items) != fixedLen && fixedLen != 0 {
+		runtimeErr(fmt.Sprintf("cannot reassign to %s it expects %d items got %d", arrName, fixedLen, len(items)))
+	}
+
 	// variable is mutable and converting array literals to its type
 	var serializedItems []string
 

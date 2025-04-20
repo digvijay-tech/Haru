@@ -61,6 +61,12 @@ func TestMutArrayReassignment(t *testing.T) {
 
 	days = [];
 	print days;
+
+	mut fixed: [4]uint;
+	print fixed;
+
+	fixed = [1,2,3,4];
+	print fixed;
 `
 
 	expected := `MUT ARRAY REASSIGNMENTS
@@ -72,6 +78,8 @@ func TestMutArrayReassignment(t *testing.T) {
 John is working today!
 [Holiday]
 []
+[0,0,0,0]
+[1,2,3,4]
 `
 
 	// cleaning source input with custom preprocessor
