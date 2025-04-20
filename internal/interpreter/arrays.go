@@ -638,3 +638,81 @@ func (v *HaruVisitor) VisitMutArrayReassignment(ctx *parser.ArrayReassignStateme
 
 	return nil
 }
+
+// VisitArrayIndexAssignStatement reassigns to array element by index
+func (v *HaruVisitor) VisitArrayIndexAssignStatement(ctx *parser.ArrayIndexAssignStatementContext) any {
+	assignCtx := ctx.ArrayItemAssign().(*parser.ArrayIndexAssignContext)
+	arrName := assignCtx.ID().GetText()
+
+	// evaluate the index expression
+	rawIndexVal := v.Visit(assignCtx.Expr(0))
+	indexVal, ok := rawIndexVal.(Value)
+	if !ok {
+		runtimeErr(fmt.Sprintf("invalid index expression for array '%s'", arrName))
+	}
+
+	// only unsigned integer indexes are allowed
+	index, err := strconv.ParseUint(indexVal.Value, 10, 64)
+	if err != nil {
+		runtimeErr(fmt.Sprintf("invalid index value for array '%s'", arrName))
+	}
+
+	// check if variable exists
+	variable, ok := v.symbolTable[arrName]
+	if !ok {
+		runtimeErr(fmt.Sprintf("array '%s' doesn't exist", arrName))
+	}
+
+	// prevent updating immutable variable
+	if !variable.isMutable {
+		runtimeErr(fmt.Sprintf("cannot reassign, '%s' is immutable", arrName))
+	}
+
+	// evaluate the new value expression
+	rawVal := v.Visit(assignCtx.Expr(1))
+	newVal, ok := rawVal.(Value)
+	if !ok {
+		runtimeErr("invalid value for reassignment")
+	}
+
+	// clean type prefix from array type
+	cleanType := stripArrayPrefix(variable.Typ)
+
+	// type check + convert
+	if newVal.Typ != cleanType && !(isNumericType(newVal.Typ) && isNumericType(cleanType)) {
+		runtimeErr(fmt.Sprintf("type mismatch cannot assign '%s' to array of '%s'", newVal.Typ, cleanType))
+	}
+
+	converted, err := convertType(newVal.Value, newVal.Typ, cleanType)
+	if err != nil {
+		runtimeErr(err.Error())
+	}
+
+	updated := converted.(Value)
+
+	// parse array from string
+	rawString := strings.Trim(variable.Value, "[]")
+	items := strings.Split(rawString, ",")
+
+	if int(index) >= len(items) {
+		runtimeErr(fmt.Sprintf("index %d out of bounds for array '%s'", index, arrName))
+	}
+
+	// preserving string quotes
+	if cleanType == "string" {
+		items[index] = fmt.Sprintf(`"%v"`, updated.Value)
+	} else {
+		items[index] = updated.Value
+	}
+
+	// re-serialize array
+	serialized := "[" + strings.Join(items, ",") + "]"
+
+	v.symbolTable[arrName] = Value{
+		Value:     serialized,
+		Typ:       variable.Typ,
+		isMutable: true,
+	}
+
+	return nil
+}
