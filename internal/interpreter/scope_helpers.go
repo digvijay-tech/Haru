@@ -20,9 +20,15 @@ func (v *HaruVisitor) currentScope() map[string]Value {
 	return v.scopes[len(v.scopes)-1]
 }
 
-// declare adds new entry in current scope map
+// declare adds new entry in current scope map, if variable with same name doesn't exist
 func (v *HaruVisitor) declare(name string, val Value) {
-	v.currentScope()[name] = val
+	scope := v.currentScope()
+
+	if _, exists := scope[name]; exists {
+		runtimeErr(fmt.Sprintf("variable '%s' already declared in this scope", name))
+	}
+
+	scope[name] = val
 }
 
 // assign updates the variables existing value with the new one

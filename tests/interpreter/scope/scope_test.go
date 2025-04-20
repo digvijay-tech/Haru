@@ -91,6 +91,25 @@ func TestVariableScope(t *testing.T) {
 
 		print "==== END BLOCK ====";
 	}
+
+	--- DUPLICATE VARIABLE DECLARATION
+	let p = 5;
+	mut q = 6;
+	
+	if (true) {
+		print "=== BEGIN BLOCK ===";
+
+		--- local variable local scope
+		const p = 111;
+
+		print p;  --- 111
+		print q;  --- 6
+
+		print "==== END BLOCK ====";
+	}
+
+	print p; --- 5
+	print q; --- 6
 `
 
 	expected := `TESTING VARIABLE SCOPE
@@ -117,6 +136,12 @@ One
 3
 4
 ==== END BLOCK ====
+=== BEGIN BLOCK ===
+111
+6
+==== END BLOCK ====
+5
+6
 `
 
 	// cleaning source input with custom preprocessor
