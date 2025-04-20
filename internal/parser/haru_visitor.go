@@ -92,6 +92,9 @@ type haruVisitor interface {
 	// Visit a parse tree produced by haruParser#ParenExpr.
 	VisitParenExpr(ctx *ParenExprContext) interface{}
 
+	// Visit a parse tree produced by haruParser#LenFunctionExpr.
+	VisitLenFunctionExpr(ctx *LenFunctionExprContext) interface{}
+
 	// Visit a parse tree produced by haruParser#AssignStmt.
 	VisitAssignStmt(ctx *AssignStmtContext) interface{}
 
@@ -238,4 +241,7 @@ type haruVisitor interface {
 
 	// Visit a parse tree produced by haruParser#arrayReassign.
 	VisitArrayReassign(ctx *ArrayReassignContext) interface{}
+
+	// Visit a parse tree produced by haruParser#lenFunction.
+	VisitLenFunction(ctx *LenFunctionContext) interface{}
 }

@@ -45,6 +45,12 @@ func isNumericType(t string) bool {
 	return ok
 }
 
+// isArrayType return true if the given type t matches []type or [num]type pattern
+func isArrayType(t string) bool {
+	arrayTypePattern := regexp.MustCompile(`^\[\d*\]\w+$`)
+	return arrayTypePattern.MatchString(t)
+}
+
 // stripArrayPrefix removes array type prefixes like []type and [num]type
 func stripArrayPrefix(typeStr string) string {
 	var bracketTypeRegex = regexp.MustCompile(`^\[\d*\](.+)$`)

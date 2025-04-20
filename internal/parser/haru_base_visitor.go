@@ -120,6 +120,10 @@ func (v *BaseharuVisitor) VisitParenExpr(ctx *ParenExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseharuVisitor) VisitLenFunctionExpr(ctx *LenFunctionExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseharuVisitor) VisitAssignStmt(ctx *AssignStmtContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -313,5 +317,9 @@ func (v *BaseharuVisitor) VisitArrayIndexAssign(ctx *ArrayIndexAssignContext) in
 }
 
 func (v *BaseharuVisitor) VisitArrayReassign(ctx *ArrayReassignContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitLenFunction(ctx *LenFunctionContext) interface{} {
 	return v.VisitChildren(ctx)
 }

@@ -1,6 +1,6 @@
 grammar haru;
 
-import Output, Expressions, Variables, ControlFlow, Arrays;
+import Output, Expressions, Variables, ControlFlow, Arrays, Builtins;
 
 
 program: statement* ;

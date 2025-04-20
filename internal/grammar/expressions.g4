@@ -18,6 +18,7 @@ expr: '!' expr              # NotExpr
     | expr '||' expr        # OrExpr
     | ID                    # VarExpr
     | ID '[' expr ']'       # IndexExpr
+    | lenFunction           # LenFunctionExpr
     | literal               # LitExpr ;
 
 

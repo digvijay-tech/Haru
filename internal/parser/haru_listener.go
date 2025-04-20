@@ -92,6 +92,9 @@ type haruListener interface {
 	// EnterParenExpr is called when entering the ParenExpr production.
 	EnterParenExpr(c *ParenExprContext)
 
+	// EnterLenFunctionExpr is called when entering the LenFunctionExpr production.
+	EnterLenFunctionExpr(c *LenFunctionExprContext)
+
 	// EnterAssignStmt is called when entering the AssignStmt production.
 	EnterAssignStmt(c *AssignStmtContext)
 
@@ -239,6 +242,9 @@ type haruListener interface {
 	// EnterArrayReassign is called when entering the arrayReassign production.
 	EnterArrayReassign(c *ArrayReassignContext)
 
+	// EnterLenFunction is called when entering the lenFunction production.
+	EnterLenFunction(c *LenFunctionContext)
+
 	// ExitProgram is called when exiting the program production.
 	ExitProgram(c *ProgramContext)
 
@@ -322,6 +328,9 @@ type haruListener interface {
 
 	// ExitParenExpr is called when exiting the ParenExpr production.
 	ExitParenExpr(c *ParenExprContext)
+
+	// ExitLenFunctionExpr is called when exiting the LenFunctionExpr production.
+	ExitLenFunctionExpr(c *LenFunctionExprContext)
 
 	// ExitAssignStmt is called when exiting the AssignStmt production.
 	ExitAssignStmt(c *AssignStmtContext)
@@ -469,4 +478,7 @@ type haruListener interface {
 
 	// ExitArrayReassign is called when exiting the arrayReassign production.
 	ExitArrayReassign(c *ArrayReassignContext)
+
+	// ExitLenFunction is called when exiting the lenFunction production.
+	ExitLenFunction(c *LenFunctionContext)
 }

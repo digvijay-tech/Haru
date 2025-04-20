@@ -189,6 +189,12 @@ func (s *BaseharuListener) EnterParenExpr(ctx *ParenExprContext) {}
 // ExitParenExpr is called when production ParenExpr is exited.
 func (s *BaseharuListener) ExitParenExpr(ctx *ParenExprContext) {}
 
+// EnterLenFunctionExpr is called when production LenFunctionExpr is entered.
+func (s *BaseharuListener) EnterLenFunctionExpr(ctx *LenFunctionExprContext) {}
+
+// ExitLenFunctionExpr is called when production LenFunctionExpr is exited.
+func (s *BaseharuListener) ExitLenFunctionExpr(ctx *LenFunctionExprContext) {}
+
 // EnterAssignStmt is called when production AssignStmt is entered.
 func (s *BaseharuListener) EnterAssignStmt(ctx *AssignStmtContext) {}
 
@@ -482,3 +488,9 @@ func (s *BaseharuListener) EnterArrayReassign(ctx *ArrayReassignContext) {}
 
 // ExitArrayReassign is called when production arrayReassign is exited.
 func (s *BaseharuListener) ExitArrayReassign(ctx *ArrayReassignContext) {}
+
+// EnterLenFunction is called when production lenFunction is entered.
+func (s *BaseharuListener) EnterLenFunction(ctx *LenFunctionContext) {}
+
+// ExitLenFunction is called when production lenFunction is exited.
+func (s *BaseharuListener) ExitLenFunction(ctx *LenFunctionContext) {}
