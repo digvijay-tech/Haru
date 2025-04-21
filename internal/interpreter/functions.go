@@ -260,15 +260,88 @@ func (v *HaruVisitor) VisitFunctionCallExpression(ctx *parser.FunctionCallExprCo
 		v.declare(p.name, args[i])
 	}
 
-	// evaluating function body
-	v.Visit(fn.body)
+	var ret []Value
+
+	// catching return signal
+	func() {
+		defer func() {
+			if r := recover(); r != nil {
+				if sig, ok := r.(ReturnSignal); ok {
+					ret = sig.values
+
+					// validate return types
+					if len(ret) != len(fn.returnTypes) {
+						// allowing early termination by return when no return value is specified in
+						// function signature and no value is provided as return value
+						if len(fn.returnTypes) == 0 && len(ret) == 0 {
+							return
+						}
+
+						runtimeErr(fmt.Sprintf(
+							"function '%s' expects %d return values, got %d",
+							funcName, len(fn.returnTypes), len(ret),
+						))
+					}
+
+					for i, expected := range fn.returnTypes {
+						actual := ret[i].Typ
+
+						if actual != expected {
+							// allow safe conversion if numeric
+							if !(isNumericType(actual) && isNumericType(expected)) {
+								runtimeErr(fmt.Sprintf(
+									"return value %d in function '%s' expects type '%s', got '%s'",
+									i+1, funcName, expected, actual,
+								))
+							}
+
+							converted, err := convertType(ret[i].Value, actual, expected)
+
+							if err != nil {
+								runtimeErr(err.Error())
+							}
+
+							ret[i] = converted.(Value)
+						}
+					}
+				} else {
+					// rethrow other panics
+					panic(r)
+				}
+			}
+		}()
+
+		// evaluating function body
+		v.Visit(fn.body)
+	}()
 
 	// removing scope when function ends
 	v.popScope()
 
-	// Placeholder return until `return` is supported
-	return Value{
-		Value: "0",
-		Typ:   "i32", // or any default
+	// function doesn't have a return signature — always return nil
+	if len(fn.returnTypes) == 0 {
+		return nil
 	}
+
+	if len(ret) == 0 {
+		runtimeErr(fmt.Sprintf("function '%s' must return %d values", funcName, len(fn.returnTypes)))
+	}
+
+	// supporting single return for now
+	return ret[0]
+}
+
+// VisitReturnStatement evaluates return statements
+func (v *HaruVisitor) VisitReturnStatement(ctx *parser.ReturnStmtStatementContext) any {
+	var result []Value
+
+	if ctx.ReturnStmt().ExprList() != nil {
+		for _, expr := range ctx.ReturnStmt().ExprList().AllExpr() {
+			val := v.Visit(expr).(Value)
+			result = append(result, val)
+		}
+	}
+
+	// using panic for early exist and adding evaluated results to values stack on return signal
+	panic(ReturnSignal{values: result})
 }

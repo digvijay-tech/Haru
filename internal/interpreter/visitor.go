@@ -106,6 +106,8 @@ func (v *HaruVisitor) Visit(tree antlr.ParseTree) any {
 		return v.VisitFunctionCallExpression(ctx)
 	case *parser.BlockContext:
 		return v.VisitFunctionBlock(ctx)
+	case *parser.ReturnStmtStatementContext:
+		return v.VisitReturnStatement(ctx)
 	case *parser.EmptyArrContext:
 		return []Value{}
 	default:

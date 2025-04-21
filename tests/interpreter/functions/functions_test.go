@@ -47,11 +47,44 @@ func TestFunctions(t *testing.T) {
 
 		print "===============";
 		--- function call as expression
-		const x = test(); --- needs semicolon
-		print x;
+
+		function test3() <bool> {
+			return false;
+		}
+
+		const x = test3();
+		print x; --- false
+
+
+		print "===============";
+
+		function test4(x: i8, y: i8) <i32> {
+			print "inside";
+			return x + y;
+			print "this won't run";  --- skipped
+		}
+
+		const add1: i32 = test4(10, 25);
+		print add1;
+
+
+		--- using return for early termination
+		function test5(x: string, y: string) {
+			const xLen: uint = len(x);
+			const yLen: uint = len(y);
+
+			if (xLen > yLen) {
+				print "first argument has more characters!";
+			} else {
+				print "second argument has more characters!"; 
+			}
+		}
+
+		test5("John", "Jo");
 `
 
-	expected := `TESTING FUNCTIONS!
+	expected := `TESTING FUNCTIONS
+From Test Function!
 John's details:
 20
 Occupation: Engineer
@@ -60,6 +93,11 @@ Initial in Byte:
 ===============
 I am second test!
 ===============
+false
+===============
+inside
+35
+first argument has more characters!
 `
 
 	// cleaning source input with custom preprocessor

@@ -23,6 +23,11 @@ type Function struct {
 	body        parser.IBlockContext
 }
 
+// stack of return values
+type ReturnSignal struct {
+	values []Value
+}
+
 // All supported datatypes in the langauge
 var validTypes = map[string]bool{
 	"i8": true, "i16": true, "i32": true, "i64": true, "int": true,

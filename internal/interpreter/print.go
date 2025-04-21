@@ -18,11 +18,20 @@ func (v *HaruVisitor) VisitPrintStatement(ctx *parser.PrintStatementContext) any
 	exprCtx := ctx.Expr()
 	result := v.Visit(exprCtx)
 
-	// verifying the type result to be Value
+	// avoid printing if function returned nothing
+	if result == nil {
+		return nil
+	}
+
+	// check for Value type
 	if val, ok := result.(Value); ok {
 		fmt.Println(val.Value)
 	} else {
-		// printing non-Value result
+		// // avoid printing empty slices like [] or {}
+		// if str, ok := result.(string); ok && strings.TrimSpace(str) == "" {
+		// 	return nil
+		// }
+
 		fmt.Println("Output:", result)
 	}
 
