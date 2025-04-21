@@ -36,3 +36,12 @@ block
     : '{' statement* '}'
     ;
 
+
+functionCall
+    : ID '(' argumentList? ')'
+    ;
+
+
+argumentList
+    : expr (',' expr)* ;
+

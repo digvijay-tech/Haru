@@ -38,6 +38,9 @@ type haruListener interface {
 	// EnterReturnStmtStatement is called when entering the ReturnStmtStatement production.
 	EnterReturnStmtStatement(c *ReturnStmtStatementContext)
 
+	// EnterFunctionCallStatement is called when entering the FunctionCallStatement production.
+	EnterFunctionCallStatement(c *FunctionCallStatementContext)
+
 	// EnterPrintStatement is called when entering the PrintStatement production.
 	EnterPrintStatement(c *PrintStatementContext)
 
@@ -82,6 +85,9 @@ type haruListener interface {
 
 	// EnterDivExpr is called when entering the DivExpr production.
 	EnterDivExpr(c *DivExprContext)
+
+	// EnterFunctionCallExpr is called when entering the FunctionCallExpr production.
+	EnterFunctionCallExpr(c *FunctionCallExprContext)
 
 	// EnterEqExpr is called when entering the EqExpr production.
 	EnterEqExpr(c *EqExprContext)
@@ -269,6 +275,12 @@ type haruListener interface {
 	// EnterExprList is called when entering the exprList production.
 	EnterExprList(c *ExprListContext)
 
+	// EnterFunctionCall is called when entering the functionCall production.
+	EnterFunctionCall(c *FunctionCallContext)
+
+	// EnterArgumentList is called when entering the argumentList production.
+	EnterArgumentList(c *ArgumentListContext)
+
 	// ExitProgram is called when exiting the program production.
 	ExitProgram(c *ProgramContext)
 
@@ -298,6 +310,9 @@ type haruListener interface {
 
 	// ExitReturnStmtStatement is called when exiting the ReturnStmtStatement production.
 	ExitReturnStmtStatement(c *ReturnStmtStatementContext)
+
+	// ExitFunctionCallStatement is called when exiting the FunctionCallStatement production.
+	ExitFunctionCallStatement(c *FunctionCallStatementContext)
 
 	// ExitPrintStatement is called when exiting the PrintStatement production.
 	ExitPrintStatement(c *PrintStatementContext)
@@ -343,6 +358,9 @@ type haruListener interface {
 
 	// ExitDivExpr is called when exiting the DivExpr production.
 	ExitDivExpr(c *DivExprContext)
+
+	// ExitFunctionCallExpr is called when exiting the FunctionCallExpr production.
+	ExitFunctionCallExpr(c *FunctionCallExprContext)
 
 	// ExitEqExpr is called when exiting the EqExpr production.
 	ExitEqExpr(c *EqExprContext)
@@ -529,4 +547,10 @@ type haruListener interface {
 
 	// ExitExprList is called when exiting the exprList production.
 	ExitExprList(c *ExprListContext)
+
+	// ExitFunctionCall is called when exiting the functionCall production.
+	ExitFunctionCall(c *FunctionCallContext)
+
+	// ExitArgumentList is called when exiting the argumentList production.
+	ExitArgumentList(c *ArgumentListContext)
 }

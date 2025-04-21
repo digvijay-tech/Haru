@@ -48,6 +48,10 @@ func (v *BaseharuVisitor) VisitReturnStmtStatement(ctx *ReturnStmtStatementConte
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseharuVisitor) VisitFunctionCallStatement(ctx *FunctionCallStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseharuVisitor) VisitPrintStatement(ctx *PrintStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -105,6 +109,10 @@ func (v *BaseharuVisitor) VisitOrExpr(ctx *OrExprContext) interface{} {
 }
 
 func (v *BaseharuVisitor) VisitDivExpr(ctx *DivExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitFunctionCallExpr(ctx *FunctionCallExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -353,5 +361,13 @@ func (v *BaseharuVisitor) VisitReturnStmt(ctx *ReturnStmtContext) interface{} {
 }
 
 func (v *BaseharuVisitor) VisitExprList(ctx *ExprListContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitFunctionCall(ctx *FunctionCallContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitArgumentList(ctx *ArgumentListContext) interface{} {
 	return v.VisitChildren(ctx)
 }

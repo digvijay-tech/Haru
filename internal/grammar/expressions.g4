@@ -18,6 +18,7 @@ expr: '!' expr              # NotExpr
     | expr '||' expr        # OrExpr
     | ID                    # VarExpr
     | ID '[' expr ']'       # IndexExpr
+    | functionCall          # FunctionCallExpr
     | lenFunction           # LenFunctionExpr
     | literal               # LitExpr ;
 
@@ -31,6 +32,7 @@ literal: ('-')? NUMBER      # IntLiteral
        | 'false'            # FalseLiteral
        | STRING             # StringLiteral
        | BYTE               # ByteLiteral ;
+
 
 
 ID: [a-zA-Z][a-zA-Z0-9]* ;

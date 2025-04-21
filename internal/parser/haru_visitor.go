@@ -38,6 +38,9 @@ type haruVisitor interface {
 	// Visit a parse tree produced by haruParser#ReturnStmtStatement.
 	VisitReturnStmtStatement(ctx *ReturnStmtStatementContext) interface{}
 
+	// Visit a parse tree produced by haruParser#FunctionCallStatement.
+	VisitFunctionCallStatement(ctx *FunctionCallStatementContext) interface{}
+
 	// Visit a parse tree produced by haruParser#PrintStatement.
 	VisitPrintStatement(ctx *PrintStatementContext) interface{}
 
@@ -82,6 +85,9 @@ type haruVisitor interface {
 
 	// Visit a parse tree produced by haruParser#DivExpr.
 	VisitDivExpr(ctx *DivExprContext) interface{}
+
+	// Visit a parse tree produced by haruParser#FunctionCallExpr.
+	VisitFunctionCallExpr(ctx *FunctionCallExprContext) interface{}
 
 	// Visit a parse tree produced by haruParser#EqExpr.
 	VisitEqExpr(ctx *EqExprContext) interface{}
@@ -268,4 +274,10 @@ type haruVisitor interface {
 
 	// Visit a parse tree produced by haruParser#exprList.
 	VisitExprList(ctx *ExprListContext) interface{}
+
+	// Visit a parse tree produced by haruParser#functionCall.
+	VisitFunctionCall(ctx *FunctionCallContext) interface{}
+
+	// Visit a parse tree produced by haruParser#argumentList.
+	VisitArgumentList(ctx *ArgumentListContext) interface{}
 }

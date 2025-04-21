@@ -1,11 +1,34 @@
 // Custom types for Haru visitor
 package interpreter
 
+import "github.com/digvijay-tech/Haru/internal/parser"
+
 // Value represents a variable or expression result
 type Value struct {
-	Value     string // Literal string value
-	Typ       string // Datatype
-	isMutable bool   // Marks as mutable
+	Value     string    // Literal string value
+	Typ       string    // Datatype
+	isMutable bool      // Marks as mutable
+	Function  *Function // Remains nil if uninitialized
+}
+
+// Function represents funcation declaration properties such as parameters, name, return type, and function body
+type Param struct {
+	name string
+	typ  string
+}
+
+type Function struct {
+	params      []Param
+	returnTypes []string
+	body        parser.IBlockContext
+}
+
+// All supported datatypes in the langauge
+var validTypes = map[string]bool{
+	"i8": true, "i16": true, "i32": true, "i64": true, "int": true,
+	"ui8": true, "ui16": true, "ui32": true, "ui64": true, "uint": true,
+	"f32": true, "f64": true,
+	"bool": true, "string": true, "byte": true,
 }
 
 // Type Category map for numeric type promotion

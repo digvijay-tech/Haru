@@ -16,9 +16,50 @@ func TestFunctions(t *testing.T) {
 	input := `
 		--- TESTING FUNCTIONS
 		print "TESTING FUNCTIONS";
+
+		function test(name: string, age: ui8, isEngineer: bool, initial: byte) {
+			print "From Test Function!";
+			print name + "'s " + "details:";
+			print age;
+
+			if (!isEngineer) {
+				print "Occupation: Not Engineer";
+			} else {
+			 	print "Occupation: Engineer";
+			}
+
+			print "Initial in Byte:";
+			print initial;
+		}
+
+		--- function call as statement
+		test("John", 20, true, "J"); --- needs semicolon
+
+		--- print isEngineer; --- Runtime Error: undefined variable 'isEngineer'
+
+		print "===============";
+
+		function test2() {
+			print "I am second test!";
+		}
+
+		test2();
+
+		print "===============";
+		--- function call as expression
+		const x = test(); --- needs semicolon
+		print x;
 `
 
-	expected := `TESTING FUNCTIONS
+	expected := `TESTING FUNCTIONS!
+John's details:
+20
+Occupation: Engineer
+Initial in Byte:
+74
+===============
+I am second test!
+===============
 `
 
 	// cleaning source input with custom preprocessor

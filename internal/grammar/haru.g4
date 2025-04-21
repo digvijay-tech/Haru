@@ -15,6 +15,7 @@ statement: printStmt            # PrintStmtStatement
          | arrayReassign        # ArrayReassignStatement
          | functionDecl         # FunctionDeclStatement
          | returnStmt           # ReturnStmtStatement
+         | functionCall ';'     # FunctionCallStatement
          ;
 
 

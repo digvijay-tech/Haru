@@ -81,6 +81,12 @@ func (s *BaseharuListener) EnterReturnStmtStatement(ctx *ReturnStmtStatementCont
 // ExitReturnStmtStatement is called when production ReturnStmtStatement is exited.
 func (s *BaseharuListener) ExitReturnStmtStatement(ctx *ReturnStmtStatementContext) {}
 
+// EnterFunctionCallStatement is called when production FunctionCallStatement is entered.
+func (s *BaseharuListener) EnterFunctionCallStatement(ctx *FunctionCallStatementContext) {}
+
+// ExitFunctionCallStatement is called when production FunctionCallStatement is exited.
+func (s *BaseharuListener) ExitFunctionCallStatement(ctx *FunctionCallStatementContext) {}
+
 // EnterPrintStatement is called when production PrintStatement is entered.
 func (s *BaseharuListener) EnterPrintStatement(ctx *PrintStatementContext) {}
 
@@ -170,6 +176,12 @@ func (s *BaseharuListener) EnterDivExpr(ctx *DivExprContext) {}
 
 // ExitDivExpr is called when production DivExpr is exited.
 func (s *BaseharuListener) ExitDivExpr(ctx *DivExprContext) {}
+
+// EnterFunctionCallExpr is called when production FunctionCallExpr is entered.
+func (s *BaseharuListener) EnterFunctionCallExpr(ctx *FunctionCallExprContext) {}
+
+// ExitFunctionCallExpr is called when production FunctionCallExpr is exited.
+func (s *BaseharuListener) ExitFunctionCallExpr(ctx *FunctionCallExprContext) {}
 
 // EnterEqExpr is called when production EqExpr is entered.
 func (s *BaseharuListener) EnterEqExpr(ctx *EqExprContext) {}
@@ -542,3 +554,15 @@ func (s *BaseharuListener) EnterExprList(ctx *ExprListContext) {}
 
 // ExitExprList is called when production exprList is exited.
 func (s *BaseharuListener) ExitExprList(ctx *ExprListContext) {}
+
+// EnterFunctionCall is called when production functionCall is entered.
+func (s *BaseharuListener) EnterFunctionCall(ctx *FunctionCallContext) {}
+
+// ExitFunctionCall is called when production functionCall is exited.
+func (s *BaseharuListener) ExitFunctionCall(ctx *FunctionCallContext) {}
+
+// EnterArgumentList is called when production argumentList is entered.
+func (s *BaseharuListener) EnterArgumentList(ctx *ArgumentListContext) {}
+
+// ExitArgumentList is called when production argumentList is exited.
+func (s *BaseharuListener) ExitArgumentList(ctx *ArgumentListContext) {}

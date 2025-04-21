@@ -12,13 +12,15 @@ import (
 type HaruVisitor struct {
 	parser.BaseharuVisitor
 
-	// manages variable scopes
+	// manages variable and function scopes
 	scopes []map[string]Value
 }
 
 // NewHaruVisitor initializes the visitor with empty state
 func NewHaruVisitor() *HaruVisitor {
-	return &HaruVisitor{}
+	return &HaruVisitor{
+		scopes: []map[string]Value{},
+	}
 }
 
 // Visit dispatches to specific VisitX methods
@@ -98,6 +100,12 @@ func (v *HaruVisitor) Visit(tree antlr.ParseTree) any {
 		return v.VisitLenFunction(ctx)
 	case *parser.FunctionDeclStatementContext:
 		return v.VisitFunctionDeclStatement(ctx)
+	case *parser.FunctionCallStatementContext:
+		return v.VisitFunctionCallStatement(ctx)
+	case *parser.FunctionCallExprContext:
+		return v.VisitFunctionCallExpression(ctx)
+	case *parser.BlockContext:
+		return v.VisitFunctionBlock(ctx)
 	case *parser.EmptyArrContext:
 		return []Value{}
 	default:
