@@ -65,6 +65,9 @@ func (v *HaruVisitor) VisitInputFunction(ctx *parser.InputFunctionExprContext) a
 	reader := bufio.NewReader(os.Stdin)
 	input, err := reader.ReadString('\n')
 
+	// removing extra whitespaces before returning
+	input = strings.TrimSpace(input)
+
 	if err != nil {
 		runtimeErr("failed to read input")
 	}
