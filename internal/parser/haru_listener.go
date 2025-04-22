@@ -20,6 +20,9 @@ type haruListener interface {
 	// EnterAssignStmtStatement is called when entering the AssignStmtStatement production.
 	EnterAssignStmtStatement(c *AssignStmtStatementContext)
 
+	// EnterPointerAssignStmtStatement is called when entering the PointerAssignStmtStatement production.
+	EnterPointerAssignStmtStatement(c *PointerAssignStmtStatementContext)
+
 	// EnterIfStmtStatement is called when entering the IfStmtStatement production.
 	EnterIfStmtStatement(c *IfStmtStatementContext)
 
@@ -52,6 +55,9 @@ type haruListener interface {
 
 	// EnterAndExpr is called when entering the AndExpr production.
 	EnterAndExpr(c *AndExprContext)
+
+	// EnterDerefExpr is called when entering the DerefExpr production.
+	EnterDerefExpr(c *DerefExprContext)
 
 	// EnterLitExpr is called when entering the LitExpr production.
 	EnterLitExpr(c *LitExprContext)
@@ -92,6 +98,9 @@ type haruListener interface {
 	// EnterFunctionCallExpr is called when entering the FunctionCallExpr production.
 	EnterFunctionCallExpr(c *FunctionCallExprContext)
 
+	// EnterAddressOfExpr is called when entering the AddressOfExpr production.
+	EnterAddressOfExpr(c *AddressOfExprContext)
+
 	// EnterEqExpr is called when entering the EqExpr production.
 	EnterEqExpr(c *EqExprContext)
 
@@ -112,6 +121,9 @@ type haruListener interface {
 
 	// EnterAssignStmt is called when entering the AssignStmt production.
 	EnterAssignStmt(c *AssignStmtContext)
+
+	// EnterPointerAssignStmt is called when entering the PointerAssignStmt production.
+	EnterPointerAssignStmt(c *PointerAssignStmtContext)
 
 	// EnterIntLiteral is called when entering the IntLiteral production.
 	EnterIntLiteral(c *IntLiteralContext)
@@ -148,6 +160,12 @@ type haruListener interface {
 
 	// EnterConstInferDecl is called when entering the ConstInferDecl production.
 	EnterConstInferDecl(c *ConstInferDeclContext)
+
+	// EnterImmutablePointerDecl is called when entering the ImmutablePointerDecl production.
+	EnterImmutablePointerDecl(c *ImmutablePointerDeclContext)
+
+	// EnterMutablePointerDecl is called when entering the MutablePointerDecl production.
+	EnterMutablePointerDecl(c *MutablePointerDeclContext)
 
 	// EnterI8Type is called when entering the I8Type production.
 	EnterI8Type(c *I8TypeContext)
@@ -299,6 +317,9 @@ type haruListener interface {
 	// ExitAssignStmtStatement is called when exiting the AssignStmtStatement production.
 	ExitAssignStmtStatement(c *AssignStmtStatementContext)
 
+	// ExitPointerAssignStmtStatement is called when exiting the PointerAssignStmtStatement production.
+	ExitPointerAssignStmtStatement(c *PointerAssignStmtStatementContext)
+
 	// ExitIfStmtStatement is called when exiting the IfStmtStatement production.
 	ExitIfStmtStatement(c *IfStmtStatementContext)
 
@@ -331,6 +352,9 @@ type haruListener interface {
 
 	// ExitAndExpr is called when exiting the AndExpr production.
 	ExitAndExpr(c *AndExprContext)
+
+	// ExitDerefExpr is called when exiting the DerefExpr production.
+	ExitDerefExpr(c *DerefExprContext)
 
 	// ExitLitExpr is called when exiting the LitExpr production.
 	ExitLitExpr(c *LitExprContext)
@@ -371,6 +395,9 @@ type haruListener interface {
 	// ExitFunctionCallExpr is called when exiting the FunctionCallExpr production.
 	ExitFunctionCallExpr(c *FunctionCallExprContext)
 
+	// ExitAddressOfExpr is called when exiting the AddressOfExpr production.
+	ExitAddressOfExpr(c *AddressOfExprContext)
+
 	// ExitEqExpr is called when exiting the EqExpr production.
 	ExitEqExpr(c *EqExprContext)
 
@@ -391,6 +418,9 @@ type haruListener interface {
 
 	// ExitAssignStmt is called when exiting the AssignStmt production.
 	ExitAssignStmt(c *AssignStmtContext)
+
+	// ExitPointerAssignStmt is called when exiting the PointerAssignStmt production.
+	ExitPointerAssignStmt(c *PointerAssignStmtContext)
 
 	// ExitIntLiteral is called when exiting the IntLiteral production.
 	ExitIntLiteral(c *IntLiteralContext)
@@ -427,6 +457,12 @@ type haruListener interface {
 
 	// ExitConstInferDecl is called when exiting the ConstInferDecl production.
 	ExitConstInferDecl(c *ConstInferDeclContext)
+
+	// ExitImmutablePointerDecl is called when exiting the ImmutablePointerDecl production.
+	ExitImmutablePointerDecl(c *ImmutablePointerDeclContext)
+
+	// ExitMutablePointerDecl is called when exiting the MutablePointerDecl production.
+	ExitMutablePointerDecl(c *MutablePointerDeclContext)
 
 	// ExitI8Type is called when exiting the I8Type production.
 	ExitI8Type(c *I8TypeContext)

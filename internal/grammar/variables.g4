@@ -1,11 +1,16 @@
 grammar Variables;
 
-varDecl: 'let' ID ':' type '=' expr ';'      # LetDecl
-       | 'let' ID '=' expr ';'               # LetInferDecl
-       | 'mut' ID ':' type ('=' expr)? ';'   # MutDecl
-       | 'mut' ID '=' expr ';'               # MutInferDecl
-       | 'const' ID ':' type '=' expr ';'    # ConstDecl
-       | 'const' ID '=' expr ';'             # ConstInferDecl ;
+
+varDecl: 'let' ID ':' type '=' expr ';'          # LetDecl
+       | 'let' ID '=' expr ';'                   # LetInferDecl
+       | 'mut' ID ':' type ('=' expr)? ';'       # MutDecl
+       | 'mut' ID '=' expr ';'                   # MutInferDecl
+       | 'const' ID ':' type '=' expr ';'        # ConstDecl
+       | 'const' ID '=' expr ';'                 # ConstInferDecl
+       | 'let' ID ':' '*' type '=' '&' ID ';'    # ImmutablePointerDecl
+       | 'mut' ID ':' '*' type '=' '&' ID ';'    # MutablePointerDecl
+       ;
+
 
 type: 'i8'    # I8Type
     | 'i16'   # I16Type
@@ -21,5 +26,6 @@ type: 'i8'    # I8Type
     | 'f64'   # F64Type
     | 'bool'  # BoolType
     | 'string'# StringType
-    | 'byte'  # ByteType ;
+    | 'byte'  # ByteType
+    ;
 

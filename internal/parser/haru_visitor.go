@@ -20,6 +20,9 @@ type haruVisitor interface {
 	// Visit a parse tree produced by haruParser#AssignStmtStatement.
 	VisitAssignStmtStatement(ctx *AssignStmtStatementContext) interface{}
 
+	// Visit a parse tree produced by haruParser#PointerAssignStmtStatement.
+	VisitPointerAssignStmtStatement(ctx *PointerAssignStmtStatementContext) interface{}
+
 	// Visit a parse tree produced by haruParser#IfStmtStatement.
 	VisitIfStmtStatement(ctx *IfStmtStatementContext) interface{}
 
@@ -52,6 +55,9 @@ type haruVisitor interface {
 
 	// Visit a parse tree produced by haruParser#AndExpr.
 	VisitAndExpr(ctx *AndExprContext) interface{}
+
+	// Visit a parse tree produced by haruParser#DerefExpr.
+	VisitDerefExpr(ctx *DerefExprContext) interface{}
 
 	// Visit a parse tree produced by haruParser#LitExpr.
 	VisitLitExpr(ctx *LitExprContext) interface{}
@@ -92,6 +98,9 @@ type haruVisitor interface {
 	// Visit a parse tree produced by haruParser#FunctionCallExpr.
 	VisitFunctionCallExpr(ctx *FunctionCallExprContext) interface{}
 
+	// Visit a parse tree produced by haruParser#AddressOfExpr.
+	VisitAddressOfExpr(ctx *AddressOfExprContext) interface{}
+
 	// Visit a parse tree produced by haruParser#EqExpr.
 	VisitEqExpr(ctx *EqExprContext) interface{}
 
@@ -112,6 +121,9 @@ type haruVisitor interface {
 
 	// Visit a parse tree produced by haruParser#AssignStmt.
 	VisitAssignStmt(ctx *AssignStmtContext) interface{}
+
+	// Visit a parse tree produced by haruParser#PointerAssignStmt.
+	VisitPointerAssignStmt(ctx *PointerAssignStmtContext) interface{}
 
 	// Visit a parse tree produced by haruParser#IntLiteral.
 	VisitIntLiteral(ctx *IntLiteralContext) interface{}
@@ -148,6 +160,12 @@ type haruVisitor interface {
 
 	// Visit a parse tree produced by haruParser#ConstInferDecl.
 	VisitConstInferDecl(ctx *ConstInferDeclContext) interface{}
+
+	// Visit a parse tree produced by haruParser#ImmutablePointerDecl.
+	VisitImmutablePointerDecl(ctx *ImmutablePointerDeclContext) interface{}
+
+	// Visit a parse tree produced by haruParser#MutablePointerDecl.
+	VisitMutablePointerDecl(ctx *MutablePointerDeclContext) interface{}
 
 	// Visit a parse tree produced by haruParser#I8Type.
 	VisitI8Type(ctx *I8TypeContext) interface{}

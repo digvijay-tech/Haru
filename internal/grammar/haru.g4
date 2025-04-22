@@ -9,6 +9,7 @@ program: statement* ;
 statement: printStmt            # PrintStmtStatement
          | varDecl              # VarDeclStatement
          | assign               # AssignStmtStatement
+         | pointerAssign        # PointerAssignStmtStatement
          | ifStmt               # IfStmtStatement
          | arrayDecl            # ArrayDeclStatement
          | arrayItemAssign      # ArrayIndexAssignStatement

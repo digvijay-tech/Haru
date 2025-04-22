@@ -45,6 +45,12 @@ func (s *BaseharuListener) EnterAssignStmtStatement(ctx *AssignStmtStatementCont
 // ExitAssignStmtStatement is called when production AssignStmtStatement is exited.
 func (s *BaseharuListener) ExitAssignStmtStatement(ctx *AssignStmtStatementContext) {}
 
+// EnterPointerAssignStmtStatement is called when production PointerAssignStmtStatement is entered.
+func (s *BaseharuListener) EnterPointerAssignStmtStatement(ctx *PointerAssignStmtStatementContext) {}
+
+// ExitPointerAssignStmtStatement is called when production PointerAssignStmtStatement is exited.
+func (s *BaseharuListener) ExitPointerAssignStmtStatement(ctx *PointerAssignStmtStatementContext) {}
+
 // EnterIfStmtStatement is called when production IfStmtStatement is entered.
 func (s *BaseharuListener) EnterIfStmtStatement(ctx *IfStmtStatementContext) {}
 
@@ -110,6 +116,12 @@ func (s *BaseharuListener) EnterAndExpr(ctx *AndExprContext) {}
 
 // ExitAndExpr is called when production AndExpr is exited.
 func (s *BaseharuListener) ExitAndExpr(ctx *AndExprContext) {}
+
+// EnterDerefExpr is called when production DerefExpr is entered.
+func (s *BaseharuListener) EnterDerefExpr(ctx *DerefExprContext) {}
+
+// ExitDerefExpr is called when production DerefExpr is exited.
+func (s *BaseharuListener) ExitDerefExpr(ctx *DerefExprContext) {}
 
 // EnterLitExpr is called when production LitExpr is entered.
 func (s *BaseharuListener) EnterLitExpr(ctx *LitExprContext) {}
@@ -189,6 +201,12 @@ func (s *BaseharuListener) EnterFunctionCallExpr(ctx *FunctionCallExprContext) {
 // ExitFunctionCallExpr is called when production FunctionCallExpr is exited.
 func (s *BaseharuListener) ExitFunctionCallExpr(ctx *FunctionCallExprContext) {}
 
+// EnterAddressOfExpr is called when production AddressOfExpr is entered.
+func (s *BaseharuListener) EnterAddressOfExpr(ctx *AddressOfExprContext) {}
+
+// ExitAddressOfExpr is called when production AddressOfExpr is exited.
+func (s *BaseharuListener) ExitAddressOfExpr(ctx *AddressOfExprContext) {}
+
 // EnterEqExpr is called when production EqExpr is entered.
 func (s *BaseharuListener) EnterEqExpr(ctx *EqExprContext) {}
 
@@ -230,6 +248,12 @@ func (s *BaseharuListener) EnterAssignStmt(ctx *AssignStmtContext) {}
 
 // ExitAssignStmt is called when production AssignStmt is exited.
 func (s *BaseharuListener) ExitAssignStmt(ctx *AssignStmtContext) {}
+
+// EnterPointerAssignStmt is called when production PointerAssignStmt is entered.
+func (s *BaseharuListener) EnterPointerAssignStmt(ctx *PointerAssignStmtContext) {}
+
+// ExitPointerAssignStmt is called when production PointerAssignStmt is exited.
+func (s *BaseharuListener) ExitPointerAssignStmt(ctx *PointerAssignStmtContext) {}
 
 // EnterIntLiteral is called when production IntLiteral is entered.
 func (s *BaseharuListener) EnterIntLiteral(ctx *IntLiteralContext) {}
@@ -302,6 +326,18 @@ func (s *BaseharuListener) EnterConstInferDecl(ctx *ConstInferDeclContext) {}
 
 // ExitConstInferDecl is called when production ConstInferDecl is exited.
 func (s *BaseharuListener) ExitConstInferDecl(ctx *ConstInferDeclContext) {}
+
+// EnterImmutablePointerDecl is called when production ImmutablePointerDecl is entered.
+func (s *BaseharuListener) EnterImmutablePointerDecl(ctx *ImmutablePointerDeclContext) {}
+
+// ExitImmutablePointerDecl is called when production ImmutablePointerDecl is exited.
+func (s *BaseharuListener) ExitImmutablePointerDecl(ctx *ImmutablePointerDeclContext) {}
+
+// EnterMutablePointerDecl is called when production MutablePointerDecl is entered.
+func (s *BaseharuListener) EnterMutablePointerDecl(ctx *MutablePointerDeclContext) {}
+
+// ExitMutablePointerDecl is called when production MutablePointerDecl is exited.
+func (s *BaseharuListener) ExitMutablePointerDecl(ctx *MutablePointerDeclContext) {}
 
 // EnterI8Type is called when production I8Type is entered.
 func (s *BaseharuListener) EnterI8Type(ctx *I8TypeContext) {}

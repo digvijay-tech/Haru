@@ -24,6 +24,10 @@ func (v *BaseharuVisitor) VisitAssignStmtStatement(ctx *AssignStmtStatementConte
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseharuVisitor) VisitPointerAssignStmtStatement(ctx *PointerAssignStmtStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseharuVisitor) VisitIfStmtStatement(ctx *IfStmtStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -65,6 +69,10 @@ func (v *BaseharuVisitor) VisitMulExpr(ctx *MulExprContext) interface{} {
 }
 
 func (v *BaseharuVisitor) VisitAndExpr(ctx *AndExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitDerefExpr(ctx *DerefExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -120,6 +128,10 @@ func (v *BaseharuVisitor) VisitFunctionCallExpr(ctx *FunctionCallExprContext) in
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseharuVisitor) VisitAddressOfExpr(ctx *AddressOfExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseharuVisitor) VisitEqExpr(ctx *EqExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -145,6 +157,10 @@ func (v *BaseharuVisitor) VisitLenFunctionExpr(ctx *LenFunctionExprContext) inte
 }
 
 func (v *BaseharuVisitor) VisitAssignStmt(ctx *AssignStmtContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitPointerAssignStmt(ctx *PointerAssignStmtContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
@@ -193,6 +209,14 @@ func (v *BaseharuVisitor) VisitConstDecl(ctx *ConstDeclContext) interface{} {
 }
 
 func (v *BaseharuVisitor) VisitConstInferDecl(ctx *ConstInferDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitImmutablePointerDecl(ctx *ImmutablePointerDeclContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitMutablePointerDecl(ctx *MutablePointerDeclContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 

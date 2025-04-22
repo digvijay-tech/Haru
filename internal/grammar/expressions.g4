@@ -1,5 +1,6 @@
 grammar Expressions;
 
+
 expr: '!' expr              # NotExpr
     | '(' expr ')'          # ParenExpr
     | expr '**' expr        # ExpExpr
@@ -16,14 +17,20 @@ expr: '!' expr              # NotExpr
     | expr '!=' expr        # NeExpr
     | expr '&&' expr        # AndExpr
     | expr '||' expr        # OrExpr
+    | '*' expr              # DerefExpr
+    | '&' ID                # AddressOfExpr
     | ID                    # VarExpr
     | ID '[' expr ']'       # IndexExpr
     | functionCall          # FunctionCallExpr
     | lenFunction           # LenFunctionExpr
-    | literal               # LitExpr ;
+    | literal               # LitExpr
+    ;
 
 
-assign: ID '=' expr ';'     # AssignStmt ;
+assign:  ID '=' expr ';'    # AssignStmt ;
+
+
+pointerAssign: '*' ID '=' expr ';' # PointerAssignStmt ;
 
 
 literal: ('-')? NUMBER      # IntLiteral
@@ -31,7 +38,8 @@ literal: ('-')? NUMBER      # IntLiteral
        | 'true'             # TrueLiteral
        | 'false'            # FalseLiteral
        | STRING             # StringLiteral
-       | BYTE               # ByteLiteral ;
+       | BYTE               # ByteLiteral
+       ;
 
 
 
