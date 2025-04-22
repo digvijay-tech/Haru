@@ -92,6 +92,9 @@ type haruListener interface {
 	// EnterOrExpr is called when entering the OrExpr production.
 	EnterOrExpr(c *OrExprContext)
 
+	// EnterInputFunctionExpr is called when entering the InputFunctionExpr production.
+	EnterInputFunctionExpr(c *InputFunctionExprContext)
+
 	// EnterDivExpr is called when entering the DivExpr production.
 	EnterDivExpr(c *DivExprContext)
 
@@ -278,6 +281,9 @@ type haruListener interface {
 	// EnterLenFunction is called when entering the lenFunction production.
 	EnterLenFunction(c *LenFunctionContext)
 
+	// EnterInputFunction is called when entering the inputFunction production.
+	EnterInputFunction(c *InputFunctionContext)
+
 	// EnterFunctionDecl is called when entering the functionDecl production.
 	EnterFunctionDecl(c *FunctionDeclContext)
 
@@ -388,6 +394,9 @@ type haruListener interface {
 
 	// ExitOrExpr is called when exiting the OrExpr production.
 	ExitOrExpr(c *OrExprContext)
+
+	// ExitInputFunctionExpr is called when exiting the InputFunctionExpr production.
+	ExitInputFunctionExpr(c *InputFunctionExprContext)
 
 	// ExitDivExpr is called when exiting the DivExpr production.
 	ExitDivExpr(c *DivExprContext)
@@ -574,6 +583,9 @@ type haruListener interface {
 
 	// ExitLenFunction is called when exiting the lenFunction production.
 	ExitLenFunction(c *LenFunctionContext)
+
+	// ExitInputFunction is called when exiting the inputFunction production.
+	ExitInputFunction(c *InputFunctionContext)
 
 	// ExitFunctionDecl is called when exiting the functionDecl production.
 	ExitFunctionDecl(c *FunctionDeclContext)

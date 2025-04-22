@@ -6,3 +6,7 @@ lenFunction
     ;
 
 
+inputFunction
+    : 'input' '(' STRING? ')'
+    ;
+

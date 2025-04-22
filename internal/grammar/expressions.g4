@@ -23,8 +23,10 @@ expr: '!' expr              # NotExpr
     | ID '[' expr ']'       # IndexExpr
     | functionCall          # FunctionCallExpr
     | lenFunction           # LenFunctionExpr
+    | inputFunction         # InputFunctionExpr
     | literal               # LitExpr
     ;
+
 
 
 assign:  ID '=' expr ';'    # AssignStmt ;

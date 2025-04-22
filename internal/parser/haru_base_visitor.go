@@ -120,6 +120,10 @@ func (v *BaseharuVisitor) VisitOrExpr(ctx *OrExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseharuVisitor) VisitInputFunctionExpr(ctx *InputFunctionExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseharuVisitor) VisitDivExpr(ctx *DivExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -365,6 +369,10 @@ func (v *BaseharuVisitor) VisitArrayReassign(ctx *ArrayReassignContext) interfac
 }
 
 func (v *BaseharuVisitor) VisitLenFunction(ctx *LenFunctionContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitInputFunction(ctx *InputFunctionContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 

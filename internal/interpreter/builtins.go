@@ -1,7 +1,9 @@
 package interpreter
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strings"
 	"unicode/utf8"
 
@@ -45,4 +47,30 @@ func (v *HaruVisitor) VisitLenFunction(ctx *parser.LenFunctionExprContext) any {
 	// neither string nor array
 	runtimeErr(fmt.Sprintf("len() not supported for type '%s'", arg.Typ))
 	return nil
+}
+
+// VisitInputFunction
+func (v *HaruVisitor) VisitInputFunction(ctx *parser.InputFunctionExprContext) any {
+	prompt := ""
+
+	if ctx.InputFunction().STRING() != nil {
+		prompt = stripQuotes(ctx.InputFunction().STRING().GetText())
+	}
+
+	// display prompt if exists
+	if prompt != "" {
+		fmt.Print(prompt)
+	}
+
+	reader := bufio.NewReader(os.Stdin)
+	input, err := reader.ReadString('\n')
+
+	if err != nil {
+		runtimeErr("failed to read input")
+	}
+
+	return Value{
+		Value: input,
+		Typ:   "string",
+	}
 }

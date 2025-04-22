@@ -189,6 +189,12 @@ func (s *BaseharuListener) EnterOrExpr(ctx *OrExprContext) {}
 // ExitOrExpr is called when production OrExpr is exited.
 func (s *BaseharuListener) ExitOrExpr(ctx *OrExprContext) {}
 
+// EnterInputFunctionExpr is called when production InputFunctionExpr is entered.
+func (s *BaseharuListener) EnterInputFunctionExpr(ctx *InputFunctionExprContext) {}
+
+// ExitInputFunctionExpr is called when production InputFunctionExpr is exited.
+func (s *BaseharuListener) ExitInputFunctionExpr(ctx *InputFunctionExprContext) {}
+
 // EnterDivExpr is called when production DivExpr is entered.
 func (s *BaseharuListener) EnterDivExpr(ctx *DivExprContext) {}
 
@@ -560,6 +566,12 @@ func (s *BaseharuListener) EnterLenFunction(ctx *LenFunctionContext) {}
 
 // ExitLenFunction is called when production lenFunction is exited.
 func (s *BaseharuListener) ExitLenFunction(ctx *LenFunctionContext) {}
+
+// EnterInputFunction is called when production inputFunction is entered.
+func (s *BaseharuListener) EnterInputFunction(ctx *InputFunctionContext) {}
+
+// ExitInputFunction is called when production inputFunction is exited.
+func (s *BaseharuListener) ExitInputFunction(ctx *InputFunctionContext) {}
 
 // EnterFunctionDecl is called when production functionDecl is entered.
 func (s *BaseharuListener) EnterFunctionDecl(ctx *FunctionDeclContext) {}

@@ -92,6 +92,9 @@ type haruVisitor interface {
 	// Visit a parse tree produced by haruParser#OrExpr.
 	VisitOrExpr(ctx *OrExprContext) interface{}
 
+	// Visit a parse tree produced by haruParser#InputFunctionExpr.
+	VisitInputFunctionExpr(ctx *InputFunctionExprContext) interface{}
+
 	// Visit a parse tree produced by haruParser#DivExpr.
 	VisitDivExpr(ctx *DivExprContext) interface{}
 
@@ -277,6 +280,9 @@ type haruVisitor interface {
 
 	// Visit a parse tree produced by haruParser#lenFunction.
 	VisitLenFunction(ctx *LenFunctionContext) interface{}
+
+	// Visit a parse tree produced by haruParser#inputFunction.
+	VisitInputFunction(ctx *InputFunctionContext) interface{}
 
 	// Visit a parse tree produced by haruParser#functionDecl.
 	VisitFunctionDecl(ctx *FunctionDeclContext) interface{}

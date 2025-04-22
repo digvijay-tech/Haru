@@ -2,7 +2,6 @@ package interpreter
 
 import (
 	"strconv"
-	"time"
 
 	"github.com/digvijay-tech/Haru/internal/parser"
 )
@@ -33,7 +32,7 @@ func (v *HaruVisitor) VisitWhileLoop(ctx *parser.WhileLoopStatementContext) any 
 
 		for _, stmt := range ctx.WhileLoop().Block().AllStatement() {
 			v.Visit(stmt)
-			time.Sleep(50 * time.Millisecond)
+			// time.Sleep(50 * time.Millisecond)
 		}
 
 		// cleaning up scope after each iteration
