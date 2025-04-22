@@ -41,6 +41,9 @@ type haruVisitor interface {
 	// Visit a parse tree produced by haruParser#FunctionCallStatement.
 	VisitFunctionCallStatement(ctx *FunctionCallStatementContext) interface{}
 
+	// Visit a parse tree produced by haruParser#WhileLoopStatement.
+	VisitWhileLoopStatement(ctx *WhileLoopStatementContext) interface{}
+
 	// Visit a parse tree produced by haruParser#PrintStatement.
 	VisitPrintStatement(ctx *PrintStatementContext) interface{}
 
@@ -280,4 +283,7 @@ type haruVisitor interface {
 
 	// Visit a parse tree produced by haruParser#argumentList.
 	VisitArgumentList(ctx *ArgumentListContext) interface{}
+
+	// Visit a parse tree produced by haruParser#whileLoop.
+	VisitWhileLoop(ctx *WhileLoopContext) interface{}
 }

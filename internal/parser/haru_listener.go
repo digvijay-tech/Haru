@@ -41,6 +41,9 @@ type haruListener interface {
 	// EnterFunctionCallStatement is called when entering the FunctionCallStatement production.
 	EnterFunctionCallStatement(c *FunctionCallStatementContext)
 
+	// EnterWhileLoopStatement is called when entering the WhileLoopStatement production.
+	EnterWhileLoopStatement(c *WhileLoopStatementContext)
+
 	// EnterPrintStatement is called when entering the PrintStatement production.
 	EnterPrintStatement(c *PrintStatementContext)
 
@@ -281,6 +284,9 @@ type haruListener interface {
 	// EnterArgumentList is called when entering the argumentList production.
 	EnterArgumentList(c *ArgumentListContext)
 
+	// EnterWhileLoop is called when entering the whileLoop production.
+	EnterWhileLoop(c *WhileLoopContext)
+
 	// ExitProgram is called when exiting the program production.
 	ExitProgram(c *ProgramContext)
 
@@ -313,6 +319,9 @@ type haruListener interface {
 
 	// ExitFunctionCallStatement is called when exiting the FunctionCallStatement production.
 	ExitFunctionCallStatement(c *FunctionCallStatementContext)
+
+	// ExitWhileLoopStatement is called when exiting the WhileLoopStatement production.
+	ExitWhileLoopStatement(c *WhileLoopStatementContext)
 
 	// ExitPrintStatement is called when exiting the PrintStatement production.
 	ExitPrintStatement(c *PrintStatementContext)
@@ -553,4 +562,7 @@ type haruListener interface {
 
 	// ExitArgumentList is called when exiting the argumentList production.
 	ExitArgumentList(c *ArgumentListContext)
+
+	// ExitWhileLoop is called when exiting the whileLoop production.
+	ExitWhileLoop(c *WhileLoopContext)
 }

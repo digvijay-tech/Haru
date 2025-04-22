@@ -1,6 +1,6 @@
 grammar haru;
 
-import Output, Expressions, Variables, ControlFlow, Arrays, Builtins, Functions;
+import Output, Expressions, Variables, ControlFlow, Arrays, Builtins, Functions, Loops;
 
 
 program: statement* ;
@@ -16,6 +16,7 @@ statement: printStmt            # PrintStmtStatement
          | functionDecl         # FunctionDeclStatement
          | returnStmt           # ReturnStmtStatement
          | functionCall ';'     # FunctionCallStatement
+         | whileLoop            # WhileLoopStatement
          ;
 
 

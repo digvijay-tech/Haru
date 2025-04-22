@@ -52,6 +52,10 @@ func (v *BaseharuVisitor) VisitFunctionCallStatement(ctx *FunctionCallStatementC
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseharuVisitor) VisitWhileLoopStatement(ctx *WhileLoopStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseharuVisitor) VisitPrintStatement(ctx *PrintStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -369,5 +373,9 @@ func (v *BaseharuVisitor) VisitFunctionCall(ctx *FunctionCallContext) interface{
 }
 
 func (v *BaseharuVisitor) VisitArgumentList(ctx *ArgumentListContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseharuVisitor) VisitWhileLoop(ctx *WhileLoopContext) interface{} {
 	return v.VisitChildren(ctx)
 }

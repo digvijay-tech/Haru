@@ -87,6 +87,12 @@ func (s *BaseharuListener) EnterFunctionCallStatement(ctx *FunctionCallStatement
 // ExitFunctionCallStatement is called when production FunctionCallStatement is exited.
 func (s *BaseharuListener) ExitFunctionCallStatement(ctx *FunctionCallStatementContext) {}
 
+// EnterWhileLoopStatement is called when production WhileLoopStatement is entered.
+func (s *BaseharuListener) EnterWhileLoopStatement(ctx *WhileLoopStatementContext) {}
+
+// ExitWhileLoopStatement is called when production WhileLoopStatement is exited.
+func (s *BaseharuListener) ExitWhileLoopStatement(ctx *WhileLoopStatementContext) {}
+
 // EnterPrintStatement is called when production PrintStatement is entered.
 func (s *BaseharuListener) EnterPrintStatement(ctx *PrintStatementContext) {}
 
@@ -566,3 +572,9 @@ func (s *BaseharuListener) EnterArgumentList(ctx *ArgumentListContext) {}
 
 // ExitArgumentList is called when production argumentList is exited.
 func (s *BaseharuListener) ExitArgumentList(ctx *ArgumentListContext) {}
+
+// EnterWhileLoop is called when production whileLoop is entered.
+func (s *BaseharuListener) EnterWhileLoop(ctx *WhileLoopContext) {}
+
+// ExitWhileLoop is called when production whileLoop is exited.
+func (s *BaseharuListener) ExitWhileLoop(ctx *WhileLoopContext) {}
