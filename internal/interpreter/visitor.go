@@ -114,6 +114,10 @@ func (v *HaruVisitor) Visit(tree antlr.ParseTree) any {
 		return v.VisitImmutablePointerDecl(ctx)
 	case *parser.MutablePointerDeclContext:
 		return v.VisitMutablePointerDecl(ctx)
+	case *parser.DerefExprContext:
+		return v.VisitPointerDerefExpr(ctx)
+	case *parser.PointerAssignStmtStatementContext:
+		return v.VisitPointerAssignment(ctx)
 	case *parser.EmptyArrContext:
 		return []Value{}
 	default:
