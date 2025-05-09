@@ -4,7 +4,7 @@ const start = performance.now();
 
 let i = 1;
 
-while (i <= 100) {
+while (i < 100000) {
     console.log(i);
     i++;
 }

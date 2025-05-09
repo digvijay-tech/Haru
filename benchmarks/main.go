@@ -12,11 +12,6 @@ import (
 )
 
 func main() {
-	if len(os.Args) < 2 {
-		fmt.Println("Usage: haru run <file.haru>")
-		return
-	}
-
 	filePath := os.Args[1]
 	content, err := os.ReadFile(filePath)
 	if err != nil {
