@@ -1,6 +1,6 @@
 # Haru Programming Language
 
-**Haru** is a lightweight, statically typed, interpreted programming language designed for safety, clarity, and developer ergonomics. Inspired by the simplicity of Go and the memory safety of Rust, Haru aims to make systems-level programming more accessible without sacrificing control.
+**Haru** is a prototype programming language designed for simplicity, memory safety, and robust type checking. Built using Go and ANTLR, Haru combines Go's minimalism with Rust’s safety principles to create a practical, general-purpose language suitable for both systems-level and application-level programming.
 
 This prototype features:
 - Strong static typing with explicit mutability (`const`, `let`, `mut`)
