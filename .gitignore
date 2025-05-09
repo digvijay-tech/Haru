@@ -12,9 +12,6 @@ bin/
 *.a
 *.o
 
-# Go module and checksum files
-*.mod
-*.sum
 
 # Build and debugging
 build/
